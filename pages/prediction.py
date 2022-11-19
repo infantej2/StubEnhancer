@@ -1,3 +1,5 @@
+from .shared import generate_header
+
 import dash
 import pandas as pd
 from dash import html, dcc, Input, Output, callback
@@ -17,12 +19,7 @@ field_list = list(df["Field of Study (2-digit CIP code)"].unique())
 # ==============================================================================
 
 layout = html.Div(children=[
-    html.Header(children=[
-        dcc.Link(html.Button("Home", className="button"), href="/", refresh=True),
-        dcc.Link(html.Button("by salary", className="button"), href="/salary", refresh=True,),
-        dcc.Link(html.Button("by field", className="button"), href="/field", refresh=True),
-        dcc.Link(html.Button("prediction", className="button-disabled", disabled=True), href="/prediction", refresh=True),
-    ], className="header"),
+    generate_header(__name__),
     html.H1(children='Prediction'),
 
     html.Div([
