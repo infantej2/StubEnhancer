@@ -5,14 +5,15 @@ dash.register_page(__name__)
 
 layout = html.Div(children=[
     html.Div(children=[
-        dcc.Link(html.Button("by salary"), href="/salary", refresh=True,),
-        dcc.Link(html.Button("by field"), href="/field", refresh=True),
-        dcc.Link(html.Button("prediction"), href="/prediction", refresh=True),
+        dcc.Link(html.Button("Home", className="button"), href="/", refresh=True),
+        dcc.Link(html.Button("by salary", className="button"), href="/salary", refresh=True,),
+        dcc.Link(html.Button("by field", className="button"), href="/field", refresh=True),
+        dcc.Link(html.Button("prediction", className="button-disabled", disabled=True), href="/prediction", refresh=True),
     ]),
     html.H1(children='Prediction'),
 
     html.Div(children='''
-        This is our Archive page content.
+        This is our Prediction Page
     '''),
 
 ])
