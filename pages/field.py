@@ -6,13 +6,14 @@ from dash import Dash, Input, Output, dcc, html, callback
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 
 dash.register_page(__name__)
 
 # -------------------------------------------------------------------------------------------------------------
 
-
 # Dataframe cleaning and prep
+'''
 df = pd.read_csv('./abSchool.csv')
 df = df.dropna()
 df = df.drop(columns=['Cohort Size'])
@@ -20,14 +21,13 @@ df['Median Income'] = df['Median Income'].str.replace('[$,]', '', regex=True).as
 dflist = df.loc[:,"Field of Study (2-digit CIP code)"]
 list = dflist.to_numpy()
 list = np.unique(list)
+'''
 
-'''
-def_list = ["01.00. Agriculture, general",
-"01.01. Agricultural business and management",
-"01.02. Agricultural mechanization",
-"01.05. Agricultural and domestic animal services",
-"01.06. Applied horticulture/horticultural business services"]
-'''
+derived_df = pd.read_csv('./derived_data.csv')
+dflist = derived_df[derived_df['Field of Study (CIP code)'].str.contains('[0-9]{2}.[0-9]{2}', regex=True) == False]
+dflist = dflist[derived_df['Field of Study (CIP code)'] != '00. Total']
+dflist = dflist.loc[:,'Field of Study (CIP code)']
+list = np.unique(dflist.to_numpy())
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -36,51 +36,115 @@ layout = html.Div(children=[
     generate_header(__name__),
     html.H1(children='By Field', style={'text-align':'center'}),
     html.P([
-        html.H2("Average Median Income by Field of Study --- Dropdown 2-digit CIP",
-        style={'text-align': 'center', 'padding-top':'100px'}),
-        html.Div(children=[
-        html.H5("Add fields: "),
-        html.Div([
-            dcc.Dropdown(list, id="my-input1", value="01. Agriculture, agriculture operations and related sciences", multi=False, style={'width':'90%', 'margin-left':'30px'})
-        ], style={'width':'100%', 'display':'flex', 'align-items':'center', 'justify-content':'center'}),
-        ], style={'text-align': 'center'}),
-        html.Div(id='my-output1')
+            html.H2("Average Median Income by Field of Study --- Dropdown 2-digit CIP",
+            style={'text-align': 'center', 'padding-top':'100px'}),
+            html.Div(children=[
+                html.H5("Add fields: "),
+                html.Div([
+                    dcc.Dropdown(list, id="FoS", value="11. Computer and information sciences and support services", multi=False, style={'width':'90%', 'margin-left':'30px'})
+                ], style={'width':'100%', 'display':'flex', 'align-items':'center', 'justify-content':'center'}),
+                html.Div(id='FoS-Salary-Text'),
+            ], style={'text-align': 'center'}),
+            html.Div(id='FoS-Yearly-Salary-Linechart'),
+            html.Div(id='FoS-Certification-Graph')
         ])
 ])
 
+# --------------------------------------------------------------------------------------------------------------------------------------
+
+years_texts = [
+    'Ten Years After Graduation',
+    'Five Years After Graduation',
+    'Two Years After Graduation',
+    'One Year After Graduation'
+]
+
+years_numbers = [
+    10,
+    5,
+    2,
+    1
+]
+
+def df_has_year_salary(dataframe, years):
+    has_year_salary = False
+
+    for index, row in dataframe.iterrows():
+        salary = row[f'Average Income {years}']
+        size = row[f'Cohort Size {years}']
+
+        # Ignore N/A rows
+        if pd.isna(salary) or pd.isna(size):
+            continue
+
+        has_year_salary = ((salary != 0) and (size != 0))
+        if has_year_salary:
+            break
+
+    return has_year_salary
+
+def df_avg_salary_smooth_sum(dataframe, years):
+    total_salary_sum = 0
+    total_people = 0
+
+    for index, row in dataframe.iterrows():
+        salary = row[f'Average Income {years}']
+        size = row[f'Cohort Size {years}']
+
+        # Ignore N/A rows
+        if pd.isna(salary) or pd.isna(size):
+            continue
+
+        total_salary_sum += (salary * size)
+        total_people += size
+
+    expected_salary = 0
+
+    # Prevent divide by 0 when no data
+    if total_people > 0:
+       expected_salary = int(total_salary_sum / total_people)
+
+    return expected_salary
 
 # --------------------------------------------------------------------------------------------------------------------------------------
 
-# Explore 2-digit CIP update and callback
 @callback(
-    Output(component_id='my-output1', component_property='children'),
-    Input(component_id='my-input1', component_property='value')
+    Output(component_id='FoS-Salary-Text', component_property='children'),
+    Input(component_id='FoS', component_property='value')
 )
+def update_fos_salary_text(field_of_study):
+    if not field_of_study:
+        return 'Select a Field of Study for an Average Salary...'
 
-def update_output2(input2):
+    fos_split = field_of_study.split('. ')
+    fos_code = fos_split[0]
+    fos_name = fos_split[-1]
 
-    '''
-    temp_df1 = (df.loc[df['Field of Study (4-digit CIP code)'].str.lower().str.contains(input2[0-2])])
-    df1 = temp_df1.groupby(['Field of Study (4-digit CIP code)']).mean(numeric_only=True).astype(int).sort_values('Median Income', ascending=True)
-    df1.reset_index(inplace=True)
-    '''
+    dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.startswith(fos_code)]
+    dataframe = dataframe.loc[dataframe['Credential'] != 'Overall (All Graduates)']
+    #dataframe = dataframe.dropna(axis=0)
 
-    temp_df2 = (df.loc[df['Field of Study (2-digit CIP code)'] == input2])
-    df2 = temp_df2.groupby(['Credential']).mean(numeric_only=True).astype(int).sort_values('Median Income', ascending=True)
-    df2.reset_index(inplace=True)
+    expected_salary = 0
+    salary_year = years_texts[-1]
 
-    # The map of colors for each type of credential
-    # NOTE: The credential types will be pulled in the order specified within the list.
-    color_map = {
-        'Certificate': 'red',
-        'Diploma': 'green',
-        'Bachelor\'s degree': 'blue',
-        'Professional bachelor\'s degree': 'yellow',
-        'Bachelor\'s degree + certificate/diploma': 'grey',
-        'Master\'s degree': 'orange',
-        'Doctoral Degree': 'teal',
-    }
+    # Loop each year (descending), when we have a salary, exit
+    for year in years_texts:
+        salary_year = year
+        expected_salary = df_avg_salary_smooth_sum(dataframe, salary_year)
 
+        # As soon as we have a salary, exit
+        if expected_salary != 0:
+            break
+
+    return f'On average, those studying \"{fos_name}\" can expect to make ~${expected_salary} CAD {salary_year.lower()}.'
+
+# --------------------------------------------------------------------------------------------------------------------------------------
+
+@callback(
+    Output(component_id='FoS-Yearly-Salary-Linechart', component_property='children'),
+    Input(component_id='FoS', component_property='value')
+)
+def update_fos_salary_linechart(field_of_study):
     layout = go.Layout(
         margin=go.layout.Margin(
             l=150,   # left margin
@@ -90,14 +154,129 @@ def update_output2(input2):
         ), 
         height = 700,
         title_x = 0.5,
+        title='Average Earnings Over Time By Years After Graduation per Job Title Within the Chosen Field',
+        xaxis_title='Years After Graduation',
+        yaxis_title='Average Salary (CAD)',
+        bargap=0
+    )
+
+    if not field_of_study:
+        return dcc.Graph(
+            figure=go.Figure(
+                layout=layout
+            )
+        )
+
+    if field_of_study == '00. Total (All Graduates)':
+        return
+
+    fos_split = field_of_study.split('. ')
+    fos_code = fos_split[0]
+    fos_name = fos_split[-1]
+
+    dataframe = derived_df.loc[derived_df['Credential'] == 'Overall (All Graduates)']
+    dataframe = dataframe.loc[dataframe['Field of Study (CIP code)'].str.startswith(fos_code)]
+
+    new_df_list = []
+    for index, row in dataframe.iterrows():
+        for i in range(len(years_texts)):
+            year_text = years_texts[i]
+            year_number = years_numbers[i]
+
+            fos = row['Field of Study (CIP code)']
+            column_name = f'Average Income {year_text}'
+            year_salary = row[column_name]
+
+            if pd.isna(year_salary): continue
+
+            new_df_list.append({
+                'field_of_study': fos,
+                'year': year_number,
+                'salary': year_salary
+            })
+
+    new_df = pd.DataFrame(new_df_list)
+
+    figure = px.line(
+        data_frame=new_df,
+        x=new_df['year'],
+        y=new_df['salary'],
+        color='field_of_study',
+        markers=True
+    )
+
+    figure.layout = layout
+
+    return dcc.Graph(
+        figure=figure
+    )
+
+# --------------------------------------------------------------------------------------------------------------------------------------
+
+# Explore 2-digit CIP update and callback
+@callback(
+    Output(component_id='FoS-Certification-Graph', component_property='children'),
+    Input(component_id='FoS', component_property='value')
+)
+def update_fos_certification_graph(field_of_study):
+    layout = go.Layout(
+        margin=go.layout.Margin(
+            l=150,   # left margin
+            r=150,   # right margin
+            b=100,   # bottom margin
+            t=50    # top margin
+        ), 
+        height = 700,
+        title_x = 0.5,
+        title='Mean Incomes by Certification Type for the Chosen Field',
         xaxis_title="Credential",
-        yaxis_title="Median Income ($)",
+        yaxis_title="Mean Income (CAD)",
         bargap=0
     )
 
     figure = go.Figure(
         layout=layout
     )
+
+    if not field_of_study:
+        return dcc.Graph(figure=figure)
+
+    fos_split = field_of_study.split('. ')
+    fos_code = fos_split[0]
+
+    '''
+    temp_df1 = (df.loc[df['Field of Study (4-digit CIP code)'].str.lower().str.contains(field_of_study[0-2])])
+    df1 = temp_df1.groupby(['Field of Study (4-digit CIP code)']).mean(numeric_only=True).astype(int).sort_values('Median Income', ascending=True)
+    df1.reset_index(inplace=True)
+    '''
+
+    '''
+    temp_df2 = (df.loc[df['Field of Study (2-digit CIP code)'] == field_of_study])
+    df2 = temp_df2.groupby(['Credential']).mean(numeric_only=True).astype(int).sort_values('Median Income', ascending=True)
+    df2.reset_index(inplace=True)
+    '''
+
+    temp_df2 = derived_df.loc[derived_df['Field of Study (CIP code)'].str.startswith(fos_code)]
+    temp_df2 = temp_df2.loc[temp_df2['Credential'] != 'Overall (All Graduates)']
+    df2 = temp_df2.reset_index()
+
+    income_year_column = 'Average Income Ten Years After Graduation'
+    for years in years_texts:
+        if df_has_year_salary(df2, years):
+            income_year_column = f'Average Income {years}'
+            break
+
+    # The map of colors for each type of credential
+    # NOTE: The credential types will be pulled in the order specified within the list.
+    color_map = {
+        'Certificate': 'red',
+        'Diploma ': 'green',
+        'Bachelor\'s degree': 'blue',
+        'Professional bachelor\'s degree': 'yellow',
+        'Bachelor\'s degree + certificate/diploma': 'grey',
+        'Master\'s degree': 'orange',
+        'Doctoral Degree': 'teal',
+    }
 
     # Add each bar by certification type
     for certificate_name in color_map:
@@ -106,12 +285,13 @@ def update_output2(input2):
 
         # Ignore this bar if there are no entries in the new dataframe
         if bar_df.empty: continue
+        if bar_df[income_year_column].isnull().values.any(): continue
 
         # Construct the new bar trace
         new_trace = go.Bar(
             x=bar_df["Credential"],
-            y=bar_df["Median Income"],
-            text = bar_df["Median Income"],
+            y=bar_df[income_year_column], # y=bar_df["Median Income"],
+            text = bar_df[income_year_column],
             textposition="inside",
             marker=dict(color='#024B7A'),
             marker_line=dict(width=1, color='black'),
@@ -129,6 +309,5 @@ def update_output2(input2):
     )
 
     return barChart
-
 
 # --------------------------------------------------------------------------------------------------------------------------------------

@@ -4,12 +4,12 @@ import dash
 import pandas as pd
 import os
 from dash import html, dcc, Input, Output, callback
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 
 dash.register_page(__name__)
 
 dropdown_style = {"width":"50%", "disaply":"flex", "align-items":"center", 'margin-left':'30px', 'margin-top':'100px'}
-Salary_model = load_model(os.path.join(".","Salary_Model.h5"))
+#Salary_model = load_model(os.path.join(".","Salary_Model.h5"))
 # ==============================================================================
 
 df = pd.read_csv('./abSchool.csv')
