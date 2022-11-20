@@ -206,6 +206,10 @@ def update_fos_salary_linechart(field_of_study):
     )
 
     figure.layout = layout
+    
+    figure.update_traces(
+        hovertemplate = 'Years After Graduation: %{x}<br>Average Salary (CAD): %{y}',
+    )
 
     return dcc.Graph(
         figure=figure

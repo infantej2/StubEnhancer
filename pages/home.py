@@ -1,5 +1,6 @@
 import dash
 from dash import Dash, Input, Output, dcc, html, callback
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
@@ -33,7 +34,7 @@ def jobs_happiness_scatterplot():
     fig = px.scatter(
         display_df,
         x = display_df.index,
-        y = 'Average Income Ten Years After Graduation'
+        y = 'Average Income Ten Years After Graduation',
     )
 
     fig.layout = layout
@@ -70,6 +71,10 @@ def jobs_happiness_scatterplot():
         annotation=dict(font_size=20, font_family='Times New Roman', font_color='black'),
     )
 
+    fig.update_traces(
+        hovertemplate = 'Average Income Ten Years After Graduation: %{y}'
+    )
+
     return dcc.Graph(
         figure=fig
     )
@@ -99,8 +104,6 @@ def certification_salaries_barchart():
     dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.contains('00. Total')]
     dataframe = dataframe.loc[dataframe['Credential'] != 'Overall (All Graduates)']
     dataframe = dataframe.reset_index()
-
-    print(dataframe)
 
     # The map of colors for each type of credential
     # NOTE: The credential types will be pulled in the order specified within the list.
@@ -144,6 +147,80 @@ def certification_salaries_barchart():
 
 # -------------------------------------------------------------------------------------------------------------
 
+def top_vs_bottom_5_barchart():
+    layout = go.Layout(
+        margin=go.layout.Margin(
+            l=150,   # left margin
+            r=150,   # right margin
+            b=100,   # bottom margin
+            t=50    # top margin
+        ), 
+        height = 700,
+        title_x = 0.5,
+        title='Top 5 vs Bottom 5 Jobs by 10th Year Salary (CAD)',
+        xaxis_title="Top 5 / Bottom 5 Jobs",
+        yaxis_title="Mean Income 10 Years After Graduation (CAD)",
+        bargap=0,
+        uniformtext_minsize=10,
+        uniformtext_mode='show'
+    )
+
+    dataframe = derived_df.loc[derived_df['Credential'] == 'Overall (All Graduates)']
+    dataframe = dataframe.dropna(axis=0)
+    dataframe = dataframe.sort_values('Average Income Ten Years After Graduation', ascending = False)
+
+    # Remove the 4 digit code from the start of the FoS string
+    dataframe['Field of Study (CIP code)'] = dataframe['Field of Study (CIP code)'].str.replace('[0-9]{2}.[0-9]{2} ', '', regex=True)
+
+    top = dataframe.head(5)
+    bottom = dataframe.tail(5)
+    dataframe = pd.concat([top, bottom])
+
+    figure = px.bar(
+        data_frame=dataframe,
+        x='Field of Study (CIP code)',
+        y='Average Income Ten Years After Graduation',
+        text='Average Income Ten Years After Graduation',
+        #color=['Top 5', 'Top 5', 'Top 5', 'Top 5', 'Top 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5'],
+        #color_discrete_map={
+        #    'Top 5': 'pink',
+        #    'Bottom 5': 'purple'
+        #}
+    )
+
+    figure.data[0].marker.color = ('pink','pink','pink','pink','pink','purple','purple','purple','purple','purple')
+
+    # Apply the layout described at the top
+    figure.layout = layout
+
+    # Manually add a legend to the graph
+    figure.update_traces(showlegend=False).add_traces(
+        [
+            go.Bar(name=m[0], x=[figure.data[0].x[0]], marker_color=m[1], showlegend=True)
+            for m in [('Top 5', 'pink'), ('Bottom 5', 'purple')]
+        ]
+    )
+
+    # Display the text and value as a string inside the bar, with vertical orientation
+    figure.update_traces(
+        texttemplate='%{x} %{y}',
+        textposition=['inside', 'inside', 'inside', 'inside', 'inside', 'outside', 'outside', 'outside', 'outside', 'outside'],
+        orientation='v',
+        textangle=-90,
+        hovertemplate = 'Field of Study: %{x}<br>Average Income Ten Years After Graduation: %{y}',
+    )
+
+    # Remove x-axis labels below the graph
+    figure.update_xaxes(visible=False, showticklabels=False)
+
+    barChart = dcc.Graph(
+        figure=figure
+    )
+
+    return barChart
+
+# -------------------------------------------------------------------------------------------------------------
+
 layout = html.Div(children=[
     html.H1(children='Stub Enhancer'),
     html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
@@ -162,5 +239,6 @@ layout = html.Div(children=[
         ] 
     ),
     html.Div(id='Happiness-Scatterplot', children=jobs_happiness_scatterplot()),
-    html.Div(id='Certification-Salaries-Barchart', children=certification_salaries_barchart())
+    html.Div(id='Certification-Salaries-Barchart', children=certification_salaries_barchart()),
+    html.Div(id='TopBottom5-Barchart', children=top_vs_bottom_5_barchart())
 ])
