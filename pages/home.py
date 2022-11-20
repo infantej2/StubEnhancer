@@ -15,7 +15,7 @@ layout = html.Div(children=[
     ]),
     html.Br(),
     html.Div(children="The ideal income, according to a study by purdue university "
-                        "is $127l. They also note the emotinoal wellbeing threshold is "
+                        "is $127K. They also note the emotional wellbeing threshold is "
                         "78K-$97K."),
 
 ])
