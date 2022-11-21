@@ -9,24 +9,27 @@
 
 .button {
     color: #fff;
-    background-color: #0B5ED7;
-    border-radius: 5px;
+    background-color: #D84FD2;
+    border-radius: 25px;
     border-color: #fff;
     size: 10px;
     padding: 10px;
     padding-left: 12px;
     padding-right: 12px;
+    width: 25%;
 }
 
 .button-disabled {
     color: #fff;
-    background-color: #646464;
-    border-radius: 5px;
+    font-weight: bold;
+    background-color: #8B4FD8;
+    border-radius: 25px;
     border-color: #fff;
-    size: 10px;
+    size: 15px;
     padding: 10px;
     padding-left: 12px;
     padding-right: 12px;
+    width: 25%;
 }
 
 .body {
@@ -34,8 +37,10 @@
     padding: 10px;
 }
 
-.body-text {
-    color: #fff;
+.divider {
+    width:150px;
+    height:auto;
+    display:inline-block;
 }
 
 

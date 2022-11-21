@@ -29,12 +29,12 @@ max_salary = int(derived_df['Average Income Ten Years After Graduation'].max()) 
 
 # -------------------------------------------------------------------------------------------------------------
 
-layout = html.Div(children=[
+layout = html.Div(className="body", children=[
     generate_header(__name__),
-    html.H1(children='By Salary'),
+    html.H1(children='By Salary', style={"color": "white", "fontSize":"25px", "padding":"20px"}),
     html.Div(children='''
         This is our Salary Page
-    '''),
+    ''', style={"color": "white", "fontSize":"25px", "padding":"20px"}),
     html.Div(id='Salary-Range-Min'),
     dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None, id='Salary-Range-Slider'),
     html.Div(id='Salary-Range-Max'),
@@ -44,6 +44,7 @@ layout = html.Div(children=[
         value=credential_list,
         inline=False,
         labelStyle={'display': 'block'},
+        style={"color": "white", "fontSize":"25px", "padding":"20px"}
     ),
     html.Div(id='Jobs-By-Salary-Barchart'),
     dcc.Slider(1, 50, 1, value=10, id='Job-Display-Max'),
@@ -89,7 +90,10 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
         #bargap=0,
         barmode='group',
         uniformtext_minsize=10,
-        uniformtext_mode='show'
+        uniformtext_mode='show',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
     figure = go.Figure(

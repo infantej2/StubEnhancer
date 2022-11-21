@@ -29,8 +29,11 @@ def generate_header(page):
         children=[
             #generate_header_button('Home', '/', page),
             generate_header_button('By Salary', '/salary', page),
+            html.Div(className="divider"),
             generate_header_button('By Field', '/field', page),
+            html.Div(className="divider"),
             generate_header_button('Prediction', '/prediction', page),
         ],
-        className="header"
+        className="header",
+        style={"textAlign":"center"}
     )
