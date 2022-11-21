@@ -35,6 +35,7 @@
 .body {
     background-color: #1C1C2C;
     padding: 10px;
+    height:100%;
 }
 
 .divider {
@@ -122,6 +123,27 @@
 }
 
 .salary-two {
+    position: relative;
     margin-top: 20vh;
     order: 2;
+}
+
+#Salary-Range-Slider .rc-slider-track {
+    background-color: #D84FD2;
+}
+
+#Job-Display-Max .rc-slider-track {
+    background-color: #D84FD2;
+}
+
+
+/* Field Styling */
+.home-one {
+    background-color: #27293D;
+    margin-top: 20px;
+}
+
+.home-two {
+    background-color: #27293D;
+    margin-top: 20px;
 }

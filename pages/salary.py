@@ -45,8 +45,8 @@ layout = html.Div(className="body", children=[
                 html.Div(id='Salary-Range-Min', style={"color": "white", "textAlign":"left"}),
                 html.Div(id='Salary-Range-Max', style={"color": "white", "textAlign":"right"}),
             ], style={"display":"flex", "justify-content":"space-between"}),
-        dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
-        ], style={"width":"600px"}),
+            dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None,id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
+        ], style={"width":"100%"}),
     ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
     html.Div(children=[
         html.Div(children=[
@@ -56,7 +56,7 @@ layout = html.Div(className="body", children=[
         ], style={"color": "white", "fontSize":"25px", "marginRight":"40px"}),
         html.Div(children=[
             dcc.Slider(1, 50, 1, value=10, marks=None, id='Job-Display-Max', tooltip={"placement": "bottom", "always_visible": True}),
-        ], style={"width":"400px", "paddingTop":"15px"}),
+        ], style={"width":"100%", "paddingTop":"15px"}),
     ], style={"display":"flex", "width":"55%", "margin":"auto", "paddingTop":"20px"}),
     html.Div(children=[
         html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
@@ -178,7 +178,7 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
     # Manually add a legend to the graph (ONLY NEEDED FOR SECOND METHOD)
     figure.update_traces(showlegend=False).add_traces(
         [
-            go.Bar(name=name, x=[figure.data[0].x[0]], marker_color=color, showlegend=True)
+            go.Bar(name=name, x=[figure.data[0].x[0]], marker_color=color, showlegend=False)
             for name, color in credential_map.items()
         ]
     )

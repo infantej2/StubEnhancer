@@ -32,22 +32,27 @@ list = np.unique(dflist.to_numpy())
 # -------------------------------------------------------------------------------------------------------------
 
 
-layout = html.Div(children=[
+layout = html.Div(className="body", children=[
     generate_header(__name__),
-    html.H1(children='By Field', style={'text-align':'center'}),
-    html.P([
-            html.H2("Average Median Income by Field of Study --- Dropdown 2-digit CIP",
-            style={'text-align': 'center', 'padding-top':'100px'}),
-            html.Div(children=[
-                html.H5("Add fields: "),
-                html.Div([
-                    dcc.Dropdown(list, id="FoS", value="11. Computer and information sciences and support services", multi=False, style={'width':'90%', 'margin-left':'30px'})
-                ], style={'width':'100%', 'display':'flex', 'align-items':'center', 'justify-content':'center'}),
-                html.Div(id='FoS-Salary-Text'),
-            ], style={'text-align': 'center'}),
-            html.Div(id='FoS-Yearly-Salary-Linechart'),
+    html.H1(className="title", children='Stub Enhancer', style={'text-align':'center'}),
+    html.Div(children=[
+        html.Div(children=[
+            html.Div(
+                html.H4("Field of Study",
+                style={"color": "white", 'text-align':'left', 'width':'100%'}),
+            ),
+            dcc.Dropdown(list, id="FoS", value="11. Computer and information sciences and support services", multi=False,
+            style={'width':'90%', 'margin-left':'30px'})
+        ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
+        html.Div(id='FoS-Salary-Text',
+        style={"color": "white", "textAlign":"center", "paddingTop":"30px", "paddingBottom":"30px"}),
+        html.Div(className="home-one", children=[
+            html.Div(id='FoS-Yearly-Salary-Linechart')
+        ], style={"paddingTop":"20px"}),
+        html.Div(className="home-two", children=[
             html.Div(id='FoS-Certification-Graph')
-        ])
+        ], style={"paddingTop":"20px"}),
+    ])
 ])
 
 # --------------------------------------------------------------------------------------------------------------------------------------
@@ -157,7 +162,10 @@ def update_fos_salary_linechart(field_of_study):
         title='Average Earnings Over Time By Years After Graduation per Job Title Within the Chosen Field',
         xaxis_title='Years After Graduation',
         yaxis_title='Average Salary (CAD)',
-        bargap=0
+        bargap=0,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
     if not field_of_study:
@@ -235,7 +243,10 @@ def update_fos_certification_graph(field_of_study):
         title='Mean Incomes by Certification Type for the Chosen Field',
         xaxis_title="Credential",
         yaxis_title="Mean Income (CAD)",
-        bargap=0
+        bargap=0,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
     figure = go.Figure(
