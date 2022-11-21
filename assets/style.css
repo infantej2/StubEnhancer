@@ -162,3 +162,35 @@
 #FoS .Select div, .Select input, .Select span {
     background-color: #27293D;
 }
+
+
+/* Prediction Styling */
+#input_creds .Select, .Select div, .Select input, .Select span, .Select-value {
+    color: white !important;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#input_creds .Select div, .Select input, .Select span {
+    background-color: #27293D;
+}
+
+#input_field .Select, .Select div, .Select input, .Select span, .Select-value {
+    color: white !important;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#input_field .Select div, .Select input, .Select span {
+    background-color: #27293D;
+}
+
+#input_years .Select, .Select div, .Select input, .Select span, .Select-value {
+    color: white !important;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#input_years .Select div, .Select input, .Select span {
+    background-color: #27293D;
+}

@@ -8,7 +8,7 @@ from dash import html, dcc, Input, Output, callback
 
 dash.register_page(__name__)
 
-dropdown_style = {"width":"50%", "disaply":"flex", "align-items":"center", 'margin-left':'30px', 'margin-top':'100px'}
+dropdown_style = {"width":"50%", "align-items":"center", 'margin-left':'30px'}
 #Salary_model = load_model(os.path.join(".","Salary_Model.h5"))
 # ==============================================================================
 
@@ -20,9 +20,9 @@ field_list = list(df["Field of Study (2-digit CIP code)"].unique())
 
 # ==============================================================================
 
-layout = html.Div(children=[
+layout = html.Div(className="body", children=[
     generate_header(__name__),
-    html.H1(children='Prediction'),
+    html.H1(className="title", children='Prediction'),
 
     html.Div([
 
@@ -34,13 +34,15 @@ layout = html.Div(children=[
         style=dropdown_style)
 
     ]
-    + [html.Div(id="output_pred")]
+    + [html.Div(id="output_pred",
+                style={"color": "white", 'text-align':'left', 'width':'100%'})]
     ),
 
     html.Div([
 
     ]
-    + [html.Div(id="output_pred1")]
+    + [html.Div(id="output_pred1",
+                style={"color": "white", 'text-align':'left', 'width':'100%'})]
     )
 
 ])
