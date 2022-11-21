@@ -31,23 +31,45 @@ max_salary = int(derived_df['Average Income Ten Years After Graduation'].max()) 
 
 layout = html.Div(className="body", children=[
     generate_header(__name__),
-    html.H1(children='By Salary', style={"color": "white", "fontSize":"25px", "padding":"20px"}),
-    html.Div(children='''
-        This is our Salary Page
-    ''', style={"color": "white", "fontSize":"25px", "padding":"20px"}),
-    html.Div(id='Salary-Range-Min'),
-    dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None, id='Salary-Range-Slider'),
-    html.Div(id='Salary-Range-Max'),
-    dcc.Checklist(
+    html.Div(
+        html.H1(className="title", children='Stub Enhancer'),
+    ),
+    html.Div(children=[
+        html.Div(children=[
+            '''
+            Salary Range
+            '''
+        ], style={"color": "white", "fontSize":"25px", "marginRight":"50px"}),
+        html.Div(children=[
+            html.Div(children=[
+                html.Div(id='Salary-Range-Min', style={"color": "white", "textAlign":"left"}),
+                html.Div(id='Salary-Range-Max', style={"color": "white", "textAlign":"right"}),
+            ], style={"display":"flex", "justify-content":"space-between"}),
+        dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
+        ], style={"width":"600px"}),
+    ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
+    html.Div(children=[
+        html.Div(children=[
+            '''
+            Items
+            '''
+        ], style={"color": "white", "fontSize":"25px", "marginRight":"40px"}),
+        html.Div(children=[
+            dcc.Slider(1, 50, 1, value=10, marks=None, id='Job-Display-Max', tooltip={"placement": "bottom", "always_visible": True}),
+        ], style={"width":"400px", "paddingTop":"15px"}),
+    ], style={"display":"flex", "width":"55%", "margin":"auto", "paddingTop":"20px"}),
+    html.Div(children=[
+        html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
+        dcc.Checklist(
         id='Credential-Checklist',
         options=credential_list,
         value=credential_list,
         inline=False,
         labelStyle={'display': 'block'},
-        style={"color": "white", "fontSize":"25px", "padding":"20px"}
+        style={"color": "white", "fontSize":"20px", "padding":"20px"},
+        className="salary-two"
     ),
-    html.Div(id='Jobs-By-Salary-Barchart'),
-    dcc.Slider(1, 50, 1, value=10, id='Job-Display-Max'),
+    ], className="salary-wrapper"),
 ])
 
 # -------------------------------------------------------------------------------------------------------------
