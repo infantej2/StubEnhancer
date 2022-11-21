@@ -44,8 +44,8 @@ layout = html.Div(className="body", children=[
             dcc.Dropdown(list, id="FoS", value="11. Computer and information sciences and support services", multi=False,
             style={'width':'90%', 'margin-left':'30px'})
         ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
-        html.Div(id='FoS-Salary-Text',
-        style={"color": "white", "textAlign":"center", "paddingTop":"30px", "paddingBottom":"30px"}),
+        html.H5(id='FoS-Salary-Text',
+        style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"}),
         html.Div(className="home-one", children=[
             html.Div(id='FoS-Yearly-Salary-Linechart')
         ], style={"paddingTop":"20px"}),
