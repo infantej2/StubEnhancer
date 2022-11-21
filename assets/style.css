@@ -1,7 +1,10 @@
+/* Shared styling */
+
 .header {
     justify-content: center;
-    background-color: rgb(148, 136, 255);
+    background-color: #27293D;
     padding: 20px;
+    border-radius: 20px;
 }
 
 .button {
@@ -21,6 +24,67 @@
     border-radius: 5px;
     border-color: #fff;
     size: 10px;
+    padding: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.body {
+    background-color: #1C1C2C;
+    padding: 10px;
+}
+
+.body-text {
+    color: #fff;
+}
+
+
+/* Home Styling */
+.home-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 500px 200px;
+    grid-gap: 10px;
+    margin: 10px;
+    grid-template-areas:
+        'content1 content1 content2 content2 content2'
+        'content1 content1 content2 content2 content2'
+        'content3 content3 content4 content4 content4'
+        'content3 content3 content4 content4 content4';
+}
+
+.home-one {
+    grid-area: content1;
+    background-color: #27293D;
+    border-radius: 20px;
+}
+
+.home-two {
+    grid-area: content3;
+    background-color: #27293D;
+    border-radius: 20px;
+}
+
+.home-three {
+    grid-area: content2;
+    background-color: #27293D;
+    border-radius: 20px;
+}
+
+.home-four {
+    grid-area: content4;
+    background-color: #27293D;
+    border-radius: 20px;
+}
+
+.button-start {
+    color: #fff;
+    background-color: #D84FD2;
+    border-radius: 25px;
+    border-color: #fff;
+    border:.1px solid none;
+    size: 10px;
+    width: 100%;
     padding: 10px;
     padding-left: 12px;
     padding-right: 12px;

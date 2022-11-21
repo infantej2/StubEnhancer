@@ -11,30 +11,36 @@ dash.register_page(__name__, path='/')
 
 # -------------------------------------------------------------------------------------------------------------
 
+
 def jobs_happiness_scatterplot():
     layout = go.Layout(
         margin=go.layout.Margin(
-            l=150,   # left margin
-            r=150,   # right margin
+            l=100,   # left margin
+            r=50,   # right margin
             b=100,   # bottom margin
-            t=50    # top margin
-        ), 
-        height = 700,
-        title_x = 0.5,
-        title='Average Job Salaries (CAD) Above the Happiness Threshold (at 10th Year Salary) (2005-2014)',
+            t=100    # top margin
+        ),
+        height=700,
+        title_x=0.5,
+        title='Average Job Salaries (CAD) Above the Happiness Threshold<br>(at 10th Year Salary) (2005-2014)',
         xaxis_title="Job Order as a Function of Salary (Ascending)",
         yaxis_title="Average Income Ten Years After Graduation (CAD)",
-        bargap=0
+        bargap=0,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
-    display_df = derived_df.loc[derived_df['Credential'] == 'Overall (All Graduates)']
+    display_df = derived_df.loc[derived_df['Credential']
+                                == 'Overall (All Graduates)']
     display_df = display_df.dropna(axis=0)
-    display_df = display_df.sort_values('Average Income Ten Years After Graduation', ascending = True).reset_index()
+    display_df = display_df.sort_values(
+        'Average Income Ten Years After Graduation', ascending=True).reset_index()
 
     fig = px.scatter(
         display_df,
-        x = display_df.index,
-        y = 'Average Income Ten Years After Graduation',
+        x=display_df.index,
+        y='Average Income Ten Years After Graduation',
     )
 
     fig.layout = layout
@@ -42,37 +48,41 @@ def jobs_happiness_scatterplot():
     fig.add_hrect(
         78000, 97000,
         annotation_text='Emotional Well-being', annotation_position='top left',
-        annotation=dict(font_size=20, font_family='Times New Roman', font_color='black'),
+        annotation=dict(
+            font_size=20, font_family='Times New Roman', font_color='white'),
         fillcolor="green", opacity=0.25, line_width=0
     )
 
     fig.add_hline(
         123000,
-        annotation_text='Ideal Income', 
+        annotation_text='Ideal Income',
         annotation_position='top left',
-        annotation=dict(font_size=20, font_family='Times New Roman', font_color='black'),
+        annotation=dict(
+            font_size=20, font_family='Times New Roman', font_color='white'),
     )
 
     fig.add_vline(
         int(len(display_df.index) / 2),
         line_width=1,
         line_dash='dash',
-        annotation_text='50th Percentile', 
+        annotation_text='50th Percentile',
         annotation_position='bottom right',
-        annotation=dict(font_size=20, font_family='Times New Roman', font_color='black'),
+        annotation=dict(
+            font_size=20, font_family='Times New Roman', font_color='white'),
     )
 
     fig.add_vline(
         int(len(display_df.index) * 0.80),
         line_width=1,
         line_dash='dash',
-        annotation_text='80th Percentile', 
+        annotation_text='80th Percentile',
         annotation_position='bottom right',
-        annotation=dict(font_size=20, font_family='Times New Roman', font_color='black'),
+        annotation=dict(
+            font_size=20, font_family='Times New Roman', font_color='white'),
     )
 
     fig.update_traces(
-        hovertemplate = 'Average Income Ten Years After Graduation: %{y}'
+        hovertemplate='Average Income Ten Years After Graduation: %{y}'
     )
 
     return dcc.Graph(
@@ -81,6 +91,7 @@ def jobs_happiness_scatterplot():
 
 # -------------------------------------------------------------------------------------------------------------
 
+
 def certification_salaries_barchart():
     layout = go.Layout(
         margin=go.layout.Margin(
@@ -88,21 +99,26 @@ def certification_salaries_barchart():
             r=150,   # right margin
             b=100,   # bottom margin
             t=50    # top margin
-        ), 
-        height = 700,
-        title_x = 0.5,
+        ),
+        height=700,
+        title_x=0.5,
         title='Mean Incomes by Certification Type',
         xaxis_title="Credential",
         yaxis_title="Mean Income (CAD)",
-        bargap=0
+        bargap=0,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
     figure = go.Figure(
         layout=layout
     )
 
-    dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.contains('00. Total')]
-    dataframe = dataframe.loc[dataframe['Credential'] != 'Overall (All Graduates)']
+    dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.contains(
+        '00. Total')]
+    dataframe = dataframe.loc[dataframe['Credential']
+                              != 'Overall (All Graduates)']
     dataframe = dataframe.reset_index()
 
     # The map of colors for each type of credential
@@ -126,14 +142,14 @@ def certification_salaries_barchart():
         new_trace = go.Bar(
             x=bar_df["Credential"],
             y=bar_df['Average Income Ten Years After Graduation'],
-            text = bar_df['Average Income Ten Years After Graduation'],
+            text=bar_df['Average Income Ten Years After Graduation'],
             textposition="inside",
             marker=dict(color='#024B7A'),
             marker_line=dict(width=1, color='black'),
             marker_color=color_map[certificate_name],
             width=0.5,
             hovertemplate='<extra></extra><br>Credential: %{x} <br>Average Median Income: %{y}',
-            name=certificate_name
+            name=certificate_name,
         )
 
         # Add the new bar trace into the overall figure
@@ -147,30 +163,37 @@ def certification_salaries_barchart():
 
 # -------------------------------------------------------------------------------------------------------------
 
+
 def top_vs_bottom_5_barchart():
     layout = go.Layout(
         margin=go.layout.Margin(
             l=150,   # left margin
             r=150,   # right margin
-            b=100,   # bottom margin
+            b=50,   # bottom margin
             t=50    # top margin
-        ), 
-        height = 700,
-        title_x = 0.5,
+        ),
+        height=700,
+        title_x=0.5,
         title='Top 5 vs Bottom 5 Jobs by 10th Year Salary (CAD)',
         xaxis_title="Top 5 / Bottom 5 Jobs",
         yaxis_title="Mean Income 10 Years After Graduation (CAD)",
         bargap=0,
         uniformtext_minsize=10,
-        uniformtext_mode='show'
+        uniformtext_mode='show',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
     )
 
-    dataframe = derived_df.loc[derived_df['Credential'] == 'Overall (All Graduates)']
+    dataframe = derived_df.loc[derived_df['Credential']
+                               == 'Overall (All Graduates)']
     dataframe = dataframe.dropna(axis=0)
-    dataframe = dataframe.sort_values('Average Income Ten Years After Graduation', ascending = False)
+    dataframe = dataframe.sort_values(
+        'Average Income Ten Years After Graduation', ascending=False)
 
     # Remove the 4 digit code from the start of the FoS string
-    dataframe['Field of Study (CIP code)'] = dataframe['Field of Study (CIP code)'].str.replace('[0-9]{2}.[0-9]{2} ', '', regex=True)
+    dataframe['Field of Study (CIP code)'] = dataframe['Field of Study (CIP code)'].str.replace(
+        '[0-9]{2}.[0-9]{2} ', '', regex=True)
 
     top = dataframe.head(5)
     bottom = dataframe.tail(5)
@@ -182,13 +205,14 @@ def top_vs_bottom_5_barchart():
         y='Average Income Ten Years After Graduation',
         text='Average Income Ten Years After Graduation',
         #color=['Top 5', 'Top 5', 'Top 5', 'Top 5', 'Top 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5'],
-        #color_discrete_map={
+        # color_discrete_map={
         #    'Top 5': 'pink',
         #    'Bottom 5': 'purple'
-        #}
+        # }
     )
 
-    figure.data[0].marker.color = ('pink','pink','pink','pink','pink','purple','purple','purple','purple','purple')
+    figure.data[0].marker.color = (
+        'pink', 'pink', 'pink', 'pink', 'pink', 'purple', 'purple', 'purple', 'purple', 'purple')
 
     # Apply the layout described at the top
     figure.layout = layout
@@ -196,7 +220,8 @@ def top_vs_bottom_5_barchart():
     # Manually add a legend to the graph
     figure.update_traces(showlegend=False).add_traces(
         [
-            go.Bar(name=m[0], x=[figure.data[0].x[0]], marker_color=m[1], showlegend=True)
+            go.Bar(name=m[0], x=[figure.data[0].x[0]],
+                   marker_color=m[1], showlegend=True)
             for m in [('Top 5', 'pink'), ('Bottom 5', 'purple')]
         ]
     )
@@ -204,10 +229,11 @@ def top_vs_bottom_5_barchart():
     # Display the text and value as a string inside the bar, with vertical orientation
     figure.update_traces(
         texttemplate='%{x} %{y}',
-        textposition=['inside', 'inside', 'inside', 'inside', 'inside', 'outside', 'outside', 'outside', 'outside', 'outside'],
+        textposition=['inside', 'inside', 'inside', 'inside', 'inside',
+                      'outside', 'outside', 'outside', 'outside', 'outside'],
         orientation='v',
         textangle=-90,
-        hovertemplate = 'Field of Study: %{x}<br>Average Income Ten Years After Graduation: %{y}',
+        hovertemplate='Field of Study: %{x}<br>Average Income Ten Years After Graduation: %{y}',
     )
 
     # Remove x-axis labels below the graph
@@ -221,24 +247,37 @@ def top_vs_bottom_5_barchart():
 
 # -------------------------------------------------------------------------------------------------------------
 
-layout = html.Div(children=[
-    html.H1(children='Stub Enhancer'),
-    html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
-                        "stub by providing data abstractions based on data from ALIS. "
-                        "Our goal is to aid Albertans in their career and education "
-                        "decisions."),
-    html.Br(),
-    html.Div(children=[
-        dcc.Link(html.Button("Get Started!", className="button"), href="/salary", refresh=True),
-    ]),
-    html.Br(),
-    html.Div(children=[
-            "The ideal income, according to a ",
-            html.A("study by Purdue University", href='https://www.purdue.edu/newsroom/releases/2018/Q1/money-only-buys-happiness-for-a-certain-amount.html'),
-            " is $127K. They also note the emotional wellbeing threshold is 78K-$97K."
-        ] 
+
+layout = html.Div(className="body", children=[
+    html.Div(
+        html.H1(className="header", children='Stub Enhancer',
+            style={"color": "white", "margin":"10px"}),
     ),
-    html.Div(id='Happiness-Scatterplot', children=jobs_happiness_scatterplot()),
-    html.Div(id='Certification-Salaries-Barchart', children=certification_salaries_barchart()),
-    html.Div(id='TopBottom5-Barchart', children=top_vs_bottom_5_barchart())
+    html.Div(className="home-wrapper", children=[
+        html.Div(className="home-one", children=[
+            html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
+                     "stub by providing data abstractions based on data from ALIS. "
+                     "Our goal is to aid Albertans in their career and education "
+                     "decisions.", style={"color": "white", "fontSize":"25px", "padding":"20px"}),
+            html.Br(),
+            html.Div(children=[
+                dcc.Link(html.Button("Get Started!", className="button-start"),
+                 href="/salary", refresh=True),
+            ], style={"paddingLeft":"20px", "paddingRight":"20px"}),
+            html.Br(),
+            html.Div(children=[
+                "The ideal income, according to a ",
+                html.A("study by Purdue University",
+                       href='https://www.purdue.edu/newsroom/releases/2018/Q1/money-only-buys-happiness-for-a-certain-amount.html'),
+                " is $127K. They also note the emotional wellbeing threshold is 78K-$97K."
+            ], style={"color": "white", "fontSize":"25px", "padding":"20px"}
+            ),
+        ]),
+        html.Div(className="home-two", id='Happiness-Scatterplot',
+                 children=jobs_happiness_scatterplot()),
+        html.Div(className="home-three", id='Certification-Salaries-Barchart',
+                 children=certification_salaries_barchart()),
+        html.Div(className="home-four", id='TopBottom5-Barchart',
+                 children=top_vs_bottom_5_barchart())
+    ],),
 ])
