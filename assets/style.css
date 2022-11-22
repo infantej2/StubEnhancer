@@ -36,6 +36,8 @@
     background-color: #1C1C2C;
     padding: 10px;
     height:100%;
+    padding-bottom: 0;
+    margin: 0;
 }
 
 .divider {
@@ -51,6 +53,11 @@
     padding: 20px;
     text-align: center;
     margin-top: 30px;
+}
+
+#footer {
+    background-color: #1C1C2C !important;
+    margin: 0;
 }
 
 

@@ -22,7 +22,7 @@ field_list = list(df["Field of Study (2-digit CIP code)"].unique())
 
 layout = html.Div(className="body", children=[
     generate_header(__name__),
-    html.H1(className="title", children='Prediction'),
+    html.H1(className="title", children='Stub Enhancer'),
 
     html.Div([
 
@@ -36,15 +36,15 @@ layout = html.Div(className="body", children=[
     ]
     + [html.Div(id="output_pred",
                 style={"color": "white", 'text-align':'left', 'width':'100%'})]
-    ),
+    , style={"marginTop":"50px"}),
 
     html.Div([
 
     ]
     + [html.Div(id="output_pred1",
                 style={"color": "white", 'text-align':'left', 'width':'100%'})]
-    )
-
+    ),
+    html.Footer(id="footer")
 ])
 
 
