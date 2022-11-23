@@ -5,10 +5,13 @@ import pandas as pd
 import numpy as np
 import os
 from dash import html, dcc, Input, Output, callback
+import plotly.graph_objs as go
+import plotly.express as px
 from tensorflow.keras.models import load_model
 
 dash.register_page(__name__)
 
+# These are the encoded values, mapped to their actual values. 
 field_map = {
 '01. Agriculture, agriculture operations and related sciences':-0.594,
 '03. Natural resources and conservation':0.171, 
@@ -49,21 +52,22 @@ field_map = {
 '55. French language and literature/lettersCAN':-0.307
 }
 
+# Years mapped to their respective encodings. 
 year_map = {
 1:-1.40,
 2:-0.70,
 3:0.00,
 4:0.71,
-5:1.41    
+5:1.41     
 }
-
+# Credentials mapped to an offet.
 cred_map = {
 "Certificate":1,
 "Diploma":2,
-"Bachelor's Degree":0,
-"Master's Degree":4,
-"Doctoral Degree":3,
-"Professional bachelors degree":5
+"Bachelor's degree":0,
+"Master's degree":4,
+"Doctoral degree":3,
+"Professional bachelor's degree":5
 }
 
 
@@ -73,7 +77,14 @@ Salary_model = load_model(os.path.join(".","Salary_Model.h5"))
 # ==============================================================================
 
 df = pd.read_csv('./abSchool.csv')
-df = df.dropna()
+# remove un-wanted characters from median income field
+df['Median Income'] = df['Median Income'].str.replace('$','')
+df['Median Income'] = df['Median Income'].str.replace(',','')
+# convert median income string to a numeric value
+df["Median Income"] = pd.to_numeric(df["Median Income"])
+
+
+
 creds_list = list(df["Credential"].unique())
 yrs_list = list(df["Years After Graduation"].unique())
 field_list = list(df["Field of Study (2-digit CIP code)"].unique())
@@ -86,62 +97,147 @@ layout = html.Div(className="body", children=[
 
     html.Div([
 
-        dcc.Dropdown(creds_list, id="input_creds", value="Select Credentials", multi=False, 
+        dcc.Dropdown(creds_list, id="input_creds", value="Select Credentials", multi=False, clearable=False, 
         style=dropdown_style),
-        dcc.Dropdown(field_list, id="input_field", value="Select Field", multi=False,
+        dcc.Dropdown(field_list, id="input_field", value="Select Field", multi=False, clearable=False,
         style=dropdown_style),
-        dcc.Dropdown(yrs_list, id="input_years", value="Select Years Experience", multi=False,
-        style=dropdown_style)
+        dcc.Dropdown(yrs_list, id="input_years", value="Select Years Experience", multi=False, clearable=False,
+        style=dropdown_style),
 
     ]
-    + [html.Div(id="output_pred",
+    + [html.Div(id="dropdown-boxs",
                 style={"color": "white", 'text-align':'left', 'width':'100%'})]
     , style={"marginTop":"50px"}),
-
-    html.Div([
+    # ==============================================================================
+     html.Div([
+        html.H3(id="text-pred", style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"}),
 
     ]
-    + [html.Div(id="output_pred1",
+    + [html.Div(id="text-prediction",
                 style={"color": "white", 'text-align':'left', 'width':'100%'})]
     ),
-    html.Footer(id="footer")
+
+    # ==============================================================================
+    """
+    html.Div([
+        dcc.Graph(id="scatter-plot"),
+
+    ]
+    + [html.Div(id="prediction-scatter-plot",
+                style={"color": "white", 'text-align':'left', 'width':'100%'})]
+    ),
+    """
+   # html.Footer(id="footer")
 ])
 
 
 # ==============================================================================
 
+
 @callback(
-    Output(component_id='output_pred1', component_property='children'),
+    Output(component_id='text-pred', component_property='children'),
     Input(component_id='input_creds', component_property='value'),
     Input(component_id='input_field', component_property='value'),
     Input(component_id='input_years', component_property='value')
 )
 
-def update_output(input1, input2, input3):
+def update_prediction_text(credential_input, field_input, experience_input):
 
-
-    if input1 != "Select Credentials":
-        credential_encoding = cred_map[input1]
+    if credential_input != "Select Credentials":
+        credential_encoding = cred_map[credential_input]
     
-    if input2 != "Select Field": 
-        field_encoding = field_map[input2]
+    if field_input != "Select Field": 
+        field_encoding = field_map[field_input]
 
-    if input3 != "Select Years Experience":
-        year_encoding = year_map[input3]
+    if experience_input != "Select Years Experience":
+        year_encoding = year_map[experience_input]
    
-    if (input1 != "Select Credentials") and (input2 != "Select Field") and (input3 != "Select Years Experience"):
-        sample_vector = [year_encoding,field_encoding,0,0,0,0,0,0]
+    if (credential_input != "Select Credentials") and (field_input != "Select Field") and (experience_input != "Select Years Experience"):
 
+        # sample vector is what will be passed to the neural network.
+        sample_vector = [year_encoding,field_encoding,0,0,0,0,0,0]
+        # credential encoding maps to an index. that index + 2 gives you the 0 
+        # to turn into a one.
         sample_vector[credential_encoding+2] = 1
 
-        #[yrs, field, bach, cert, dip, doc, mast, prof]
+        # EXAMPLE VECTOR: [yrs, field, bach, cert, dip, doc, mast, prof]
+        sample_values = np.array( [sample_vector], dtype=float)
+        prediction = Salary_model.predict(sample_values)
+          # Graph layout
+        layout = go.Layout(
+            margin=go.layout.Margin(
+                l=150,   # left margin
+                r=150,   # right margin
+                b=100,   # bottom margin
+                t=50    # top margin
+            ), 
+            height = 700,
+            title_x = 0.5,
+            title='Expected Earning ',
+            #xaxis_title=
+            yaxis_title="Mean Income (CAD)",
+            #bargap=0,
+            #barmode='group',
+            uniformtext_minsize=10,
+            uniformtext_mode='show',
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            font=dict(color="white"),
+        )
 
-   
-        sample_values = np.array( [sample_vector],\
-            dtype=float)
-        pred = Salary_model.predict(sample_values)
-        #print(pred)
-        #pred = np.argmax(pred,axis=1)
+        fig = px.scatter(
+        y=list(prediction),
+        
+        #y=list(pred),
+        )
 
-        return f'Input 1 {credential_encoding}, Input 2 {field_encoding}, and Input 3 {year_encoding} give {pred} +/- $12,000'
+        fig.layout = layout
+        
+        return dcc.Graph(
+            figure=fig
+        )
+
+"""
+@callback(
+    Output(component_id='prediction-scatter-plot', component_property='children'),
+    Input(component_id='text-pred', component_property='value')
+)
+def prediction_scatter_plot(prediction):
+
+
+    # Graph layout
+    layout = go.Layout(
+        margin=go.layout.Margin(
+            l=150,   # left margin
+            r=150,   # right margin
+            b=100,   # bottom margin
+            t=50    # top margin
+        ), 
+        height = 700,
+        title_x = 0.5,
+        title='Expected Earning ',
+        #xaxis_title=
+        yaxis_title="Mean Income (CAD)",
+        #bargap=0,
+        #barmode='group',
+        uniformtext_minsize=10,
+        uniformtext_mode='show',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color="white"),
+    )
+
+    fig = px.scatter(
+    y=list(prediction),
+    
+    #y=list(pred),
+    )
+
+    fig.layout = layout
+    
+    return dcc.Graph(
+        figure=fig
+    )
+"""
+  
     
