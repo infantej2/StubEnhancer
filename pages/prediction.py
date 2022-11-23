@@ -7,6 +7,7 @@ import os
 from dash import html, dcc, Input, Output, callback
 import plotly.graph_objs as go
 import plotly.express as px
+import dash_cytoscape as cyto
 from tensorflow.keras.models import load_model
 
 dash.register_page(__name__)
@@ -51,7 +52,6 @@ field_map = {
 '54. History':-0.382,
 '55. French language and literature/lettersCAN':-0.307
 }
-
 # Years mapped to their respective encodings. 
 year_map = {
 1:-1.40,
@@ -70,7 +70,6 @@ cred_map = {
 "Professional bachelor's degree":5
 }
 
-
 dropdown_style = {"width":"50%", "align-items":"center", 'margin-left':'30px'}
 Salary_model = load_model(os.path.join(".","Salary_Model.h5"))
 
@@ -83,11 +82,110 @@ df['Median Income'] = df['Median Income'].str.replace(',','')
 # convert median income string to a numeric value
 df["Median Income"] = pd.to_numeric(df["Median Income"])
 
-
-
 creds_list = list(df["Credential"].unique())
 yrs_list = list(df["Years After Graduation"].unique())
 field_list = list(df["Field of Study (2-digit CIP code)"].unique())
+
+"""
+"""
+def generate_nodes_ll(prefix_list, nodes):
+  list_of_lists = []
+
+  # Create amount of arrays matching prefix list
+  for i in range (len(prefix_list)): list_of_lists.append([])
+
+  for entry in nodes:
+    entry_name = entry['data']['id']
+    
+    for i in range (len(prefix_list)):
+      prefix = prefix_list[i]
+      if entry_name.startswith(prefix):
+        list_of_lists[i].append(entry_name)
+        break
+
+  return list_of_lists
+
+# List of prefixes, each refrencing a layer of the neural network.
+prefix_list = ['in', 'hl1n', 'hl2n', 'out']
+
+nodes = [
+
+    {
+        'data': {'id':node_id, 'label':node_label},
+        'position': {'x':x, 'y':y},
+        'locked': True,
+    }
+    for node_id, node_label, x, y in (
+        # Input nodes
+        ("in1", "input-node1", 400, 100),
+        ("in2", "input-node2", 400, 132.5),
+        ("in3", "input-node3", 400, 165),
+        # Hidden layer 1 nodes
+        ("hl1n1", "hiddenlayer1-node1", 425, 75),
+        ("hl1n2", "hiddenlayer1-node2", 425, 80),
+        ("hl1n3", "hiddenlayer1-node3", 425, 85),
+        ("hl1n4", "hiddenlayer1-node4", 425, 90),
+        ("hl1n5", "hiddenlayer1-node5", 425, 95),
+        ("hl1n6", "hiddenlayer1-node6", 425, 100),
+        ("hl1n7", "hiddenlayer1-node7", 425, 105),
+        ("hl1n8", "hiddenlayer1-node8", 425, 110),
+        ("hl1n9", "hiddenlayer1-node9", 425, 115),
+        ("hl1n10", "hiddenlayer1-node10", 425, 120),
+        ("hl1n11", "hiddenlayer1-node11", 425, 125),
+        ("hl1n12", "hiddenlayer1-node12", 425, 130),
+        ("hl1n13", "hiddenlayer1-node13", 425, 135),
+        ("hl1n14", "hiddenlayer1-node14", 425, 140),
+        ("hl1n15", "hiddenlayer1-node15", 425, 145),
+        ("hl1n16", "hiddenlayer1-node16", 425, 150),
+        ("hl1n17", "hiddenlayer1-node17", 425, 155),
+        ("hl1n18", "hiddenlayer1-node18", 425, 160),
+        ("hl1n19", "hiddenlayer1-node19", 425, 165),
+        ("hl1n20", "hiddenlayer1-node20", 425, 170),
+        ("hl1n21", "hiddenlayer1-node21", 425, 175),
+        ("hl1n22", "hiddenlayer1-node22", 425, 180),
+        ("hl1n23", "hiddenlayer1-node23", 425, 185),
+        ("hl1n24", "hiddenlayer1-node24", 425, 190),
+        ("hl1n25", "hiddenlayer1-node25", 425, 195),
+        # Hidden layer 2 nodes
+        ("hl2n1", "hiddenlayer2-node1", 450, 115),
+        ("hl2n2", "hiddenlayer2-node2", 450, 120),
+        ("hl2n3", "hiddenlayer2-node3", 450, 125),
+        ("hl2n4", "hiddenlayer2-node4", 450, 130),
+        ("hl2n5", "hiddenlayer2-node5", 450, 135),
+        ("hl2n6", "hiddenlayer2-node6", 450, 140),
+        ("hl2n7", "hiddenlayer2-node7", 450, 145),
+        ("hl2n8", "hiddenlayer2-node8", 450, 150),
+        ("hl2n9", "hiddenlayer2-node9", 450, 155),
+        ("hl2n10", "hiddenlayer2-node10", 450, 160),
+        # Output neuron
+        ("out1", "output-node1", 475, 132.5),
+    )
+
+]
+
+nodes_lists = generate_nodes_ll(prefix_list, nodes)
+
+def compute_node_edges(nodes_lists):
+  edges = []
+
+  for i in range(len(nodes_lists)):
+    row = nodes_lists[i]
+
+    # If there is no next row, ignore adding edges
+    if i+1 >= len(nodes_lists):
+      break
+
+    for current in row:
+      for next_row_entry in nodes_lists[i+1]:
+        edges.append({'data': {'source':current, 'target':next_row_entry}})
+
+  return edges
+
+
+edges = compute_node_edges(nodes_lists)
+
+# combine nodes and edges
+elements = nodes+edges
 
 # ==============================================================================
 
@@ -103,31 +201,41 @@ layout = html.Div(className="body", children=[
         style=dropdown_style),
         dcc.Dropdown(yrs_list, id="input_years", value="Select Years Experience", multi=False, clearable=False,
         style=dropdown_style),
+        html.P(id="prediction_output", style={"color": "white", 'text-align':'left', 'width':'100%'})
 
-    ]
-    + [html.Div(id="dropdown-boxs",
-                style={"color": "white", 'text-align':'left', 'width':'100%'})]
-    , style={"marginTop":"50px"}),
+    ]),
+   
     # ==============================================================================
-     html.Div([
-        html.H3(id="text-pred", style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"}),
+    html.Div(children=[
+        cyto.Cytoscape(
+            id="network-chart",
+            layout={"name": "preset"},  # assign node positions ourselves
+            style={"width":"100%", "height":"500px"},
+            elements=elements,
 
-    ]
-    + [html.Div(id="text-prediction",
-                style={"color": "white", 'text-align':'left', 'width':'100%'})]
-    ),
+            stylesheet=[    
+            {
+            'selector': 'node',
+            'style': {
+                'background-color': '#D84FD2',
+                'width':"5%",
+                'height':"5%"
+                }
+            },
+            # style edges
+            {
+                'selector': 'edge',
+                'style': {
+                    'width':"0.5%"
+                    }
+            },
 
-    # ==============================================================================
-    """
-    html.Div([
-        dcc.Graph(id="scatter-plot"),
+            ]
+        ),
 
-    ]
-    + [html.Div(id="prediction-scatter-plot",
-                style={"color": "white", 'text-align':'left', 'width':'100%'})]
-    ),
-    """
-   # html.Footer(id="footer")
+
+    ])
+
 ])
 
 
@@ -135,7 +243,7 @@ layout = html.Div(className="body", children=[
 
 
 @callback(
-    Output(component_id='text-pred', component_property='children'),
+    Output(component_id='prediction_output', component_property='children'),
     Input(component_id='input_creds', component_property='value'),
     Input(component_id='input_field', component_property='value'),
     Input(component_id='input_years', component_property='value')
@@ -163,81 +271,10 @@ def update_prediction_text(credential_input, field_input, experience_input):
         # EXAMPLE VECTOR: [yrs, field, bach, cert, dip, doc, mast, prof]
         sample_values = np.array( [sample_vector], dtype=float)
         prediction = Salary_model.predict(sample_values)
-          # Graph layout
-        layout = go.Layout(
-            margin=go.layout.Margin(
-                l=150,   # left margin
-                r=150,   # right margin
-                b=100,   # bottom margin
-                t=50    # top margin
-            ), 
-            height = 700,
-            title_x = 0.5,
-            title='Expected Earning ',
-            #xaxis_title=
-            yaxis_title="Mean Income (CAD)",
-            #bargap=0,
-            #barmode='group',
-            uniformtext_minsize=10,
-            uniformtext_mode='show',
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            font=dict(color="white"),
-        )
-
-        fig = px.scatter(
-        y=list(prediction),
         
-        #y=list(pred),
-        )
+        return f"{prediction}"
 
-        fig.layout = layout
-        
-        return dcc.Graph(
-            figure=fig
-        )
-
-"""
-@callback(
-    Output(component_id='prediction-scatter-plot', component_property='children'),
-    Input(component_id='text-pred', component_property='value')
-)
-def prediction_scatter_plot(prediction):
-
-
-    # Graph layout
-    layout = go.Layout(
-        margin=go.layout.Margin(
-            l=150,   # left margin
-            r=150,   # right margin
-            b=100,   # bottom margin
-            t=50    # top margin
-        ), 
-        height = 700,
-        title_x = 0.5,
-        title='Expected Earning ',
-        #xaxis_title=
-        yaxis_title="Mean Income (CAD)",
-        #bargap=0,
-        #barmode='group',
-        uniformtext_minsize=10,
-        uniformtext_mode='show',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        font=dict(color="white"),
-    )
-
-    fig = px.scatter(
-    y=list(prediction),
-    
-    #y=list(pred),
-    )
-
-    fig.layout = layout
-    
-    return dcc.Graph(
-        figure=fig
-    )
-"""
+    return None
+         
   
     
