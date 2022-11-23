@@ -53,11 +53,11 @@ layout = html.Div(className="body", children=[
             '''
             Items
             '''
-        ], style={"color": "white", "fontSize":"25px", "marginRight":"40px"}),
+        ], style={"color": "white", "fontSize":"25px", "marginRight":"11%"}),
         html.Div(children=[
             dcc.Slider(1, 50, 1, value=10, marks=None, id='Job-Display-Max', tooltip={"placement": "bottom", "always_visible": True}),
         ], style={"width":"100%", "paddingTop":"15px"}),
-    ], style={"display":"flex", "width":"55%", "margin":"auto", "paddingTop":"20px"}),
+    ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"20px"}),
     html.Div(children=[
         html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
         dcc.Checklist(
