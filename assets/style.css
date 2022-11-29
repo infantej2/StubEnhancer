@@ -57,7 +57,7 @@
 
 #footer {
     background-color: #1C1C2C !important;
-    margin: 0;
+    margin: 10px;
 }
 
 
@@ -68,7 +68,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 500px 200px;
     grid-gap: 10px;
-    margin: 10px;
+    padding: 10px;
     grid-template-areas:
         'content1 content1 content2 content2 content2'
         'content1 content1 content2 content2 content2'
@@ -122,6 +122,8 @@
     margin-top: 80px;
     border-radius: 20px;
     background-color: #27293D;
+    padding: 10px;
+    padding-bottom: 20px;
 }
 
 .salary-one {

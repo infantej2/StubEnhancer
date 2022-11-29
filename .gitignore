@@ -159,3 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 *.pyc
+pages/__pycache__/field.cpython-310.pyc
+pages/__pycache__/home.cpython-310.pyc
+pages/__pycache__/prediction.cpython-310.pyc
+pages/__pycache__/salary.cpython-310.pyc

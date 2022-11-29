@@ -30,6 +30,10 @@ max_salary = int(derived_df['Average Income Ten Years After Graduation'].max()) 
 # -------------------------------------------------------------------------------------------------------------
 
 layout = html.Div(className="body", children=[
+    html.Div(
+        html.H1(className="header", children='Stub Enhancer',
+            style={"color": "white", "margin":"10px"}),
+    ),
     generate_header(__name__),
     html.Div(
         html.H1(className="title", children='Stub Enhancer'),

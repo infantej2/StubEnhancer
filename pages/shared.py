@@ -35,5 +35,5 @@ def generate_header(page):
             generate_header_button('Prediction', '/prediction', page),
         ],
         className="header",
-        style={"textAlign":"center"}
+        style={"textAlign":"center", "margin":"10px"}
     )

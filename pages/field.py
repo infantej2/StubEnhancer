@@ -33,6 +33,10 @@ list = np.unique(dflist.to_numpy())
 
 
 layout = html.Div(className="body", children=[
+    html.Div(
+        html.H1(className="header", children='Stub Enhancer',
+            style={"color": "white", "margin":"10px"}),
+    ),
     generate_header(__name__),
     html.H1(className="title", children='Stub Enhancer', style={'text-align':'center'}),
     html.Div(children=[
