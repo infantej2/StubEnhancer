@@ -1,5 +1,16 @@
-from .shared import generate_header, generate_navbar
+"""
+Program: prediction.py
 
+Purpose: using a previously generated DNN for solving the linear regression at hand,
+         create a network that represents its structure, allow users to select the 
+         input vectors and display the results. Notably, this solution is hyper specific 
+         to the data it is trained on and predictions have an RMSE of ~12,000. This is not an
+         ideal number, but for learning purposes it will suffice.
+
+Refrences:
+    https://dash.plotly.com/cytoscape (for building the network graph)
+"""
+from .shared import generate_header, generate_navbar
 import dash
 import pandas as pd
 import numpy as np
@@ -8,11 +19,21 @@ from dash import html, dcc, Input, Output, callback
 import plotly.graph_objs as go
 import plotly.express as px
 import dash_cytoscape as cyto
+# this import often throws an error, so long as you have a compatible version of python however,
+# it should work regardless.
 from tensorflow.keras.models import load_model
 
 dash.register_page(__name__)
 
-# These are the encoded values, mapped to their actual values.
+"""
+These are the encoded values (z-score) mapped to their actual value. The zscore is used
+for normalizing the data.
+
+Target encoding was used to convert these categorical values.
+
+z-score represents how much you deviate from the mean in standard deviations.
+
+"""
 field_map = {
     '01. Agriculture, agriculture operations and related sciences': -0.594,
     '03. Natural resources and conservation': 0.171,
@@ -52,7 +73,7 @@ field_map = {
     '54. History': -0.382,
     '55. French language and literature/lettersCAN': -0.307
 }
-# Years mapped to their respective encodings.
+# Years mapped to their respective encodings (zscore).
 year_map = {
     1: -1.40,
     2: -0.70,
@@ -60,7 +81,9 @@ year_map = {
     4: 0.71,
     5: 1.41
 }
-# Credentials mapped to an offet.
+# Credentials mapped to an offset. This offset determines which column will be 
+# turned on (set to 1). This is done this way because dummy-one-hot-encoding
+# was used for these values.
 cred_map = {
     "Certificate": 1,
     "Diploma": 2,
@@ -71,6 +94,7 @@ cred_map = {
 }
 
 dropdown_style = {"width": "100%", "align-items": "center", "margin-bottom":"10px"}
+# the model was previously trained and here we load it.
 Salary_model = load_model(os.path.join(".", "Salary_Model.h5"))
 
 # ==============================================================================
@@ -87,16 +111,31 @@ yrs_list = list(df["Years After Graduation"].unique())
 field_list = list(df["Field of Study (2-digit CIP code)"].unique())
 
 """
+Function: generate_nodes_ll()
+
+Purpose: this function is used to generate the nodes for the network. Networks can contain
+         a plethora of nodes and thus some automation is necessary.
+
+Parameters:
+    prefix_list: a list of prefixes, these will allows us to assign
+                 useful names to each neuron within the network.
+    nodes: this is all the nodes that are defined according to cytoscape.
+           nodes are represented as a list of dictionaries.
+           Attributes of each node are also generally defined in dictionaries.
+
+Return:
+    list_of_lists: this a list of lists containing all the nodes with their 
+                   assigned values.
 """
-
-
 def generate_nodes_ll(prefix_list, nodes):
   list_of_lists = []
 
   # Create amount of arrays matching prefix list
   for i in range(len(prefix_list)):
+    # create an empty lists of lists.
     list_of_lists.append([])
 
+  # iterate through nodes.
   for entry in nodes:
     entry_name = entry['data']['id']
 
@@ -111,7 +150,7 @@ def generate_nodes_ll(prefix_list, nodes):
 
 # List of prefixes, each refrencing a layer of the neural network.
 prefix_list = ['in', 'hl1n', 'hl2n', 'out']
-
+# define nodes.
 nodes = [
 
     {
@@ -169,10 +208,25 @@ nodes = [
 
 nodes_lists = generate_nodes_ll(prefix_list, nodes)
 
+"""
+Function: compute_node_edges()
 
+Purpose: networks can contain many nodes, but they can contain even more edges,
+         thus some automation for generating these edges is important.
+
+Parameters:
+    node_lists: takes a list of lists that contains node information.
+
+Returns:
+    edges: a list of edges, each edge has its properties defined in a dictionary, 
+           it specifies a source and a target.
+"""
 def compute_node_edges(nodes_lists):
+  # empty edge list.
   edges = []
-
+  # the network being used is fully connected, and thus every 
+  # neuron is connected to every other neuron through an edge in the following
+  # layer.
   for i in range(len(nodes_lists)):
     row = nodes_lists[i]
 
@@ -189,11 +243,11 @@ def compute_node_edges(nodes_lists):
 
 edges = compute_node_edges(nodes_lists)
 
-# combine nodes and edges
+# combine nodes and edges to get the network graph.
 elements = nodes+edges
 
+# LAYOUT
 # ==============================================================================
-
 layout = html.Div(className="body", children=[
     # generate_header(__name__),
     generate_navbar(__name__),
@@ -244,27 +298,39 @@ layout = html.Div(className="body", children=[
     ]),
 ])
 
-
+# CALLBACKS
 # ==============================================================================
+"""
+Function: update_prediction_text()
 
+Purpose: based on the callback input, run a novel prediction and update the output.
 
+Parameters:
+    credential_input: the choosen credentials. (string)
+    field_input: the choosen field. (string)
+    experience_input: the amount of experience in years, range [1-5]. (string)
+
+Returns:
+    None
+"""
 @callback(
     Output(component_id='prediction_output', component_property='children'),
     Input(component_id='input_creds', component_property='value'),
     Input(component_id='input_field', component_property='value'),
     Input(component_id='input_years', component_property='value')
 )
-def update_prediction_text(credential_input, field_input, experience_input):
+def update_prediction_text(credential_input, field_input, experience_input) -> None:
 
+    # check the credential input, map it to its encoding.
     if credential_input != "Select Credentials":
         credential_encoding = cred_map[credential_input]
-
+    # check the field input, map it to its encoding.
     if field_input != "Select Field":
         field_encoding = field_map[field_input]
-
+    # check the experience input, map it to its encoding.
     if experience_input != "Select Years Experience":
         year_encoding = year_map[experience_input]
-
+    # once all have been selected, formulate the input vector.
     if (credential_input != "Select Credentials") and (field_input != "Select Field") and (experience_input != "Select Years Experience"):
 
         # sample vector is what will be passed to the neural network.
