@@ -1,4 +1,4 @@
-from .shared import generate_header
+from .shared import generate_header, generate_navbar
 
 import dash
 import dash_bootstrap_components as dbc
@@ -33,12 +33,9 @@ list = np.unique(dflist.to_numpy())
 
 
 layout = html.Div(className="body", children=[
-    html.Div(
-        html.H1(className="header", children='Stub Enhancer',
-            style={"color": "white", "margin":"10px"}),
-    ),
-    generate_header(__name__),
-    html.H1(className="title", children='Stub Enhancer', style={'text-align':'center'}),
+    generate_navbar(__name__),
+    #generate_header(__name__),
+    html.H1(className="title", children='By Field', style={'text-align':'center'}),
     html.Div(children=[
         html.Div(children=[
             html.Div(
@@ -50,12 +47,14 @@ layout = html.Div(className="body", children=[
         ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
         html.H5(id='FoS-Salary-Text',
         style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"}),
-        html.Div(className="home-one", children=[
-            html.Div(id='FoS-Yearly-Salary-Linechart')
+        html.Div(className="field-wrapper", children=[
+            html.Div(className="field-one", children=[
+                html.Div(id='FoS-Yearly-Salary-Linechart')
         ], style={"paddingTop":"20px"}),
-        html.Div(className="home-two", children=[
-            html.Div(id='FoS-Certification-Graph')
+            html.Div(className="field-two", children=[
+                html.Div(id='FoS-Certification-Graph')
         ], style={"paddingTop":"20px"}),
+        ])
     ])
 ])
 

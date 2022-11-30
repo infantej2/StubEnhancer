@@ -1,9 +1,12 @@
 import dash
 from dash import Dash, Input, Output, dcc, html, callback
+import dash_bootstrap_components as dbc
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+
+from .shared import generate_navbar
 
 derived_df = pd.read_csv('./derived_data.csv')
 
@@ -249,16 +252,13 @@ def top_vs_bottom_5_barchart():
 
 
 layout = html.Div(className="body", children=[
-    html.Div(
-        html.H1(className="header", children='Stub Enhancer',
-            style={"color": "white", "margin":"10px"}),
-    ),
+    generate_navbar(__name__),
     html.Div(className="home-wrapper", children=[
         html.Div(className="home-one", children=[
             html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
                      "stub by providing data abstractions based on data from ALIS. "
                      "Our goal is to aid Albertans in their career and education "
-                     "decisions.", style={"color": "white", "fontSize":"25px", "padding":"20px"}),
+                     "decisions.", style={"color": "white", "fontSize":"20px", "padding":"20px"}),
             html.Br(),
             html.Div(children=[
                 dcc.Link(html.Button("Get Started!", className="button-start"),
@@ -270,14 +270,15 @@ layout = html.Div(className="body", children=[
                 html.A("study by Purdue University",
                        href='https://www.purdue.edu/newsroom/releases/2018/Q1/money-only-buys-happiness-for-a-certain-amount.html'),
                 " is $127K. They also note the emotional wellbeing threshold is 78K-$97K."
-            ], style={"color": "white", "fontSize":"25px", "padding":"20px"}
+            ], style={"color": "white", "fontSize":"20px", "padding":"20px"}
             ),
         ]),
-        html.Div(className="home-two", id='Happiness-Scatterplot',
-                 children=jobs_happiness_scatterplot()),
-        html.Div(className="home-three", id='Certification-Salaries-Barchart',
-                 children=certification_salaries_barchart()),
-        html.Div(className="home-four", id='TopBottom5-Barchart',
-                 children=top_vs_bottom_5_barchart())
+        html.Div(className="home-two", children=[
+            dbc.Tabs([
+                dbc.Tab(jobs_happiness_scatterplot(), label="Happiness Threshold", label_style={"color": "#00AEF9"}),
+                dbc.Tab(certification_salaries_barchart(), label="Certification", label_style={"color": "#00AEF9"}),
+                dbc.Tab(top_vs_bottom_5_barchart(), label="Top 5 vs Bottom 5", label_style={"color": "#00AEF9"}),
+            ], )
+        ]),
     ],),
 ])

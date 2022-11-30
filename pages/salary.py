@@ -1,4 +1,4 @@
-from .shared import generate_header
+from .shared import generate_header, generate_navbar
 
 import dash
 from dash import Dash, Input, Output, dcc, html, callback
@@ -13,7 +13,7 @@ dash.register_page(__name__)
 
 credential_map = {
     'Certificate': 'red',
-    'Diploma ': 'green', # The space is here for a reason
+    'Diploma ': 'green',  # The space is here for a reason
     'Bachelor\'s degree': 'blue',
     'Professional bachelor\'s degree': 'yellow',
     'Bachelor\'s degree + certificate/diploma': 'grey',
@@ -25,58 +25,61 @@ credential_list = list(credential_map.keys())
 
 derived_df = pd.read_csv('./derived_data.csv')
 min_salary = int(derived_df['Average Income Ten Years After Graduation'].min())
-max_salary = int(derived_df['Average Income Ten Years After Graduation'].max()) + 2500 # Add some because the slider doesn't ever go to the end?
+max_salary = int(derived_df['Average Income Ten Years After Graduation'].max(
+)) + 2500  # Add some because the slider doesn't ever go to the end?
 
 # -------------------------------------------------------------------------------------------------------------
 
 layout = html.Div(className="body", children=[
+    generate_navbar(__name__),
+    # generate_header(__name__),
     html.Div(
-        html.H1(className="header", children='Stub Enhancer',
-            style={"color": "white", "margin":"10px"}),
-    ),
-    generate_header(__name__),
-    html.Div(
-        html.H1(className="title", children='Stub Enhancer'),
+        html.H1(className="title", children='By Salary'),
     ),
     html.Div(children=[
         html.Div(children=[
             '''
             Salary Range
             '''
-        ], style={"color": "white", "fontSize":"25px", "marginRight":"50px"}),
+        ], style={"color": "white", "fontSize": "25px", "marginRight": "50px"}),
         html.Div(children=[
             html.Div(children=[
-                html.Div(id='Salary-Range-Min', style={"color": "white", "textAlign":"left"}),
-                html.Div(id='Salary-Range-Max', style={"color": "white", "textAlign":"right"}),
-            ], style={"display":"flex", "justify-content":"space-between"}),
-            dcc.RangeSlider(min_salary, max_salary, value=[22000, 80000], marks=None,id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
-        ], style={"width":"100%"}),
-    ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
+                html.Div(id='Salary-Range-Min',
+                         style={"color": "white", "textAlign": "left"}),
+                html.Div(id='Salary-Range-Max',
+                         style={"color": "white", "textAlign": "right"}),
+            ], style={"display": "flex", "justify-content": "space-between"}),
+            dcc.RangeSlider(min_salary, max_salary, value=[
+                            22000, 80000], marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
+        ], style={"width": "100%"}),
+    ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "40px"}),
     html.Div(children=[
         html.Div(children=[
             '''
             Items
             '''
-        ], style={"color": "white", "fontSize":"25px", "marginRight":"11%"}),
+        ], style={"color": "white", "fontSize": "25px", "marginRight": "11%"}),
         html.Div(children=[
-            dcc.Slider(1, 50, 1, value=10, marks=None, id='Job-Display-Max', tooltip={"placement": "bottom", "always_visible": True}),
-        ], style={"width":"100%", "paddingTop":"15px"}),
-    ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"20px"}),
+            dcc.Slider(1, 50, 1, value=10, marks=None, id='Job-Display-Max',
+                       tooltip={"placement": "bottom", "always_visible": True}),
+        ], style={"width": "100%", "paddingTop": "15px"}),
+    ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "20px"}),
     html.Div(children=[
         html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
         dcc.Checklist(
-        id='Credential-Checklist',
-        options=credential_list,
-        value=credential_list,
-        inline=False,
-        labelStyle={'display': 'block'},
-        style={"color": "white", "fontSize":"20px", "padding":"20px"},
-        className="salary-two"
-    ),
+            id='Credential-Checklist',
+            options=credential_list,
+            value=credential_list,
+            inline=False,
+            labelStyle={'display': 'block'},
+            style={"color": "white", "fontSize": "20px", "padding": "20px"},
+            className="salary-two"
+        ),
     ], className="salary-wrapper"),
 ])
 
 # -------------------------------------------------------------------------------------------------------------
+
 
 @callback(
     Output(component_id='Salary-Range-Min', component_property='children'),
@@ -84,6 +87,7 @@ layout = html.Div(className="body", children=[
 )
 def update_min_salary_text(salary_range):
     return f'Min: ${salary_range[0]} CAD'
+
 
 @callback(
     Output(component_id='Salary-Range-Max', component_property='children'),
@@ -94,8 +98,10 @@ def update_max_salary_text(salary_range):
 
 # -------------------------------------------------------------------------------------------------------------
 
+
 @callback(
-    Output(component_id='Jobs-By-Salary-Barchart', component_property='children'),
+    Output(component_id='Jobs-By-Salary-Barchart',
+           component_property='children'),
     Input(component_id='Credential-Checklist', component_property='value'),
     Input(component_id='Salary-Range-Slider', component_property='value'),
     Input(component_id='Job-Display-Max', component_property='value')
@@ -107,13 +113,13 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
             r=150,   # right margin
             b=100,   # bottom margin
             t=50    # top margin
-        ), 
-        height = 700,
-        title_x = 0.5,
+        ),
+        height=700,
+        title_x=0.5,
         title='Fields with an Average Income Between ',
         xaxis_title="Field",
         yaxis_title="Mean Income (CAD)",
-        #bargap=0,
+        # bargap=0,
         barmode='group',
         uniformtext_minsize=10,
         uniformtext_mode='show',
@@ -129,20 +135,25 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
     salary_min = salary_range[0]
     salary_max = salary_range[1]
 
-    dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.contains('00. Total') == False]
+    dataframe = derived_df.loc[derived_df['Field of Study (CIP code)'].str.contains(
+        '00. Total') == False]
     #dataframe = dataframe.loc[dataframe['Credential'] != 'Overall (All Graduates)']
-    dataframe = dataframe.loc[dataframe['Credential'].str.contains('|'.join(credentials))]
+    dataframe = dataframe.loc[dataframe['Credential'].str.contains(
+        '|'.join(credentials))]
 
     dataframe = dataframe[dataframe['Average Income Ten Years After Graduation'] >= salary_min]
     dataframe = dataframe[dataframe['Average Income Ten Years After Graduation'] <= salary_max]
-    dataframe = dataframe.sort_values('Average Income Ten Years After Graduation', ascending=False).head(jobs_display_max).reset_index()
+    dataframe = dataframe.sort_values(
+        'Average Income Ten Years After Graduation', ascending=False).head(jobs_display_max).reset_index()
 
     # Remove the 2 digit code from the start of the FoS string
-    dataframe['Field of Study (CIP code)'] = dataframe['Field of Study (CIP code)'].str.replace('[0-9]{2}. ', '', regex=True)
+    dataframe['Field of Study (CIP code)'] = dataframe['Field of Study (CIP code)'].str.replace(
+        '[0-9]{2}. ', '', regex=True)
 
     # Update Field of Study to include credential type (or else they'll group/overlap)
     for index, row in dataframe.iterrows():
-        dataframe.loc[index, 'Field of Study (CIP code)'] = row['Field of Study (CIP code)'] + ' (' + row['Credential'] + ')'
+        dataframe.loc[index, 'Field of Study (CIP code)'] = row['Field of Study (CIP code)'] + \
+            ' (' + row['Credential'] + ')'
         dataframe.loc[index, 'Color'] = credential_map[row['Credential']]
 
     '''
@@ -182,7 +193,8 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
     # Manually add a legend to the graph (ONLY NEEDED FOR SECOND METHOD)
     figure.update_traces(showlegend=False).add_traces(
         [
-            go.Bar(name=name, x=[figure.data[0].x[0]], marker_color=color, showlegend=False)
+            go.Bar(name=name, x=[figure.data[0].x[0]],
+                   marker_color=color, showlegend=False)
             for name, color in credential_map.items()
         ]
     )
@@ -194,7 +206,7 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
         orientation='v',
         textangle=-90,
     )
-    
+
     chart = dcc.Graph(
         figure=figure
     )

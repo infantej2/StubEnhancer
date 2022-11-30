@@ -1,5 +1,6 @@
 import dash
 from dash import html, dcc
+import dash_bootstrap_components as dbc
 
 def generate_header_button(name, href, current_page):
     is_current_page = href[1:].lower() == current_page.split('.')[-1].lower()
@@ -37,3 +38,19 @@ def generate_header(page):
         className="header",
         style={"textAlign":"center", "margin":"10px"}
     )
+
+def generate_navbar(page):
+    return dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink('By Salary', href='/salary' )),
+        html.Div(className="divider"),
+        dbc.NavItem(dbc.NavLink('By Field', href='/field')),
+        html.Div(className="divider"),
+        dbc.NavItem(dbc.NavLink('Prediction', href='/prediction')),
+    ],
+    brand="StubEnhancer",
+    brand_href="/",
+    color="#27293D",
+    class_name="header",
+    dark="true"
+)

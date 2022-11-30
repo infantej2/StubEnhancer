@@ -4,7 +4,7 @@
     justify-content: center;
     background-color: #27293D;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .button {
@@ -35,13 +35,13 @@
 .body {
     background-color: #1C1C2C;
     padding: 10px;
-    height:100%;
+    height:auto;
     padding-bottom: 0;
     margin: 0;
 }
 
 .divider {
-    width: 100px;
+    width: 60px;
     height: auto;
     display: inline-block;
 }
@@ -65,31 +65,29 @@
 
 .home-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 500px 200px;
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 90vh;
     grid-gap: 10px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     grid-template-areas:
-        'content1 content1 content2 content2 content2'
-        'content1 content1 content2 content2 content2'
-        'content3 content3 content4 content4 content4'
-        'content3 content3 content4 content4 content4';
+        'content1 content2';
 }
 
 .home-one {
     grid-area: content1;
     background-color: #27293D;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .home-two {
-    grid-area: content3;
+    grid-area: content2;
     background-color: #27293D;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .home-three {
-    grid-area: content2;
+    grid-area: content3;
     background-color: #27293D;
     border-radius: 20px;
 }
@@ -120,15 +118,16 @@
     grid-template-rows: 1fr;
     grid-template-columns: 5fr 1fr;
     margin-top: 80px;
-    border-radius: 20px;
+    height: 80vh;
+    border-radius: 10px;
     background-color: #27293D;
-    padding: 10px;
-    padding-bottom: 20px;
 }
 
 .salary-one {
     order: 1;
     z-index: 2;
+    padding: 10px;
+    padding-bottom: 10px;
 }
 
 .salary-two {
@@ -147,14 +146,28 @@
 
 
 /* Field Styling */
-.home-one {
-    background-color: #27293D;
-    margin-top: 20px;
+.field-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    padding-bottom: 10px;
+    grid-template-areas:
+        'content1 content2';
 }
 
-.home-two {
+.field-one {
     background-color: #27293D;
     margin-top: 20px;
+    grid-area: content1;
+    border-radius: 10px;
+}
+
+.field-two {
+    background-color: #27293D;
+    margin-top: 20px;
+    grid-area: content2;
+    border-radius: 10px;
 }
 
 #FoS .Select, .Select div, .Select input, .Select span, .Select-value {
@@ -174,6 +187,30 @@
 
 
 /* Prediction Styling */
+.prediction-wrapper {
+    display: grid;
+    grid-template-columns: 600px 1fr;
+    grid-template-rows: 70vh;
+    grid-gap: 10px;
+    padding-bottom: 10px;
+    grid-template-areas:
+        'content1 content2';
+}
+
+.prediction-one {
+    background-color: #27293D;
+    margin-top: 20px;
+    grid-area: content1;
+    border-radius: 10px;
+}
+
+.prediction-two {
+    background-color: #27293D;
+    margin-top: 20px;
+    grid-area: content2;
+    border-radius: 10px;
+}
+
 #input_creds .Select, .Select div, .Select input, .Select span, .Select-value {
     color: white !important;
     border-radius: 25px;
