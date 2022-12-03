@@ -35,43 +35,43 @@ z-score represents how much you deviate from the mean in standard deviations.
 
 """
 field_map = {
-    '01. Agriculture, agriculture operations and related sciences': -0.594,
-    '03. Natural resources and conservation': 0.171,
-    '04. Architecture and related services': 0.436,
-    '05. Area, ethnic, cultural, gender, and group studies': -0.917,
-    '09. Communication, journalism and related programs': -0.315,
-    '10. Communications technologies/technicians and support services': -1.021,
-    '11. Computer and information sciences and support services': 0.576,
-    '12. Personal and culinary services': -1.316,
-    '13. Education': 1.871,
-    '14. Engineering': 2.643,
-    '15. Engineering technologies and engineering-related fields': 0.979,
-    '16. Aboriginal and foreign languages, literatures and linguistics': -1.432,
-    '19. Family and consumer sciences/human sciences': -1.144,
-    '22. Legal professions and studies': 0.914,
-    '23. English language and literature/letters': -0.611,
-    '24. Liberal arts and sciences, general studies and humanities': -1.008,
-    '25. Library science': -0.545,
-    '26. Biological and biomedical sciences': -0.593,
-    '27. Mathematics and statistics': 0.397,
-    '30. Multidisciplinary/interdisciplinary studies': -0.0172,
-    '31. Parks, recreation, leisure and fitness studies': -0.5426,
-    '38. Philosophy and religious studies': -0.703,
-    '40. Physical sciences': 0.465,
-    '41. Science technologies/technicians': -0.407,
-    '42. Psychology': 0.726,
-    '43. Security and protective services': 0.974,
-    '44. Public administration and social service professions': 0.740,
-    '45. Social sciences': 0.164,
-    '46. Construction trades': -0.839,
-    '47. Mechanic and repair technologies/technicians': 2.238,
-    '48. Precision production': 1.238,
-    '49. Transportation and materials moving': -0.684,
-    '50. Visual and performing arts': -1.475,
-    '51. Health professions and related programs': 0.403,
-    '52. Business, management, marketing and related support services': -0.0788,
-    '54. History': -0.382,
-    '55. French language and literature/lettersCAN': -0.307
+    'Agriculture, agriculture operations and related sciences': -0.594,
+    'Natural resources and conservation': 0.171,
+    'Architecture and related services': 0.436,
+    'Area, ethnic, cultural, gender, and group studies': -0.917,
+    'Communication, journalism and related programs': -0.315,
+    'Communications technologies/technicians and support services': -1.021,
+    'Computer and information sciences and support services': 0.576,
+    'Personal and culinary services': -1.316,
+    'Education': 1.871,
+    'Engineering': 2.643,
+    'Engineering technologies and engineering-related fields': 0.979,
+    'Aboriginal and foreign languages, literatures and linguistics': -1.432,
+    'Family and consumer sciences/human sciences': -1.144,
+    'Legal professions and studies': 0.914,
+    'English language and literature/letters': -0.611,
+    'Liberal arts and sciences, general studies and humanities': -1.008,
+    'Library science': -0.545,
+    'Biological and biomedical sciences': -0.593,
+    'Mathematics and statistics': 0.397,
+    'Multidisciplinary/interdisciplinary studies': -0.0172,
+    'Parks, recreation, leisure and fitness studies': -0.5426,
+    'Philosophy and religious studies': -0.703,
+    'Physical sciences': 0.465,
+    'Science technologies/technicians': -0.407,
+    'Psychology': 0.726,
+    'Security and protective services': 0.974,
+    'Public administration and social service professions': 0.740,
+    'Social sciences': 0.164,
+    'Construction trades': -0.839,
+    'Mechanic and repair technologies/technicians': 2.238,
+    'Precision production': 1.238,
+    'Transportation and materials moving': -0.684,
+    'Visual and performing arts': -1.475,
+    'Health professions and related programs': 0.403,
+    'Business, management, marketing and related support services': -0.0788,
+    'History': -0.382,
+    'French language and literature/lettersCAN': -0.307
 }
 # Years mapped to their respective encodings (zscore).
 year_map = {
@@ -108,6 +108,7 @@ df["Median Income"] = pd.to_numeric(df["Median Income"])
 
 creds_list = list(df["Credential"].unique())
 yrs_list = list(df["Years After Graduation"].unique())
+df["Field of Study (2-digit CIP code)"] = df["Field of Study (2-digit CIP code)"].str.replace('[0-9]{2}. ', '', regex=True)
 field_list = list(df["Field of Study (2-digit CIP code)"].unique())
 
 """
@@ -254,7 +255,7 @@ layout = html.Div(className="body", children=[
     html.H1(className="title", children='Prediction'),
 
     html.Div(children=[
-        html.Div(style={'padding-top':'70px', 'padding-left':'50px', 'padding-right':'50px', 'display':'flex'}, children=[
+        html.Div(style={'padding-top':'50px', 'padding-left':'250px', 'padding-right':'250px', 'display':'flex'}, children=[
             html.H5(className="prediction-three", id="prediction_output", style={
                        "color": "white", 'text-align': 'center', 'width': '100%'})
         ]),
@@ -286,6 +287,7 @@ layout = html.Div(className="body", children=[
                         layout={"name": "preset"},
                         style={"width": "100%", "height": "550px"},
                         elements=elements,
+                        userZoomingEnabled= False,
 
                         stylesheet=[
                             {
@@ -355,7 +357,9 @@ def update_prediction_text(credential_input, field_input, experience_input) -> N
         # EXAMPLE VECTOR: [yrs, field, bach, cert, dip, doc, mast, prof]
         sample_values = np.array([sample_vector], dtype=float)
         prediction = Salary_model.predict(sample_values)
+        temp = float("{:.2f}".format(prediction[0][0]))
+        formatted = "{:,}".format(temp)
 
-        return f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ${prediction[0][0]} on average in Alberta.'
+        return html.H5(className="prediction-three", children=[f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ', html.Span(f'${formatted} CAD', style={'color':'#D84FD2'}), ' on average in Alberta.'])
 
     return "Enter details to get your prediction."
