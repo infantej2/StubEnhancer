@@ -39,18 +39,27 @@ def generate_header(page):
         style={"textAlign":"center", "margin":"10px"}
     )
 
+def generate_navbar_item(text, href, current_page):
+    is_current_page = href[1:].lower() == current_page.split('.')[-1].lower()
+
+    if is_current_page:
+        return dbc.NavItem(dbc.NavLink(text, href=href, style={"color": "#D84FD2"}))
+    else:
+        return dbc.NavItem(dbc.NavLink(text, href=href))
+
 def generate_navbar(page):
     return dbc.NavbarSimple(
     children=[
-        dbc.NavItem(dbc.NavLink('By Salary', href='/salary' )),
+        generate_navbar_item('By Salary', '/salary', page),
         html.Div(className="divider"),
-        dbc.NavItem(dbc.NavLink('By Field', href='/field')),
+        generate_navbar_item('By Field', '/field', page),
         html.Div(className="divider"),
-        dbc.NavItem(dbc.NavLink('Prediction', href='/prediction')),
+        generate_navbar_item('Prediction', '/prediction', page),
     ],
     brand="StubEnhancer",
     brand_href="/",
     color="#27293D",
     class_name="header",
+    id="header",
     dark="true"
 )

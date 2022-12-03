@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import math
 
 dash.register_page(__name__)
 
@@ -24,9 +25,10 @@ credential_map = {
 credential_list = list(credential_map.keys())
 
 derived_df = pd.read_csv('./derived_data.csv')
-min_salary = int(derived_df['Average Income Ten Years After Graduation'].min())
-max_salary = int(derived_df['Average Income Ten Years After Graduation'].max(
-)) + 2500  # Add some because the slider doesn't ever go to the end?
+
+min_max_df = derived_df.loc[derived_df['Credential'] != 'Overall (All Graduates)']
+min_salary = int(min_max_df['Average Income Ten Years After Graduation'].min())
+max_salary = int(math.ceil(min_max_df['Average Income Ten Years After Graduation'].max() / 1000.0) * 1000.0) # Ceil to closest multiple of 1000 (55,422 -> 56,000)
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -49,8 +51,8 @@ layout = html.Div(className="body", children=[
                 html.Div(id='Salary-Range-Max',
                          style={"color": "white", "textAlign": "right"}),
             ], style={"display": "flex", "justify-content": "space-between"}),
-            dcc.RangeSlider(min_salary, max_salary, value=[
-                            22000, 80000], marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
+            dcc.RangeSlider(min_salary, max_salary, step=1000, value=[60000, 80000],
+            marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
         ], style={"width": "100%"}),
     ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "40px"}),
     html.Div(children=[
@@ -86,7 +88,8 @@ layout = html.Div(className="body", children=[
     Input(component_id='Salary-Range-Slider', component_property='value')
 )
 def update_min_salary_text(salary_range):
-    return f'Min: ${salary_range[0]} CAD'
+    #return f'Min: ${salary_range[0]} CAD'
+    return f'Min: ${min_salary:,} CAD'
 
 
 @callback(
@@ -94,7 +97,8 @@ def update_min_salary_text(salary_range):
     Input(component_id='Salary-Range-Slider', component_property='value')
 )
 def update_max_salary_text(salary_range):
-    return f'Max: ${salary_range[1]} CAD'
+    #return f'Max: ${salary_range[1]} CAD'
+    return f'Max: ${max_salary:,} CAD'
 
 # -------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +121,7 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
         height=700,
         title_x=0.5,
         title='Fields with an Average Income Between ',
-        xaxis_title="Field",
+        xaxis_title="Field & Certification",
         yaxis_title="Mean Income (CAD)",
         # bargap=0,
         barmode='group',
@@ -177,30 +181,31 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
         )
     '''
 
-    figure.add_traces(go.Bar(
-        x=dataframe['Field of Study (CIP code)'],
-        y=dataframe['Average Income Ten Years After Graduation'],
-        #text=dataframe['Average Income Ten Years After Graduation'],
-        texttemplate='%{x} %{y}',
-        textposition="inside",
-        marker=dict(color='#024B7A'),
-        marker_line=dict(width=1, color='black'),
-        marker_color=dataframe['Color'],
-        width=0.5,
-        hovertemplate='<extra></extra><br>Credential: %{x} <br>Average Median Income: %{y}',
-    ))
+    if not dataframe.empty:
+        figure.add_traces(go.Bar(
+            x=dataframe['Field of Study (CIP code)'],
+            y=dataframe['Average Income Ten Years After Graduation'],
+            #text=dataframe['Average Income Ten Years After Graduation'],
+            texttemplate='%{x} %{y}',
+            textposition="inside",
+            marker=dict(color='#024B7A'),
+            marker_line=dict(width=1, color='black'),
+            marker_color=dataframe['Color'],
+            width=0.5,
+            hovertemplate='<extra></extra><br>Credential: %{x} <br>Average Median Income: %{y}',
+        ))
 
-    # Manually add a legend to the graph (ONLY NEEDED FOR SECOND METHOD)
-    figure.update_traces(showlegend=False).add_traces(
-        [
-            go.Bar(name=name, x=[figure.data[0].x[0]],
-                   marker_color=color, showlegend=False)
-            for name, color in credential_map.items()
-        ]
-    )
+        # Manually add a legend to the graph (ONLY NEEDED FOR SECOND METHOD)
+        figure.update_traces(showlegend=False).add_traces(
+            [
+                go.Bar(name=name, x=[figure.data[0].x[0]],
+                    marker_color=color, showlegend=False)
+                for name, color in credential_map.items()
+            ]
+        )
 
     # Remove x-axis labels below the graph
-    figure.update_xaxes(visible=False, showticklabels=False)
+    figure.update_xaxes(visible=True, showticklabels=False)
 
     figure.update_traces(
         orientation='v',
@@ -208,7 +213,8 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
     )
 
     chart = dcc.Graph(
-        figure=figure
+        figure=figure,
+        config={'displayModeBar': False}
     )
 
     return chart
