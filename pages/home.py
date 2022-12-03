@@ -275,9 +275,15 @@ layout = html.Div(className="body", children=[
         ]),
         html.Div(className="home-two", children=[
             dbc.Tabs([
-                dbc.Tab(jobs_happiness_scatterplot(), label="Happiness Threshold", label_style={"color": "#00AEF9"}),
-                dbc.Tab(certification_salaries_barchart(), label="Certification", label_style={"color": "#00AEF9"}),
-                dbc.Tab(top_vs_bottom_5_barchart(), label="Top 5 vs Bottom 5", label_style={"color": "#00AEF9"}),
+                dbc.Tab(jobs_happiness_scatterplot(),
+                        label="Happiness Threshold",
+                        active_label_style={"backgroundcolor": "#885fc9"}),
+                dbc.Tab(certification_salaries_barchart(),
+                        label="Certification",
+                        active_label_style={"color": "#885fc9"}),
+                dbc.Tab(top_vs_bottom_5_barchart(),
+                        label="Top 5 vs Bottom 5",
+                        active_label_style={"color": "#885fc9"}),
             ], )
         ]),
     ],),

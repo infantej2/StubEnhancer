@@ -189,8 +189,8 @@
 /* Prediction Styling */
 .prediction-wrapper {
     display: grid;
-    grid-template-columns: 600px 1fr;
-    grid-template-rows: 70vh;
+    grid-template-columns: 800px 1fr;
+    grid-template-rows: 65vh;
     grid-gap: 10px;
     padding-bottom: 10px;
     grid-template-areas:
@@ -198,7 +198,6 @@
 }
 
 .prediction-one {
-    background-color: #27293D;
     margin-top: 20px;
     grid-area: content1;
     border-radius: 10px;
@@ -209,6 +208,20 @@
     margin-top: 20px;
     grid-area: content2;
     border-radius: 10px;
+}
+
+.prediction-three {
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.prediction-prompt {
+    padding-top: 20px;
+    color: white;
+    padding-right: 20px;
+    width: 50%;
 }
 
 #input_creds .Select, .Select div, .Select input, .Select span, .Select-value {

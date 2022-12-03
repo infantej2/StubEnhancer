@@ -93,7 +93,7 @@ cred_map = {
     "Professional bachelor's degree": 5
 }
 
-dropdown_style = {"width": "100%", "align-items": "center", "margin-bottom":"10px"}
+dropdown_style = {"width": "100%", "align-items": "right", "margin-bottom":"10px"}
 # the model was previously trained and here we load it.
 Salary_model = load_model(os.path.join(".", "Salary_Model.h5"))
 
@@ -160,35 +160,35 @@ nodes = [
     }
     for node_id, node_label, x, y in (
         # Input nodes
-        ("in1", "input-node1", 400, 100),
-        ("in2", "input-node2", 400, 132.5),
-        ("in3", "input-node3", 400, 165),
+        ("in1", "input-node1", 350, 100),
+        ("in2", "input-node2", 350, 132.5),
+        ("in3", "input-node3", 350, 165),
         # Hidden layer 1 nodes
-        ("hl1n1", "hiddenlayer1-node1", 425, 75),
-        ("hl1n2", "hiddenlayer1-node2", 425, 80),
-        ("hl1n3", "hiddenlayer1-node3", 425, 85),
-        ("hl1n4", "hiddenlayer1-node4", 425, 90),
-        ("hl1n5", "hiddenlayer1-node5", 425, 95),
-        ("hl1n6", "hiddenlayer1-node6", 425, 100),
-        ("hl1n7", "hiddenlayer1-node7", 425, 105),
-        ("hl1n8", "hiddenlayer1-node8", 425, 110),
-        ("hl1n9", "hiddenlayer1-node9", 425, 115),
-        ("hl1n10", "hiddenlayer1-node10", 425, 120),
-        ("hl1n11", "hiddenlayer1-node11", 425, 125),
-        ("hl1n12", "hiddenlayer1-node12", 425, 130),
-        ("hl1n13", "hiddenlayer1-node13", 425, 135),
-        ("hl1n14", "hiddenlayer1-node14", 425, 140),
-        ("hl1n15", "hiddenlayer1-node15", 425, 145),
-        ("hl1n16", "hiddenlayer1-node16", 425, 150),
-        ("hl1n17", "hiddenlayer1-node17", 425, 155),
-        ("hl1n18", "hiddenlayer1-node18", 425, 160),
-        ("hl1n19", "hiddenlayer1-node19", 425, 165),
-        ("hl1n20", "hiddenlayer1-node20", 425, 170),
-        ("hl1n21", "hiddenlayer1-node21", 425, 175),
-        ("hl1n22", "hiddenlayer1-node22", 425, 180),
-        ("hl1n23", "hiddenlayer1-node23", 425, 185),
-        ("hl1n24", "hiddenlayer1-node24", 425, 190),
-        ("hl1n25", "hiddenlayer1-node25", 425, 195),
+        ("hl1n1", "hiddenlayer1-node1", 400, 75),
+        ("hl1n2", "hiddenlayer1-node2", 400, 80),
+        ("hl1n3", "hiddenlayer1-node3", 400, 85),
+        ("hl1n4", "hiddenlayer1-node4", 400, 90),
+        ("hl1n5", "hiddenlayer1-node5", 400, 95),
+        ("hl1n6", "hiddenlayer1-node6", 400, 100),
+        ("hl1n7", "hiddenlayer1-node7", 400, 105),
+        ("hl1n8", "hiddenlayer1-node8", 400, 110),
+        ("hl1n9", "hiddenlayer1-node9", 400, 115),
+        ("hl1n10", "hiddenlayer1-node10", 400, 120),
+        ("hl1n11", "hiddenlayer1-node11", 400, 125),
+        ("hl1n12", "hiddenlayer1-node12", 400, 130),
+        ("hl1n13", "hiddenlayer1-node13", 400, 135),
+        ("hl1n14", "hiddenlayer1-node14", 400, 140),
+        ("hl1n15", "hiddenlayer1-node15", 400, 145),
+        ("hl1n16", "hiddenlayer1-node16", 400, 150),
+        ("hl1n17", "hiddenlayer1-node17", 400, 155),
+        ("hl1n18", "hiddenlayer1-node18", 400, 160),
+        ("hl1n19", "hiddenlayer1-node19", 400, 165),
+        ("hl1n20", "hiddenlayer1-node20", 400, 170),
+        ("hl1n21", "hiddenlayer1-node21", 400, 175),
+        ("hl1n22", "hiddenlayer1-node22", 400, 180),
+        ("hl1n23", "hiddenlayer1-node23", 400, 185),
+        ("hl1n24", "hiddenlayer1-node24", 400, 190),
+        ("hl1n25", "hiddenlayer1-node25", 400, 195),
         # Hidden layer 2 nodes
         ("hl2n1", "hiddenlayer2-node1", 450, 115),
         ("hl2n2", "hiddenlayer2-node2", 450, 120),
@@ -201,7 +201,7 @@ nodes = [
         ("hl2n9", "hiddenlayer2-node9", 450, 155),
         ("hl2n10", "hiddenlayer2-node10", 450, 160),
         # Output neuron
-        ("out1", "output-node1", 475, 132.5),
+        ("out1", "output-node1", 500, 132.5),
     )
 
 ]
@@ -254,24 +254,37 @@ layout = html.Div(className="body", children=[
     html.H1(className="title", children='Prediction'),
 
     html.Div(children=[
+        html.Div(style={'padding-top':'70px', 'padding-left':'50px', 'padding-right':'50px', 'display':'flex'}, children=[
+            html.H5(className="prediction-three", id="prediction_output", style={
+                       "color": "white", 'text-align': 'center', 'width': '100%'})
+        ]),
         html.Div(className="prediction-wrapper", children=[
             html.Div(className="prediction-one", children=[
-                dcc.Dropdown(creds_list, id="input_creds", value="Select Credentials", multi=False, clearable=False,
+                html.H3("Enter details here:", style={'color':'white', 'text-align':'center'}),
+                html.Br(),
+                html.Div(children=[
+                    html.H4("Credential Type", className="prediction-prompt"),
+                    dcc.Dropdown(creds_list, id="input_creds", value="Select Credentials", multi=False, clearable=False,
                              style=dropdown_style),
-                dcc.Dropdown(field_list, id="input_field", value="Select Field", multi=False, clearable=False,
+                ], style={"display":"flex"}),
+                html.Div(children=[
+                    html.H4("Field of Study", className="prediction-prompt"),
+                    dcc.Dropdown(field_list, id="input_field", value="Select Field", multi=False, clearable=False,
                      style=dropdown_style),
-                dcc.Dropdown(yrs_list, id="input_years", value="Select Years Experience", multi=False, clearable=False,
+                ], style={"display":"flex"}),
+                html.Div(children=[
+                    html.H4("Years of Experience", className="prediction-prompt"),
+                    dcc.Dropdown(yrs_list, id="input_years", value="Select Years Experience", multi=False, clearable=False,
                      style=dropdown_style),
+                ], style={"display":"flex"}),
             ], style={"padding":"20px"}),
             html.Div(className="prediction-two", children=[
-                html.P(id="prediction_output", style={
-                       "color": "white", 'text-align': 'left', 'width': '100%'}),
                 html.Div(children=[
                     cyto.Cytoscape(
                         id="network-chart",
                         # assign node positions ourselves
                         layout={"name": "preset"},
-                        style={"width": "100%", "height": "500px"},
+                        style={"width": "100%", "height": "550px"},
                         elements=elements,
 
                         stylesheet=[
@@ -343,6 +356,6 @@ def update_prediction_text(credential_input, field_input, experience_input) -> N
         sample_values = np.array([sample_vector], dtype=float)
         prediction = Salary_model.predict(sample_values)
 
-        return f"{prediction}"
+        return f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ${prediction[0][0]} on average in Alberta.'
 
-    return None
+    return "Enter details to get your prediction."
