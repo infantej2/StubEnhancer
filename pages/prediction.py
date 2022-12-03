@@ -283,11 +283,16 @@ layout = html.Div(className="body", children=[
                 html.Div(children=[
                     cyto.Cytoscape(
                         id="network-chart",
+                        zoom=3,#zoom=2.5,
                         # assign node positions ourselves
-                        layout={"name": "preset"},
+                        layout={"name": "preset", "fit": False},
                         style={"width": "100%", "height": "550px"},
                         elements=elements,
-                        userZoomingEnabled= False,
+                        userZoomingEnabled=False,
+                        autoungrabify=True,
+                        autounselectify=True,
+                        pan={"x":-1000, "y":-180},# pan={"x":-850, "y":-130},
+                        panningEnabled=False,
 
                         stylesheet=[
                             {

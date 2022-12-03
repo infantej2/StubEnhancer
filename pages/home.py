@@ -262,7 +262,7 @@ layout = html.Div(className="body", children=[
             html.Br(),
             html.Div(children=[
                 dcc.Link(html.Button("Get Started!", className="button-start"),
-                 href="/salary", refresh=True),
+                 href="/salary", refresh=False),
             ], style={"paddingLeft":"20px", "paddingRight":"20px"}),
             html.Br(),
             html.Div(children=[
