@@ -307,7 +307,7 @@ layout = html.Div(className="body", children=[
                             {
                                 'selector': 'edge',
                                 'style': {
-                                    'width': "0.5%"
+                                    'width': "0.1%" # 'width': "0.5%"
                                 }
                             },
                         ]

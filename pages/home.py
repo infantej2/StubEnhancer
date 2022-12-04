@@ -26,7 +26,12 @@ def jobs_happiness_scatterplot():
         height=700,
         title_x=0.5,
         title='Average Job Salaries (CAD) Above the Happiness Threshold<br>(at 10th Year Salary) (2005-2014)',
-        xaxis_title="Job Order as a Function of Salary (Ascending)",
+        xaxis={
+            'title':{
+                'text': "Job Order as a Function of Salary (Ascending)",
+                'standoff': 30
+            }
+        },
         yaxis_title="Average Income Ten Years After Graduation (CAD)",
         bargap=0,
         paper_bgcolor='rgba(0,0,0,0)',
@@ -43,17 +48,20 @@ def jobs_happiness_scatterplot():
     fig = px.scatter(
         display_df,
         x=display_df.index,
-        y='Average Income Ten Years After Graduation',
+        y='Average Income Ten Years After Graduation'
     )
 
     fig.layout = layout
+
+    fig.update_traces(marker = {'color': '#D84FD2'})
+    fig.update_xaxes(visible=True, showticklabels=False, showgrid=False, zeroline=False)
 
     fig.add_hrect(
         78000, 97000,
         annotation_text='Emotional Well-being', annotation_position='top left',
         annotation=dict(
             font_size=20, font_family='Times New Roman', font_color='white'),
-        fillcolor="green", opacity=0.25, line_width=0
+        fillcolor="#3BB143", opacity=0.25, line_width=0
     )
 
     fig.add_hline(
@@ -62,6 +70,7 @@ def jobs_happiness_scatterplot():
         annotation_position='top left',
         annotation=dict(
             font_size=20, font_family='Times New Roman', font_color='white'),
+        line_color='#3BB143'
     )
 
     fig.add_vline(
@@ -69,9 +78,10 @@ def jobs_happiness_scatterplot():
         line_width=1,
         line_dash='dash',
         annotation_text='50th Percentile',
-        annotation_position='bottom right',
+        annotation_position='bottom',
         annotation=dict(
-            font_size=20, font_family='Times New Roman', font_color='white'),
+            font_size=16, font_family='Times New Roman', font_color='white'),
+        line_color='white'
     )
 
     fig.add_vline(
@@ -79,9 +89,21 @@ def jobs_happiness_scatterplot():
         line_width=1,
         line_dash='dash',
         annotation_text='80th Percentile',
-        annotation_position='bottom right',
+        annotation_position='bottom',
         annotation=dict(
-            font_size=20, font_family='Times New Roman', font_color='white'),
+            font_size=16, font_family='Times New Roman', font_color='white'),
+        line_color='white'
+    )
+
+    fig.add_vline(
+        int(len(display_df.index) * 0.95),
+        line_width=1,
+        line_dash='dash',
+        annotation_text='95th Percentile',
+        annotation_position='bottom',
+        annotation=dict(
+            font_size=16, font_family='Times New Roman', font_color='white'),
+        line_color='white'
     )
 
     fig.update_traces(
@@ -89,7 +111,8 @@ def jobs_happiness_scatterplot():
     )
 
     return dcc.Graph(
-        figure=fig
+        figure=fig,
+        config={'displayModeBar': False}
     )
 
 # -------------------------------------------------------------------------------------------------------------
@@ -106,12 +129,13 @@ def certification_salaries_barchart():
         height=700,
         title_x=0.5,
         title='Mean Incomes by Certification Type',
-        xaxis_title="Credential",
-        yaxis_title="Mean Income (CAD)",
+        xaxis_title="Mean Income (CAD)", #xaxis_title="Credential",
+        yaxis_title="Credential", # yaxis_title="Mean Income (CAD)",
         bargap=0,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color="white"),
+        yaxis_showticklabels=False
     )
 
     figure = go.Figure(
@@ -128,7 +152,7 @@ def certification_salaries_barchart():
     # NOTE: The credential types will be pulled in the order specified within the list.
     color_map = {
         'Certificate': 'red',
-        'Diploma ': 'green',
+        'Diploma': 'green',
         'Bachelor\'s degree': 'blue',
         'Professional bachelor\'s degree': 'yellow',
         'Bachelor\'s degree + certificate/diploma': 'grey',
@@ -143,23 +167,28 @@ def certification_salaries_barchart():
 
         # Construct the new bar trace
         new_trace = go.Bar(
-            x=bar_df["Credential"],
-            y=bar_df['Average Income Ten Years After Graduation'],
+            x=bar_df['Average Income Ten Years After Graduation'], # x=bar_df["Credential"],
+            y=bar_df["Credential"], # y=bar_df['Average Income Ten Years After Graduation'],
             text=bar_df['Average Income Ten Years After Graduation'],
             textposition="inside",
+            texttemplate='%{y} %{x}',
+            orientation='h', #orientation='v',
+            #textangle=-90,
             marker=dict(color='#024B7A'),
             marker_line=dict(width=1, color='black'),
             marker_color=color_map[certificate_name],
-            width=0.5,
+            width=0.85,
             hovertemplate='<extra></extra><br>Credential: %{x} <br>Average Median Income: %{y}',
             name=certificate_name,
+            showlegend=False
         )
 
         # Add the new bar trace into the overall figure
         figure.add_traces(new_trace)
 
     barChart = dcc.Graph(
-        figure=figure
+        figure=figure,
+        config={'displayModeBar': False}
     )
 
     return barChart
@@ -178,8 +207,8 @@ def top_vs_bottom_5_barchart():
         height=700,
         title_x=0.5,
         title='Top 5 vs Bottom 5 Jobs by 10th Year Salary (CAD)',
-        xaxis_title="Top 5 / Bottom 5 Jobs",
-        yaxis_title="Mean Income 10 Years After Graduation (CAD)",
+        xaxis_title="Mean Income 10 Years After Graduation (CAD)", # xaxis_title="Top 5 / Bottom 5 Jobs",
+        yaxis_title="Top 5 / Bottom 5 Jobs", # yaxis_title="Mean Income 10 Years After Graduation (CAD)",
         bargap=0,
         uniformtext_minsize=10,
         uniformtext_mode='show',
@@ -204,18 +233,19 @@ def top_vs_bottom_5_barchart():
 
     figure = px.bar(
         data_frame=dataframe,
-        x='Field of Study (CIP code)',
-        y='Average Income Ten Years After Graduation',
+        x='Average Income Ten Years After Graduation', # x='Field of Study (CIP code)',
+        y='Field of Study (CIP code)', # y='Average Income Ten Years After Graduation',
         text='Average Income Ten Years After Graduation',
         #color=['Top 5', 'Top 5', 'Top 5', 'Top 5', 'Top 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5'],
         # color_discrete_map={
         #    'Top 5': 'pink',
         #    'Bottom 5': 'purple'
-        # }
+        # },
+
+        orientation='h'
     )
 
-    figure.data[0].marker.color = (
-        'pink', 'pink', 'pink', 'pink', 'pink', 'purple', 'purple', 'purple', 'purple', 'purple')
+    figure.data[0].marker.color = ('pink', 'pink', 'pink', 'pink', 'pink', 'purple', 'purple', 'purple', 'purple', 'purple')
 
     # Apply the layout described at the top
     figure.layout = layout
@@ -223,27 +253,31 @@ def top_vs_bottom_5_barchart():
     # Manually add a legend to the graph
     figure.update_traces(showlegend=False).add_traces(
         [
-            go.Bar(name=m[0], x=[figure.data[0].x[0]],
-                   marker_color=m[1], showlegend=True)
+            go.Bar(name=m[0], y=[figure.data[0].x[0]],
+                   marker_color=m[1], showlegend=True, orientation='h')
             for m in [('Top 5', 'pink'), ('Bottom 5', 'purple')]
         ]
     )
 
     # Display the text and value as a string inside the bar, with vertical orientation
     figure.update_traces(
-        texttemplate='%{x} %{y}',
+        texttemplate='%{y} %{x}', #texttemplate='%{x} %{y}',
         textposition=['inside', 'inside', 'inside', 'inside', 'inside',
                       'outside', 'outside', 'outside', 'outside', 'outside'],
-        orientation='v',
-        textangle=-90,
-        hovertemplate='Field of Study: %{x}<br>Average Income Ten Years After Graduation: %{y}',
+        #orientation='v',
+        #textangle=-90,
+        hovertemplate='Field of Study: %{y}<br>Average Income Ten Years After Graduation: %{x}', # hovertemplate='Field of Study: %{x}<br>Average Income Ten Years After Graduation: %{y}',
+        width = 0.85
     )
 
-    # Remove x-axis labels below the graph
-    figure.update_xaxes(visible=False, showticklabels=False)
+    # Remove field labels
+    figure.update_yaxes(visible=False, showticklabels=False) # figure.update_xaxes(visible=False, showticklabels=False)
+
+    figure.update_layout(barmode='stack', yaxis={'categoryorder': 'total ascending'})
 
     barChart = dcc.Graph(
-        figure=figure
+        figure=figure,
+        config={'displayModeBar': False}
     )
 
     return barChart

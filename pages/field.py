@@ -24,8 +24,9 @@ list = np.unique(list)
 '''
 
 derived_df = pd.read_csv('./derived_data.csv')
+
 dflist = derived_df[derived_df['Field of Study (CIP code)'].str.contains('[0-9]{2}.[0-9]{2}', regex=True) == False]
-dflist = dflist[derived_df['Field of Study (CIP code)'] != '00. Total']
+dflist = dflist[derived_df['Field of Study (CIP code)'].str.contains('00. Total') == False] #dflist = dflist[derived_df['Field of Study (CIP code)'] != '00. Total']
 dflist = dflist.loc[:,'Field of Study (CIP code)']
 list = np.unique(dflist.to_numpy())
 
@@ -45,8 +46,7 @@ layout = html.Div(className="body", children=[
             dcc.Dropdown(list, id="FoS", value="11. Computer and information sciences and support services", multi=False,
             style={'width':'90%', 'margin-left':'30px'})
         ], style={"display":"flex", "width":"70%", "margin":"auto", "paddingTop":"40px"}),
-        html.H5(id='FoS-Salary-Text',
-        style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"}),
+        html.Div(id='FoS-Salary-Text'),
         html.Div(className="field-wrapper", children=[
             html.Div(className="field-one", children=[
                 html.Div(id='FoS-Yearly-Salary-Linechart')
@@ -144,7 +144,9 @@ def update_fos_salary_text(field_of_study):
         if expected_salary != 0:
             break
 
-    return f'On average, those studying \"{fos_name}\" can expect to make ~${expected_salary} CAD {salary_year.lower()}.'
+    #return f'On average, those studying \"{fos_name}\" can expect to make ~${expected_salary:,} CAD {salary_year.lower()}.'
+    return html.H5(children=[f'On average, those studying \"{fos_name}\" can expect to make ', html.Span(f'~${expected_salary:,} CAD', style={'color':'#D84FD2'}), f' {salary_year.lower()}.'],
+        style={"color": "white", "textAlign":"center", "paddingTop":"50px", "paddingBottom":"30px"})
 
 # --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -153,6 +155,7 @@ def update_fos_salary_text(field_of_study):
     Input(component_id='FoS', component_property='value')
 )
 def update_fos_salary_linechart(field_of_study):
+    # https://plotly.com/python/reference/layout/
     layout = go.Layout(
         margin=go.layout.Margin(
             l=150,   # left margin
@@ -169,13 +172,23 @@ def update_fos_salary_linechart(field_of_study):
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color="white"),
+        legend={
+            # I'm aware this isn't a proper title, but the users are going to know it is a legend, and they need to be made aware of the controls
+            'title': 'Click to enable/disable, double click to isolate',
+            'xanchor': 'center', # Anchored by the center (of the legend itself, not the graph)
+            'yanchor': 'top', # Anchored by the top (of the legend itself, not the graph)
+            'x': 0.5, # Centered in x-axis
+            'y': -0.2 # Just below the main graph
+        },
+        #showlegend=False
     )
 
     if not field_of_study:
         return dcc.Graph(
             figure=go.Figure(
                 layout=layout
-            )
+            ),
+            config={'displayModeBar': False}
         )
 
     if field_of_study == '00. Total (All Graduates)':
@@ -223,7 +236,8 @@ def update_fos_salary_linechart(field_of_study):
     )
 
     return dcc.Graph(
-        figure=figure
+        figure=figure,
+        config={'displayModeBar': False}
     )
 
 # --------------------------------------------------------------------------------------------------------------------------------------
@@ -257,7 +271,7 @@ def update_fos_certification_graph(field_of_study):
     )
 
     if not field_of_study:
-        return dcc.Graph(figure=figure)
+        return dcc.Graph(figure=figure, config={'displayModeBar': False})
 
     fos_split = field_of_study.split('. ')
     fos_code = fos_split[0]
@@ -288,7 +302,7 @@ def update_fos_certification_graph(field_of_study):
     # NOTE: The credential types will be pulled in the order specified within the list.
     color_map = {
         'Certificate': 'red',
-        'Diploma ': 'green',
+        'Diploma': 'green',
         'Bachelor\'s degree': 'blue',
         'Professional bachelor\'s degree': 'yellow',
         'Bachelor\'s degree + certificate/diploma': 'grey',
@@ -323,7 +337,8 @@ def update_fos_certification_graph(field_of_study):
         figure.add_traces(new_trace)
 
     barChart = dcc.Graph(
-        figure=figure
+        figure=figure,
+        config={'displayModeBar': False}
     )
 
     return barChart
