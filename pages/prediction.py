@@ -1063,16 +1063,6 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
                     'height': "5%"
                 }
             },
-            {
-                'selector': '[id^="hl3"]', # Specific to hidden layer 3 nodes; aka output nodes
-                'style': {
-                    'label': 'data(value)',
-                    'font-size': '0.3em',
-                    'background-color': '#FFFFFF',
-                    'width': "5%",
-                    'height': "5%"
-                }
-            },
 
             # STYLES FOR INDIVIDUAL NODE COLORS BELOW:
             {
@@ -1087,6 +1077,16 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
                 'selector': '[value < 0]',
                 'style': {
                     'background-color': '#00FF00',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[id^="hl3"]', # Specific to hidden layer 3 nodes; aka output nodes
+                'style': {
+                    'label': 'data(value)',
+                    'font-size': '0.3em',
+                    'background-color': '#FFFFFF',
                     'width': "5%",
                     'height': "5%"
                 }
