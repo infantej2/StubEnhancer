@@ -305,10 +305,10 @@ layout = html.Div(className="body", children=[
     generate_navbar(__name__),
     html.Div(className="home-wrapper", children=[
         html.Div(className="home-one", children=[
-            html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
+            html.Div(children=["Welcome to ", html.Span("Stub Enhancer", style={'color':'#D84FD2'}), "! We aim to help you enhance your pay "
                      "stub by providing data abstractions based on data from ALIS. "
                      "Our goal is to aid Albertans in their career and education "
-                     "decisions.", style={"color": "white", "fontSize":"18px", "padding":"20px"}),
+                     "decisions."], style={"color": "white", "fontSize":"18px", "padding":"20px"}),
             html.Br(),
             html.Div(children=[
                 dcc.Link(html.Button("Get Started!", className="button-start"),
