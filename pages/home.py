@@ -30,7 +30,7 @@ def jobs_happiness_scatterplot():
             'title':{
                 'text': "Job Order as a Function of Salary (Ascending)",
                 'standoff': 30
-            }
+            },
         },
         yaxis_title="Average Income Ten Years After Graduation (CAD)",
         bargap=0,
@@ -54,7 +54,8 @@ def jobs_happiness_scatterplot():
     fig.layout = layout
 
     fig.update_traces(marker = {'color': '#D84FD2'})
-    fig.update_xaxes(visible=True, showticklabels=False, showgrid=False, zeroline=False)
+    fig.update_xaxes(visible=True, showticklabels=False, showgrid=False, zeroline=False, gridcolor='#cc99ff')
+    fig.update_yaxes(gridcolor='#666666')
 
     fig.add_hrect(
         78000, 97000,
@@ -110,6 +111,11 @@ def jobs_happiness_scatterplot():
         hovertemplate='Average Income Ten Years After Graduation: %{y}'
     )
 
+    fig.update_layout(yaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        ))
+
     return dcc.Graph(
         figure=fig,
         config={'displayModeBar': False}
@@ -124,7 +130,7 @@ def certification_salaries_barchart():
             l=150,   # left margin
             r=150,   # right margin
             b=100,   # bottom margin
-            t=50    # top margin
+            t=100    # top margin
         ),
         height=700,
         title_x=0.5,
@@ -185,6 +191,11 @@ def certification_salaries_barchart():
 
         # Add the new bar trace into the overall figure
         figure.add_traces(new_trace)
+        figure.update_xaxes(gridcolor='#666666')
+        figure.update_layout(xaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        ))
 
     barChart = dcc.Graph(
         figure=figure,
@@ -202,7 +213,7 @@ def top_vs_bottom_5_barchart():
             l=150,   # left margin
             r=150,   # right margin
             b=50,   # bottom margin
-            t=50    # top margin
+            t=100    # top margin
         ),
         height=700,
         title_x=0.5,
@@ -272,8 +283,13 @@ def top_vs_bottom_5_barchart():
 
     # Remove field labels
     figure.update_yaxes(visible=False, showticklabels=False) # figure.update_xaxes(visible=False, showticklabels=False)
-
-    figure.update_layout(barmode='stack', yaxis={'categoryorder': 'total ascending'})
+    figure.update_xaxes(gridcolor='#666666')
+    figure.update_layout(barmode='stack',
+                        yaxis={'categoryorder': 'total ascending'},
+                        xaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        ))
 
     barChart = dcc.Graph(
         figure=figure,
@@ -292,32 +308,40 @@ layout = html.Div(className="body", children=[
             html.Div(children="Welcome to Stub Enhancer! We aim to help you enhance your pay "
                      "stub by providing data abstractions based on data from ALIS. "
                      "Our goal is to aid Albertans in their career and education "
-                     "decisions.", style={"color": "white", "fontSize":"20px", "padding":"20px"}),
+                     "decisions.", style={"color": "white", "fontSize":"18px", "padding":"20px"}),
             html.Br(),
             html.Div(children=[
                 dcc.Link(html.Button("Get Started!", className="button-start"),
                  href="/salary", refresh=False),
             ], style={"paddingLeft":"20px", "paddingRight":"20px"}),
             html.Br(),
+             html.Div(children=[
+                html.Span("Life evaluation", style={'color':'#D84FD2'}), ', really life satisfaction, is an overall assessment of how '
+                "one is doing and is likely more infuenced by higher goals and comparisons "
+                'to others. ', html.Span("Emotional well-being", style={'color':'#D84FD2'}), ", or feelings, is about one's day-to-day "
+                "emotions, such as feeling happy, excited, or sad and angry."
+            ], style={"color": "white", "fontSize":"18px", "padding":"20px"}
+            ),
+            html.Br(),
             html.Div(children=[
-                "The ideal income, according to a ",
+                "The ", html.Span("ideal income for life evaluation", style={'color':'#D84FD2'}),", according to a ",
                 html.A("study by Purdue University",
                        href='https://www.purdue.edu/newsroom/releases/2018/Q1/money-only-buys-happiness-for-a-certain-amount.html'),
-                " is $127K. They also note the emotional wellbeing threshold is 78K-$97K."
-            ], style={"color": "white", "fontSize":"20px", "padding":"20px"}
+                " is ", html.Span("$127K.", style={'color':'#D84FD2'}), " They also note the ", html.Span("emotional wellbeing", style={'color':'#D84FD2'}), " threshold is ", html.Span("78K-$97K.", style={'color':'#D84FD2'})
+            ], style={"color": "white", "fontSize":"18px", "padding":"20px"}
             ),
         ]),
         html.Div(className="home-two", children=[
             dbc.Tabs([
                 dbc.Tab(jobs_happiness_scatterplot(),
                         label="Happiness Threshold",
-                        active_label_style={"backgroundcolor": "#885fc9"}),
+                        label_style={"color": "#D84FD2"}),
                 dbc.Tab(certification_salaries_barchart(),
                         label="Certification",
-                        active_label_style={"color": "#885fc9"}),
+                        label_style={"color": "#D84FD2"}),
                 dbc.Tab(top_vs_bottom_5_barchart(),
                         label="Top 5 vs Bottom 5",
-                        active_label_style={"color": "#885fc9"}),
+                        label_style={"color": "#D84FD2"}),
             ], )
         ]),
     ],),
