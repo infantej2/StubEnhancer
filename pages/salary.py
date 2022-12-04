@@ -67,17 +67,18 @@ layout = html.Div(className="body", children=[
         ], style={"width": "100%", "paddingTop": "15px"}),
     ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "20px"}),
     html.Div(children=[
-        html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
         dcc.Checklist(
             id='Credential-Checklist',
             options=credential_list,
             value=credential_list,
-            inline=False,
+            inline=True,
             labelStyle={'display': 'block'},
-            style={"color": "white", "fontSize": "20px", "padding": "20px"},
+            # TODO: I couldn't figure out how to center these... 
+            style={"color": "white", "fontSize": "20px", "padding": "20px", "width": "100%", "margin": "auto", "text-indent": "2em"},
             className="salary-two"
         ),
-    ], className="salary-wrapper"),
+        html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
+    ], className="salary-wrapper", style={"width": "100%", "margin": "auto", "display": "table"}),
 ])
 
 # -------------------------------------------------------------------------------------------------------------
