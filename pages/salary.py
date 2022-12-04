@@ -77,6 +77,8 @@ layout = html.Div(className="body", children=[
             style={"color": "white", "fontSize": "20px", "padding": "20px", "width": "100%", "margin": "auto", "text-indent": "2em"},
             className="salary-two"
         ),
+    ], style={"padding-bottom":"20px", "text-align":"center"}),
+    html.Div(children=[
         html.Div(id='Jobs-By-Salary-Barchart', className="salary-one"),
     ], className="salary-wrapper", style={"width": "100%", "margin": "auto", "display": "table"}),
 ])
