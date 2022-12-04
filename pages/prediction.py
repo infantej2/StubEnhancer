@@ -930,7 +930,7 @@ def update_prediction_text(credential_input, field_input, experience_input) -> N
         temp = float("{:.2f}".format(prediction[0][0]))
         formatted = "{:,}".format(temp)
 
-        return html.H5(className="prediction-three", children=[f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ', html.Span(f'${formatted} CAD', style={'color':'#D84FD2'}), ' on average in Alberta.'])
+        return html.H5(className="prediction-three", children=[f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ', html.Span(f'${formatted} CAD +/- $12,000 CAD', style={'color':'#D84FD2'}), ' on average in Alberta.'])
 
     return "Enter details to get your prediction."
 
