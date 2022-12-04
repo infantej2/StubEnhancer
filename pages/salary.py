@@ -27,7 +27,7 @@ credential_list = list(credential_map.keys())
 derived_df = pd.read_csv('./derived_data.csv')
 
 min_max_df = derived_df.loc[derived_df['Credential'] != 'Overall (All Graduates)']
-min_salary = int(min_max_df['Average Income Ten Years After Graduation'].min())
+min_salary = int(math.floor(min_max_df['Average Income Ten Years After Graduation'].min() / 1000.0) * 1000.0) # Floor to closest multiple of 1000 (42,950 -> 42,000)
 max_salary = int(math.ceil(min_max_df['Average Income Ten Years After Graduation'].max() / 1000.0) * 1000.0) # Ceil to closest multiple of 1000 (55,422 -> 56,000)
 
 # -------------------------------------------------------------------------------------------------------------
