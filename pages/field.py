@@ -165,7 +165,7 @@ def update_fos_salary_linechart(field_of_study):
         ), 
         height = 700,
         title_x = 0.5,
-        title='Average Earnings Over Time By Years After Graduation per Job Title Within the Chosen Field',
+        title='Average Earnings Over Time By Years After Graduation<br>per Job Title Within the Chosen Field',
         xaxis_title='Years After Graduation',
         yaxis_title='Average Salary (CAD)',
         bargap=0,
@@ -234,6 +234,13 @@ def update_fos_salary_linechart(field_of_study):
     figure.update_traces(
         hovertemplate = 'Years After Graduation: %{x}<br>Average Salary (CAD): %{y}',
     )
+    figure.update_yaxes(gridcolor='#666666')
+    figure.update_xaxes(gridcolor='#666666')
+    figure.update_layout(yaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        ),
+                        legend_font_size=12)
 
     return dcc.Graph(
         figure=figure,
@@ -335,6 +342,11 @@ def update_fos_certification_graph(field_of_study):
 
         # Add the new bar trace into the overall figure
         figure.add_traces(new_trace)
+        figure.update_yaxes(gridcolor='#666666')
+        figure.update_layout(yaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        ))
 
     barChart = dcc.Graph(
         figure=figure,

@@ -64,8 +64,8 @@ layout = html.Div(className="body", children=[
         html.Div(children=[
             dcc.Slider(3, 25, 1, value=10, marks=None, id='Job-Display-Max',
                        tooltip={"placement": "bottom", "always_visible": True}),
-        ], style={"width": "100%", "paddingTop": "15px"}),
-    ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "20px"}),
+        ], style={"width": "100%", "paddingTop": "25px"}),
+    ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "20px", "paddingBottom":"40px"}),
     html.Div(children=[
         dcc.Checklist(
             id='Credential-Checklist',
@@ -188,12 +188,16 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
 
     # Remove field labels
     figure.update_yaxes(visible=True, showticklabels=False) # figure.update_xaxes(visible=True, showticklabels=False)
-    figure.update_xaxes(visible=True, showticklabels=True, showgrid=True, zeroline=True)
-
+    figure.update_xaxes(visible=True, showticklabels=True, showgrid=True, zeroline=True, gridcolor='#666666')
     #figure.update_traces(orientation='v', textangle=-90)
 
     # Remove the grouping
-    figure.update_layout(barmode='stack', yaxis={'categoryorder': 'total ascending'}) # figure.update_layout(barmode='stack', xaxis={'categoryorder': 'total descending'})
+    figure.update_layout(barmode='stack',
+                        yaxis={'categoryorder': 'total ascending'},
+                        xaxis_tickprefix = '$',
+                        font=dict(
+                            size=14
+                        )) # figure.update_layout(barmode='stack', xaxis={'categoryorder': 'total descending'})
 
     chart = dcc.Graph(
         figure=figure,
