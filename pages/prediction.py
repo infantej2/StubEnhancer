@@ -247,6 +247,20 @@ edges = compute_node_edges(nodes_lists)
 # combine nodes and edges to get the network graph.
 elements = nodes+edges
 
+node_weight_map = {
+
+}
+
+node_name_map = {
+    'hl0n0': 'in1',
+    #...
+}
+
+def update_element_values(elements, inputs):
+    print(elements)
+
+    pass
+
 # LAYOUT
 # ==============================================================================
 layout = html.Div(className="body", children=[
@@ -280,39 +294,7 @@ layout = html.Div(className="body", children=[
                 ], style={"display":"flex"}),
             ], style={"padding":"20px"}),
             html.Div(className="prediction-two", children=[
-                html.Div(children=[
-                    cyto.Cytoscape(
-                        id="network-chart",
-                        zoom=3,#zoom=2.5,
-                        # assign node positions ourselves
-                        layout={"name": "preset", "fit": False},
-                        style={"width": "100%", "height": "550px"},
-                        elements=elements,
-                        userZoomingEnabled=False,
-                        autoungrabify=True,
-                        autounselectify=True,
-                        pan={"x":-1000, "y":-180},# pan={"x":-850, "y":-130},
-                        panningEnabled=False,
-
-                        stylesheet=[
-                            {
-                                'selector': 'node',
-                                'style': {
-                                    'background-color': '#D84FD2',
-                                    'width': "5%",
-                                    'height': "5%"
-                                }
-                            },
-                            # style edges
-                            {
-                                'selector': 'edge',
-                                'style': {
-                                    'width': "0.1%" # 'width': "0.5%"
-                                }
-                            },
-                        ]
-                    ),
-                ])
+                html.Div(id='network-cytoscape')
             ])
         ])
     ]),
@@ -368,3 +350,65 @@ def update_prediction_text(credential_input, field_input, experience_input) -> N
         return html.H5(className="prediction-three", children=[f'According to your inputs, with a field of study in {field_input}, a credential type of {credential_input}, and {experience_input} years of experience, we predict that you can expect to earn ', html.Span(f'${formatted} CAD', style={'color':'#D84FD2'}), ' on average in Alberta.'])
 
     return "Enter details to get your prediction."
+
+# ==============================================================================
+
+@callback(
+    Output(component_id='network-cytoscape', component_property='children'),
+    Input(component_id='input_creds', component_property='value'),
+    Input(component_id='input_field', component_property='value'),
+    Input(component_id='input_years', component_property='value')
+)
+def update_network_cytoscape(credential_input, field_input, experience_input):
+    credential_encoding = None
+    field_encoding = None
+    year_encoding = None
+
+    # check the credential input, map it to its encoding.
+    if credential_input != "Select Credentials":
+        credential_encoding = cred_map[credential_input]
+    # check the field input, map it to its encoding.
+    if field_input != "Select Field":
+        field_encoding = field_map[field_input]
+    # check the experience input, map it to its encoding.
+    if experience_input != "Select Years Experience":
+        year_encoding = year_map[experience_input]
+
+    if (credential_encoding != None) and (field_encoding != None) and (year_encoding != None):
+        input_array = [year_encoding, field_encoding, 0, 0, 0, 0, 0, 0]
+        input_array[credential_encoding+2] = 1
+
+        global elements
+        update_element_values(elements, input_array)
+
+    return cyto.Cytoscape(
+        id="network-chart",
+        zoom=3,#zoom=2.5,
+        # assign node positions ourselves
+        layout={"name": "preset", "fit": False},
+        style={"width": "100%", "height": "550px"},
+        elements=elements,
+        userZoomingEnabled=False,
+        autoungrabify=True,
+        autounselectify=True,
+        pan={"x":-1000, "y":-180},# pan={"x":-850, "y":-130},
+        panningEnabled=False,
+
+        stylesheet=[
+            {
+                'selector': 'node',
+                'style': {
+                    'background-color': '#D84FD2',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            # style edges
+            {
+                'selector': 'edge',
+                'style': {
+                    'width': "0.1%" # 'width': "0.5%"
+                }
+            },
+        ]
+    )
