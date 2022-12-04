@@ -916,7 +916,8 @@ def update_element_values(elements, inputs):
         if ('data' not in current_element) or ('id' not in current_element['data']): continue
 
         # Now that we know we know we have a node, simply grab the corresponding value for this node and insert it into the dict data
-        elements[i]['data']['value'] = values_map[elements[i]['data']['id']]
+        # Also round it to two decimal points to make it a bit nicer
+        elements[i]['data']['value'] = round(values_map[elements[i]['data']['id']], 2)
 
     return elements
 
