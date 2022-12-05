@@ -160,7 +160,7 @@ def certification_salaries_barchart():
         'Certificate': '#D6E353',
         'Diploma': '#F7971D',
         'Bachelor\'s degree': '#F45858',
-        'Professional bachelor\'s degree': '#E871D6',
+        'Professional bachelor\'s degree': '#F692E7',
         'Bachelor\'s degree + certificate/diploma': '#733BEA',
         'Master\'s degree': '#3BA5EA',
         'Doctoral Degree': '#3BEA90',
@@ -256,7 +256,7 @@ def top_vs_bottom_5_barchart():
         orientation='h'
     )
 
-    figure.data[0].marker.color = ('#D84FD2', '#D84FD2', '#D84FD2', '#D84FD2', '#D84FD2', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8')
+    figure.data[0].marker.color = ('#F692E7', '#F692E7', '#F692E7', '#F692E7', '#F692E7', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8')
 
     # Apply the layout described at the top
     figure.layout = layout
@@ -266,7 +266,7 @@ def top_vs_bottom_5_barchart():
         [
             go.Bar(name=m[0], y=[figure.data[0].x[0]],
                    marker_color=m[1], showlegend=True, orientation='h')
-            for m in [('Bottom 5', '#8B4FD8'), ('Top 5', '#D84FD2')]
+            for m in [('Bottom 5', '#8B4FD8'), ('Top 5', '#F692E7')]
         ]
     )
 
