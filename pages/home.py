@@ -249,14 +249,14 @@ def top_vs_bottom_5_barchart():
         text='Average Income Ten Years After Graduation',
         #color=['Top 5', 'Top 5', 'Top 5', 'Top 5', 'Top 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5', 'Bottom 5'],
         # color_discrete_map={
-        #    'Top 5': 'pink',
-        #    'Bottom 5': 'purple'
+        #    'Top 5': '#D84FD2',
+        #    'Bottom 5': '#8B4FD8'
         # },
 
         orientation='h'
     )
 
-    figure.data[0].marker.color = ('pink', 'pink', 'pink', 'pink', 'pink', 'purple', 'purple', 'purple', 'purple', 'purple')
+    figure.data[0].marker.color = ('#D84FD2', '#D84FD2', '#D84FD2', '#D84FD2', '#D84FD2', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8', '#8B4FD8')
 
     # Apply the layout described at the top
     figure.layout = layout
@@ -266,7 +266,7 @@ def top_vs_bottom_5_barchart():
         [
             go.Bar(name=m[0], y=[figure.data[0].x[0]],
                    marker_color=m[1], showlegend=True, orientation='h')
-            for m in [('Top 5', 'pink'), ('Bottom 5', 'purple')]
+            for m in [('Bottom 5', '#8B4FD8'), ('Top 5', '#D84FD2')]
         ]
     )
 
