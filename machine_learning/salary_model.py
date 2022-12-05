@@ -21,7 +21,8 @@ It also includes the code for the model.
 
 NOTE: this code was written in a different environment than the one the application was written 
       in. Chances are that running it as is will not work. It is included so that you can 
-      see how we developed our salary prediction model.
+      see how we developed our salary prediction model. Namely, the steps used in formatting the data
+      and the general model strucutre.
 """
 
 # keep in mind to remove the original categorical data in the orginal dataframe after this function
