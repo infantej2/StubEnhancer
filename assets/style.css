@@ -240,6 +240,10 @@
     padding-left: 15px;
 }
 
+#input_creds .Select-value {
+    margin-top: 5px;
+}
+
 #input_field .Select, .Select div, .Select input, .Select span, .Select-value {
     color: white !important;
     border-radius: 25px;
@@ -255,6 +259,10 @@
     padding-left: 15px;
 }
 
+#input_field .Select-value {
+    margin-top: 5px;
+}
+
 #input_years .Select, .Select div, .Select input, .Select span, .Select-value {
     color: white !important;
     border-radius: 25px;
@@ -268,4 +276,8 @@
 #input_years .Select-placeholder {
     padding-top: 10px;
     padding-left: 15px;
+}
+
+#input_years .Select-value {
+    margin-top: 5px;
 }
