@@ -310,10 +310,10 @@ def update_fos_certification_graph(field_of_study):
     color_map = {
         'Certificate': '#D6E353',
         'Diploma': '#F7971D',
-        'Bachelor\'s degree': '#F45858',
-        'Professional bachelor\'s degree': '#F692E7',
-        'Bachelor\'s degree + certificate/diploma': '#733BEA',
-        'Master\'s degree': '#3BA5EA',
+        'Bachelor\'s degree': '#F692E7',
+        'Professional bachelor\'s degree': '#FF7B7B',
+        'Bachelor\'s degree + certificate/diploma': '#3BA5EA',
+        'Master\'s degree': '#733BEA',
         'Doctoral Degree': '#3BEA90',
     }
 
