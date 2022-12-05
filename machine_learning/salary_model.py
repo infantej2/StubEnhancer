@@ -74,6 +74,7 @@ Return:
 
 Sources:
     https://maxhalford.github.io/blog/target-encoding/
+    https://github.com/jeffheaton/t81_558_deep_learning/blob/master/t81_558_class_02_2_pandas_cat.ipynb 
 """
 def calc_smooth_mean(df1, df2, global_mean, counts_agg, means_agg, category, target, weight):
     # Compute the "smoothed" means
@@ -149,6 +150,7 @@ Return:
 Sources:
     # https://www.tensorflow.org/tutorials/keras/regression
     # https://keras.io/api/callbacks/early_stopping/
+    # https://github.com/jeffheaton/t81_558_deep_learning/blob/master/t81_558_class_02_2_pandas_cat.ipynb
 """
 def DNN(df) -> None:
 
