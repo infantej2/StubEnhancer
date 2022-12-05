@@ -25,7 +25,7 @@ def jobs_happiness_scatterplot():
         ),
         height=700,
         title_x=0.5,
-        title='Average Job Salaries (CAD) Above the Happiness Threshold<br>(at 10th Year Salary) (2005-2014)',
+        title='Average Job Salaries Above the Happiness Threshold<br>(at 10th Year Salary) (2005-2014)',
         xaxis={
             'title':{
                 'text': "Job Order as a Function of Salary (Ascending)",
@@ -134,7 +134,7 @@ def certification_salaries_barchart():
         ),
         height=700,
         title_x=0.5,
-        title='Mean Incomes by Certification Type',
+        title='Mean Incomes by Certification Type (2005-2014)',
         xaxis_title="Mean Income (CAD)", #xaxis_title="Credential",
         yaxis_title="Credential", # yaxis_title="Mean Income (CAD)",
         bargap=0,
@@ -217,7 +217,7 @@ def top_vs_bottom_5_barchart():
         ),
         height=700,
         title_x=0.5,
-        title='Top 5 vs Bottom 5 Jobs by 10th Year Salary (CAD)',
+        title='Top 5 vs Bottom 5 Jobs by 10th Year Salary (2005-2014)',
         xaxis_title="Mean Income 10 Years After Graduation (CAD)", # xaxis_title="Top 5 / Bottom 5 Jobs",
         yaxis_title="Top 5 / Bottom 5 Jobs", # yaxis_title="Mean Income 10 Years After Graduation (CAD)",
         bargap=0,

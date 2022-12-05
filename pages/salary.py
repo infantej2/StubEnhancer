@@ -123,7 +123,7 @@ def update_jobs_by_salary_graph(credentials, salary_range, jobs_display_max):
         ),
         height=700,
         title_x=0.5,
-        title='Fields with an Average Income Within the Selected Salary Range',
+        title='Fields With an Average Income Within the Selected Salary Range (2005-2014)',
         xaxis_title="Mean Income (CAD)", # xaxis_title="Field & Certification",
         yaxis_title="Field & Certification", # yaxis_title="Mean Income (CAD)",
         # bargap=0,
