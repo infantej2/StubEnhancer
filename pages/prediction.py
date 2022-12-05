@@ -151,46 +151,46 @@ def generate_nodes_ll(prefix_list, nodes):
 
 node_data = (
     # Input nodes
-    ("hl0n0", "input-node1", 350, 100),
-    ("hl0n1", "input-node2", 350, 132.5),
-    ("hl0n2", "input-node3", 350, 165),
+    ("hl0n0", "input-node1", 350, 165), # Years of Experience Input
+    ("hl0n1", "input-node2", 350, 132.5), # Field of Study Input
+    ("hl0n2", "input-node3", 350, 100), # Credential Type Input
     # Hidden layer 1 nodes
-    ("hl1n0", "hiddenlayer1-node0", 400, 75),
-    ("hl1n1", "hiddenlayer1-node1", 400, 80),
-    ("hl1n2", "hiddenlayer1-node2", 400, 85),
-    ("hl1n3", "hiddenlayer1-node3", 400, 90),
-    ("hl1n4", "hiddenlayer1-node4", 400, 95),
-    ("hl1n5", "hiddenlayer1-node5", 400, 100),
-    ("hl1n6", "hiddenlayer1-node6", 400, 105),
-    ("hl1n7", "hiddenlayer1-node7", 400, 110),
-    ("hl1n8", "hiddenlayer1-node8", 400, 115),
-    ("hl1n9", "hiddenlayer1-node9", 400, 120),
-    ("hl1n10", "hiddenlayer1-node10", 400, 125),
-    ("hl1n11", "hiddenlayer1-node11", 400, 130),
+    ("hl1n0", "hiddenlayer1-node0", 400, 195),
+    ("hl1n1", "hiddenlayer1-node1", 400, 190),
+    ("hl1n2", "hiddenlayer1-node2", 400, 185),
+    ("hl1n3", "hiddenlayer1-node3", 400, 180),
+    ("hl1n4", "hiddenlayer1-node4", 400, 175),
+    ("hl1n5", "hiddenlayer1-node5", 400, 170),
+    ("hl1n6", "hiddenlayer1-node6", 400, 165),
+    ("hl1n7", "hiddenlayer1-node7", 400, 160),
+    ("hl1n8", "hiddenlayer1-node8", 400, 155),
+    ("hl1n9", "hiddenlayer1-node9", 400, 150),
+    ("hl1n10", "hiddenlayer1-node10", 400, 145),
+    ("hl1n11", "hiddenlayer1-node11", 400, 140),
     ("hl1n12", "hiddenlayer1-node12", 400, 135),
-    ("hl1n13", "hiddenlayer1-node13", 400, 140),
-    ("hl1n14", "hiddenlayer1-node14", 400, 145),
-    ("hl1n15", "hiddenlayer1-node15", 400, 150),
-    ("hl1n16", "hiddenlayer1-node16", 400, 155),
-    ("hl1n17", "hiddenlayer1-node17", 400, 160),
-    ("hl1n18", "hiddenlayer1-node18", 400, 165),
-    ("hl1n19", "hiddenlayer1-node19", 400, 170),
-    ("hl1n20", "hiddenlayer1-node20", 400, 175),
-    ("hl1n21", "hiddenlayer1-node21", 400, 180),
-    ("hl1n22", "hiddenlayer1-node22", 400, 185),
-    ("hl1n23", "hiddenlayer1-node23", 400, 190),
-    ("hl1n24", "hiddenlayer1-node24", 400, 195),
+    ("hl1n13", "hiddenlayer1-node13", 400, 130),
+    ("hl1n14", "hiddenlayer1-node14", 400, 125),
+    ("hl1n15", "hiddenlayer1-node15", 400, 120),
+    ("hl1n16", "hiddenlayer1-node16", 400, 115),
+    ("hl1n17", "hiddenlayer1-node17", 400, 110),
+    ("hl1n18", "hiddenlayer1-node18", 400, 105),
+    ("hl1n19", "hiddenlayer1-node19", 400, 100),
+    ("hl1n20", "hiddenlayer1-node20", 400, 95),
+    ("hl1n21", "hiddenlayer1-node21", 400, 90),
+    ("hl1n22", "hiddenlayer1-node22", 400, 85),
+    ("hl1n23", "hiddenlayer1-node23", 400, 80),
+    ("hl1n24", "hiddenlayer1-node24", 400, 75),
     # Hidden layer 2 nodes
-    ("hl2n0", "hiddenlayer2-node0", 450, 115),
-    ("hl2n1", "hiddenlayer2-node1", 450, 120),
-    ("hl2n2", "hiddenlayer2-node2", 450, 125),
-    ("hl2n3", "hiddenlayer2-node3", 450, 130),
-    ("hl2n4", "hiddenlayer2-node4", 450, 135),
-    ("hl2n5", "hiddenlayer2-node5", 450, 140),
-    ("hl2n6", "hiddenlayer2-node6", 450, 145),
-    ("hl2n7", "hiddenlayer2-node7", 450, 150),
-    ("hl2n8", "hiddenlayer2-node8", 450, 155),
-    ("hl2n9", "hiddenlayer2-node9", 450, 160),
+    ("hl2n0", "hiddenlayer2-node0", 450, 160),
+    ("hl2n1", "hiddenlayer2-node1", 450, 155),
+    ("hl2n2", "hiddenlayer2-node2", 450, 150),
+    ("hl2n3", "hiddenlayer2-node3", 450, 145),
+    ("hl2n4", "hiddenlayer2-node4", 450, 140),
+    ("hl2n5", "hiddenlayer2-node5", 450, 135),
+    ("hl2n6", "hiddenlayer2-node6", 450, 130),
+    ("hl2n7", "hiddenlayer2-node7", 450, 125),
+    ("hl2n8", "hiddenlayer2-node8", 450, 120),
+    ("hl2n9", "hiddenlayer2-node9", 450, 115),
     # Output neuron
     ("hl3n0", "output-node1", 500, 132.5),
 )
@@ -867,7 +867,7 @@ def generate_stylesheet(elements):
     return stylesheet
 '''
 
-def update_element_values(elements, inputs):
+def update_element_values(elements, inputs, credential_encoding):
     # Generate name arrays, children of any given element will be all of the previous elements
     global nodes_lists
     real_nodes_list = copy.deepcopy(nodes_lists)
@@ -914,6 +914,15 @@ def update_element_values(elements, inputs):
 
         # Ignore all edges; we only want nodes...
         if ('data' not in current_element) or ('id' not in current_element['data']): continue
+
+        # We're going to do something special for the Credential Type input node ("hl0n2")
+        # because it is actually supposed to represent 6 different input nodes (because of the encoding).
+        # We will use the index value of the encoding itself for this node, to display in the Cytoscape,
+        # then use the CSS styling to color it appropriately.
+        if elements[i]['data']['id'] == 'hl0n2':
+            # Set some data to the credential encoding index.
+            # Values will be integers in range [1, 6]
+            elements[i]['data']['cred_idx'] = (credential_encoding + 1)
 
         # Now that we know we know we have a node, simply grab the corresponding value for this node and insert it into the dict data
         # Also round it to two decimal points to make it a bit nicer
@@ -1040,7 +1049,7 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
         input_array = [year_encoding, field_encoding, 0, 0, 0, 0, 0, 0]
         input_array[credential_encoding+2] = 1
 
-        elements = update_element_values(elements, input_array)
+        elements = update_element_values(elements, input_array, credential_encoding)
 
     return cyto.Cytoscape(
         id="network-chart",
