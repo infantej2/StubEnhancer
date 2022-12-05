@@ -1073,30 +1073,137 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
                     'height': "5%"
                 }
             },
-
             # STYLES FOR INDIVIDUAL NODE COLORS BELOW:
-            {
+
+            {   # specific to 1 years exp
+                'selector': '[value >= -1.4320]',
+                'style': {
+                    'background-color': '#7d47c2',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {   # specific to 2 years exp
+                'selector': '[value >= -0.70]',
+                'style': {
+                    'background-color': '#6f3fac',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+             {
                 'selector': '[value >= 0]',
                 'style': {
-                    'background-color': '#D84FD2',
+                    'background-color': '#613797',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {   # specific to 4 years exp
+                'selector': '[value >= 0.71]',
+                'style': {
+                    'background-color': '#532f81',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {   # specific to 5 years exp
+                'selector': '[value >= 1.41]',
+                'style': {
+                    'background-color': '#45276c',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+           
+            {
+                'selector': '[value >= 5]',
+                'style': {
+                    'background-color': '#d0b8ef',
                     'width': "5%",
                     'height': "5%"
                 }
             },
             {
-                'selector': '[value < 0]',
+                'selector': '[value >= 7]',
                 'style': {
-                    'background-color': '#00FF00',
+                    'background-color': '#b995e7',
                     'width': "5%",
                     'height': "5%"
                 }
             },
+            {
+                'selector': '[value >= 10]',
+                'style': {
+                    'background-color': '#a272df',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[value >= 100]',
+                'style': {
+                    'background-color': '#8b4fd8',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            # STYLES FOR CREDENTIAL INPUT NODE
+            {
+                'selector': '[cred_idx=1]',
+                'style': {
+                    'background-color': '#7d47c2',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[cred_idx=2]',
+                'style': {
+                    'background-color': '#6f3fac',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[cred_idx=3]',
+                'style': {
+                    'background-color': '#613797',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[cred_idx=4]',
+                'style': {
+                    'background-color': '#532f81',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[cred_idx=5]',
+                'style': {
+                    'background-color': '#45276c',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            {
+                'selector': '[cred_idx=6]',
+                'style': {
+                    'background-color': '#371f56',
+                    'width': "5%",
+                    'height': "5%"
+                }
+            },
+            # STYLE FOR OUTPUT NODES
             {
                 'selector': '[id^="hl3"]', # Specific to hidden layer 3 nodes; aka output nodes
                 'style': {
                     'label': 'data(value)',
                     'font-size': '0.3em',
-                    'background-color': '#FFFFFF',
+                    'background-color': '#D84FD2',
                     'width': "5%",
                     'height': "5%"
                 }
