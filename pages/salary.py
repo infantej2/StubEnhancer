@@ -16,7 +16,7 @@ credential_map = {
         'Certificate': '#D6E353',
         'Diploma': '#F7971D',
         'Bachelor\'s degree': '#F45858',
-        'Professional bachelor\'s degree': '#E871D6',
+        'Professional bachelor\'s degree': '#F692E7',
         'Bachelor\'s degree + certificate/diploma': '#733BEA',
         'Master\'s degree': '#3BA5EA',
         'Doctoral Degree': '#3BEA90',
