@@ -102,8 +102,8 @@ Salary_model = load_model(os.path.join(".", "Salary_Model.h5"))
 
 df = pd.read_csv('./abSchool.csv')
 # remove un-wanted characters from median income field
-df['Median Income'] = df['Median Income'].str.replace('$', '')
-df['Median Income'] = df['Median Income'].str.replace(',', '')
+df['Median Income'] = df['Median Income'].str.replace('$', '', regex=False)
+df['Median Income'] = df['Median Income'].str.replace(',', '', regex=False)
 # convert median income string to a numeric value
 df["Median Income"] = pd.to_numeric(df["Median Income"])
 

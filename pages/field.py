@@ -26,7 +26,7 @@ list = np.unique(list)
 derived_df = pd.read_csv('./derived_data.csv')
 
 dflist = derived_df[derived_df['Field of Study (CIP code)'].str.contains('[0-9]{2}.[0-9]{2}', regex=True) == False]
-dflist = dflist[derived_df['Field of Study (CIP code)'].str.contains('00. Total') == False] #dflist = dflist[derived_df['Field of Study (CIP code)'] != '00. Total']
+dflist = dflist[dflist['Field of Study (CIP code)'].str.contains('00. Total') == False] #dflist = dflist[dflist['Field of Study (CIP code)'] != '00. Total']
 dflist = dflist.loc[:,'Field of Study (CIP code)']
 list = np.unique(dflist.to_numpy())
 
