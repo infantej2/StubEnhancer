@@ -209,6 +209,8 @@
     margin-top: 20px;
     grid-area: content2;
     border-radius: 10px;
+    width: 550px;
+    height: 450px;
 }
 
 .prediction-three {
