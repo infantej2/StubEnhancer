@@ -247,6 +247,7 @@ edges = compute_node_edges(nodes_lists)
 
 # combine nodes and edges to get the network graph.
 elements = nodes+edges
+default_elements = copy.deepcopy(elements)
 
 node_bias_map = {
     'hl1n0': 6.30970573425293,
@@ -1027,7 +1028,7 @@ def update_prediction_text(credential_input, field_input, experience_input) -> N
     Input(component_id='input_years', component_property='value')
 )
 def update_network_cytoscape(credential_input, field_input, experience_input):
-    global elements
+    global elements, default_elements
 
     credential_encoding = None
     field_encoding = None
@@ -1048,6 +1049,9 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
         input_array[credential_encoding+2] = 1
 
         elements = update_element_values(elements, input_array, credential_encoding)
+    else:
+        # Revert to default elements if not all inputs are provided
+        elements = copy.deepcopy(default_elements)
 
     return cyto.Cytoscape(
         id="network-chart",
@@ -1199,8 +1203,8 @@ def update_network_cytoscape(credential_input, field_input, experience_input):
             {
                 'selector': '[id^="hl3"]', # Specific to hidden layer 3 nodes; aka output nodes
                 'style': {
-                    'label': 'data(value)',
-                    'font-size': '0.3em',
+                    #'label': 'data(value)',
+                    #'font-size': '0.3em',
                     'background-color': '#D84FD2',
                     'width': "5%",
                     'height': "5%"
