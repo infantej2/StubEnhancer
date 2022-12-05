@@ -71,6 +71,9 @@ Purpose:
 Parameters:
 
 Return:
+
+Sources:
+    https://maxhalford.github.io/blog/target-encoding/
 """
 def calc_smooth_mean(df1, df2, global_mean, counts_agg, means_agg, category, target, weight):
     # Compute the "smoothed" means
