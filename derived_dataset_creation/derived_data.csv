@@ -1,0 +1,296 @@
+Credential,Field of Study (CIP code),Average Income One Year After Graduation,Cohort Size One Year After Graduation,Average Income Two Years After Graduation,Cohort Size Two Years After Graduation,Average Income Five Years After Graduation,Cohort Size Five Years After Graduation,Average Income Ten Years After Graduation,Cohort Size Ten Years After Graduation
+Bachelor's degree,00. Total,51880,85080,58844,70620,69700,37610,80500,4760
+Bachelor's degree,"01. Agriculture, agriculture operations and related sciences",46000,360,51455,310,55700,160,60500,40
+Bachelor's degree,03. Natural resources and conservation,53580,990,60522,840,73300,510,85900,80
+Bachelor's degree,"05. Area, ethnic, cultural, gender, and group studies",33180,330,39200,220,52375,100,n/a,n/a
+Bachelor's degree,"09. Communication, journalism and related programs",43670,1080,49566,870,62183,470,84300,40
+Bachelor's degree,11. Computer and information sciences and support services,58030,1820,62755,1680,74666,1080,85600,210
+Bachelor's degree,13. Education,52540,15620,59222,13620,67266,7850,72700,860
+Bachelor's degree,14. Engineering,72780,8520,80455,7450,98950,4130,122500,570
+Bachelor's degree,15. Engineering technologies and engineering-related fields,80566,110,90300,80,n/a,n/a,n/a,n/a
+Bachelor's degree,"16. Aboriginal and foreign languages, literatures and linguistics",29950,470,37255,330,43400,90,n/a,n/a
+Bachelor's degree,19. Family and consumer sciences/human sciences,40930,720,44222,560,46283,290,46400,30
+Bachelor's degree,22. Legal professions and studies,46000,30,51300,20,n/a,n/a,n/a,n/a
+Bachelor's degree,23. English language and literature/letters,31990,1540,37722,1140,46016,550,61100,70
+Bachelor's degree,"24. Liberal arts and sciences, general studies and humanities",40670,1640,43877,1390,52466,760,66000,80
+Bachelor's degree,26. Biological and biomedical sciences,34870,3230,43122,2270,57583,990,64500,130
+Bachelor's degree,27. Mathematics and statistics,40730,400,50933,340,59116,210,89200,30
+Bachelor's degree,30. Multidisciplinary/interdisciplinary studies,47870,720,55822,570,65083,270,60300,20
+Bachelor's degree,"31. Parks, recreation, leisure and fitness studies",37300,2130,43666,1650,53266,840,64300,140
+Bachelor's degree,38. Philosophy and religious studies,30580,400,33544,320,39920,120,n/a,n/a
+Bachelor's degree,40. Physical sciences,55350,1900,65788,1520,83866,750,102400,90
+Bachelor's degree,42. Psychology,37240,3640,42233,2720,48833,1240,52600,150
+Bachelor's degree,43. Security and protective services,77300,630,79700,550,80783,400,81900,30
+Bachelor's degree,44. Public administration and social service professions,52750,1160,57055,1000,56933,570,67100,90
+Bachelor's degree,45. Social sciences,40470,6420,46877,5220,58816,2680,75300,350
+Bachelor's degree,50. Visual and performing arts,27930,2930,32333,2340,39233,1140,43900,120
+Bachelor's degree,51. Health professions and related programs,72890,12780,75366,10850,76966,5640,69200,650
+Bachelor's degree,"52. Business, management, marketing and related support services",51640,14010,58988,11530,75916,6030,91800,830
+Bachelor's degree,54. History,33710,1010,39666,790,50750,380,74400,60
+Bachelor's degree,55. French language and literature/letters,42000,20,n/a,n/a,n/a,n/a,n/a,n/a
+Bachelor's degree + certificate/diploma,00. Total,56570,9940,59600,7420,68400,2800,76000,40
+Bachelor's degree + certificate/diploma,"01. Agriculture, agriculture operations and related sciences",58450,50,64200,20,n/a,n/a,n/a,n/a
+Bachelor's degree + certificate/diploma,03. Natural resources and conservation,59485,330,66033,270,79500,100,n/a,n/a
+Bachelor's degree + certificate/diploma,"09. Communication, journalism and related programs",42366,330,46440,240,52200,60,n/a,n/a
+Bachelor's degree + certificate/diploma,11. Computer and information sciences and support services,59600,290,62057,230,73375,110,n/a,n/a
+Bachelor's degree + certificate/diploma,13. Education,57960,650,61175,510,63975,190,n/a,n/a
+Bachelor's degree + certificate/diploma,14. Engineering,70300,140,85800,120,110300,40,n/a,n/a
+Bachelor's degree + certificate/diploma,15. Engineering technologies and engineering-related fields,63500,220,66400,170,65800,30,n/a,n/a
+Bachelor's degree + certificate/diploma,19. Family and consumer sciences/human sciences,47200,80,51800,30,n/a,n/a,n/a,n/a
+Bachelor's degree + certificate/diploma,23. English language and literature/letters,41180,130,47000,70,n/a,n/a,n/a,n/a
+Bachelor's degree + certificate/diploma,42. Psychology,47500,130,53050,60,63800,30,n/a,n/a
+Bachelor's degree + certificate/diploma,43. Security and protective services,50657,270,57450,200,66766,100,n/a,n/a
+Bachelor's degree + certificate/diploma,44. Public administration and social service professions,51414,510,53350,390,57833,130,n/a,n/a
+Bachelor's degree + certificate/diploma,45. Social sciences,46200,190,52200,120,65150,60,n/a,n/a
+Bachelor's degree + certificate/diploma,50. Visual and performing arts,29116,180,34660,150,39000,30,n/a,n/a
+Bachelor's degree + certificate/diploma,51. Health professions and related programs,71477,1500,74250,1180,70260,420,n/a,n/a
+Bachelor's degree + certificate/diploma,"52. Business, management, marketing and related support services",62830,3850,65088,2670,74740,920,n/a,n/a
+Certificate,00. Total (All Graduates),37250,38070,40044,32110,44616,17350,45900,2540
+Certificate,"01. Agriculture, agriculture operations and related sciences",31680,290,33214,180,34200,60,n/a,n/a
+Certificate,03. Natural resources and conservation,47500,40,42500,50,53800,40,58000,30
+Certificate,10. Communications technologies/technicians and support services,29300,180,31066,130,34150,50,n/a,n/a
+Certificate,11. Computer and information sciences and support services,45850,740,50088,670,56966,360,78600,50
+Certificate,12. Personal and culinary services,27350,650,28444,550,28083,240,38000,40
+Certificate,13. Education,24390,1570,25600,1350,27466,800,28800,150
+Certificate,15. Engineering technologies and engineering-related fields,60720,1430,66777,1230,82183,680,81100,80
+Certificate,19. Family and consumer sciences/human sciences,23780,1130,23644,950,23016,440,5000,70
+Certificate,"24. Liberal arts and sciences, general studies and humanities",24150,200,28600,170,37800,120,50800,40
+Certificate,"31. Parks, recreation, leisure and fitness studies",42400,60,42150,60,n/a,n/a,n/a,n/a
+Certificate,43. Security and protective services,45690,1500,52733,1320,72533,840,100600,90
+Certificate,44. Public administration and social service professions,35400,20,n/a,n/a,n/a,n/a,n/a,n/a
+Certificate,46. Construction trades,30760,680,32811,550,37383,350,39000,20
+Certificate,47. Mechanic and repair technologies/technicians,64090,3250,76533,2680,85600,1440,65100,100
+Certificate,48. Precision production,38010,750,44188,610,57450,380,125500,170
+Certificate,49. Transportation and materials moving,44044,440,48350,390,58100,210,88000,30
+Certificate,50. Visual and performing arts,23542,260,27775,250,32780,150,n/a,n/a
+Certificate,51. Health professions and related programs,37220,18510,39500,15530,42966,8200,43100,1190
+Certificate,"52. Business, management, marketing and related support services",36280,5610,38711,4750,41800,2500,42200,380
+Certificate,54. History,40200,130,43500,110,48500,80,56900,30
+Diploma,00. Total (All Graduates),43460,52030,47044,44010,54083,23660,62800,3080
+Diploma,"01. Agriculture, agriculture operations and related sciences",35590,1030,39088,860,44533,500,55300,90
+Diploma,03. Natural resources and conservation,44840,1080,48444,910,57383,520,65100,80
+Diploma,04. Architecture and related services,44470,1210,48044,1010,59066,500,66700,60
+Diploma,"09. Communication, journalism and related programs",34540,1740,39000,1440,45666,690,56000,90
+Diploma,10. Communications technologies/technicians and support services,33590,1010,37388,840,45633,470,56800,70
+Diploma,11. Computer and information sciences and support services,41930,650,50000,570,63683,300,81500,60
+Diploma,12. Personal and culinary services,29690,840,30988,690,34633,360,35300,40
+Diploma,13. Education,26100,40,n/a,n/a,n/a,n/a,n/a,n/a
+Diploma,15. Engineering technologies and engineering-related fields,56330,8700,62377,7350,75400,4200,87200,600
+Diploma,19. Family and consumer sciences/human sciences,35350,1320,34988,1110,35566,570,35600,60
+Diploma,22. Legal professions and studies,39940,1200,42477,1040,47883,580,54000,80
+Diploma,"24. Liberal arts and sciences, general studies and humanities",28300,20,26450,40,n/a,n/a,n/a,n/a
+Diploma,25. Library science,32520,380,35122,330,44250,200,29200,30
+Diploma,"31. Parks, recreation, leisure and fitness studies",30460,530,35666,440,41866,230,62900,40
+Diploma,41. Science technologies/technicians,44350,560,48522,460,56850,310,57500,50
+Diploma,43. Security and protective services,44030,1980,52377,1710,68450,950,84700,120
+Diploma,44. Public administration and social service professions,37400,1870,38866,1500,38716,780,39900,120
+Diploma,47. Mechanic and repair technologies/technicians,58460,1590,64122,1320,87266,720,80600,40
+Diploma,48. Precision production,102085,380,118533,320,134666,140,178800,50
+Diploma,49. Transportation and materials moving,38000,20,n/a,n/a,n/a,n/a,n/a,n/a
+Diploma,50. Visual and performing arts,28540,1870,32422,1570,38233,790,40100,90
+Diploma,51. Health professions and related programs,50800,12280,52944,9980,54466,5060,64300,550
+Diploma,"52. Business, management, marketing and related support services",39330,11250,43033,10030,49066,5500,56200,740
+Diploma,54. History,40500,30,43100,40,48200,30,n/a,n/a
+Doctoral Degree,00. Total,61560,3120,73300,2730,89933,1460,109000,170
+Doctoral Degree,13. Education,86830,300,92700,250,99483,150,108200,30
+Doctoral Degree,14. Engineering,80900,630,91166,580,110550,310,123200,30
+Doctoral Degree,26. Biological and biomedical sciences,17150,380,28811,310,58266,170,83000,30
+Doctoral Degree,40. Physical sciences,44050,360,57850,310,80400,160,n/a,n/a
+Doctoral Degree,42. Psychology,64325,110,69900,60,79700,30,n/a,n/a
+Doctoral Degree,45. Social sciences,63650,50,74900,30,n/a,n/a,n/a,n/a
+Doctoral Degree,51. Health professions and related programs,60988,370,76537,320,90660,10065,n/a,n/a
+Master's degree,00. Total,79260,16840,82700,14840,91866,8010,101000,1030
+Master's degree,"01. Agriculture, agriculture operations and related sciences",62200,80,55500,80,65900,30,n/a,n/a
+Master's degree,03. Natural resources and conservation,70250,100,69850,50,72200,30,n/a,n/a
+Master's degree,04. Architecture and related services,57040,350,60266,290,71820,120,n/a,n/a
+Master's degree,11. Computer and information sciences and support services,86300,530,85033,550,99000,360,112000,50
+Master's degree,13. Education,94730,2840,96666,2410,100133,1390,98200,170
+Master's degree,14. Engineering,81260,1940,85844,2120,101866,1190,121700,180
+Master's degree,25. Library science,53877,270,58462,230,67060,120,n/a,n/a
+Master's degree,26. Biological and biomedical sciences,53100,430,57355,380,66850,190,97000,30
+Master's degree,30. Multidisciplinary/interdisciplinary studies,70600,80,n/a,n/a,n/a,n/a,n/a,n/a
+Master's degree,"31. Parks, recreation, leisure and fitness studies",51200,40,56900,40,n/a,n/a,n/a,n/a
+Master's degree,40. Physical sciences,72450,420,76677,390,90800,220,147800,30
+Master's degree,42. Psychology,65340,900,68766,740,72400,350,62700,40
+Master's degree,44. Public administration and social service professions,70510,770,72822,590,78233,260,74700,30
+Master's degree,45. Social sciences,60390,520,64866,480,76783,280,83200,40
+Master's degree,50. Visual and performing arts,34900,20,33900,50,n/a,n/a,n/a,n/a
+Master's degree,51. Health professions and related programs,79700,3530,82911,2940,89300,1470,87800,120
+Master's degree,"52. Business, management, marketing and related support services",110830,2850,113233,2450,124266,1360,132100,210
+Overall (All Graduates),"01.00 Agriculture, general",53030,320,53400,290,60833,160,84000,40
+Overall (All Graduates),01.01 Agricultural business and management,44960,400,50911,340,57766,170,78400,30
+Overall (All Graduates),01.02 Agricultural mechanization,52850,60,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),01.03 Agricultural production operations,34450,320,39166,260,39833,170,n/a,n/a
+Overall (All Graduates),01.05 Agricultural and domestic animal services,24400,20,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),01.06 Applied horticulture/horticultural business services,35730,450,38800,420,46100,250,54600,60
+Overall (All Graduates),01.09 Animal sciences,38520,140,43000,70,n/a,n/a,n/a,n/a
+Overall (All Graduates),03.01 Natural resources conservation and research,49090,1250,55277,1030,64566,520,80100,80
+Overall (All Graduates),03.02 Natural resources management and policy,53120,1130,58500,990,68700,620,70600,90
+Overall (All Graduates),03.05 Forestry,52330,320,55344,280,74060,170,100200,30
+Overall (All Graduates),"04.02 Architecture (BArch, BA, BS, BSc, MArch, MA, MS, MSc, PhD)",52250,140,57233,110,n/a,n/a,n/a,n/a
+Overall (All Graduates),"04.03 City/urban, community and regional planning",60900,30,70400,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),"04.06 Landscape architecture (BS, BSc, BSLA, BLA, MSLA, MLA, PhD)",49500,30,55100,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),04.09 Architectural sciences and technology,44610,1140,48066,910,59033,450,62200,50
+Overall (All Graduates),05.01 Area studies,27533,70,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),"05.02 Ethnic, cultural minority, gender, and group studies",37080,120,42580,130,n/a,n/a,n/a,n/a
+Overall (All Graduates),09.01 Communication and media studies,43810,940,48211,750,59466,340,91100,40
+Overall (All Graduates),09.04 Journalism,33310,800,37755,660,45000,330,56900,40
+Overall (All Graduates),"09.07 Radio, television and digital communication",35090,970,38755,770,45333,300,46300,40
+Overall (All Graduates),"09.09 Public relations, advertising and applied communication",48340,590,55200,490,61966,310,72800,30
+Overall (All Graduates),10.01 Communications technology/technician,34157,180,38962,190,52400,20,n/a,n/a
+Overall (All Graduates),10.02 Audiovisual communications technologies/technicians,34470,400,36777,310,45250,180,55400,40
+Overall (All Graduates),10.03 Graphic communications,32900,720,37322,640,42716,360,44200,40
+Overall (All Graduates),"11.01 Computer and information sciences and support services, general",61170,1130,66211,1060,77216,650,92600,100
+Overall (All Graduates),11.07 Computer science,56980,1620,63011,1490,75983,970,86000,180
+Overall (All Graduates),11.08 Computer software and media applications,37770,430,42288,370,49960,140,70300,30
+Overall (All Graduates),11.09 Computer systems networking and telecommunications,47433,60,53500,40,n/a,n/a,n/a,n/a
+Overall (All Graduates),11.10 Computer/information technology administration and management,55880,770,59000,690,71100,420,82500,70
+Overall (All Graduates),12.04 Cosmetology and related personal grooming services,13700,20,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),12.05 Culinary arts and related services,29110,1390,30122,1190,32500,590,36000,70
+Overall (All Graduates),"13.01 Education, general",68280,1230,72811,1070,83650,610,97200,70
+Overall (All Graduates),13.04 Educational administration and supervision,92611,370,97000,330,100120,160,n/a,n/a
+Overall (All Graduates),13.05 Educational/instructional media design,85630,320,87855,270,85500,150,90100,20
+Overall (All Graduates),"13.06 Educational assessment, evaluation and research",94210,1180,96144,980,99016,560,92300,60
+Overall (All Graduates),"13.12 Teacher education and professional development, specific levels and methods",52890,9800,59255,8580,66333,4960,65900,540
+Overall (All Graduates),"13.13 Teacher education and professional development, specific subject areas",53590,6420,60500,5520,70250,3100,83300,350
+Overall (All Graduates),13.15 Teaching assistants/aides,24690,1640,25788,1390,27500,830,28800,150
+Overall (All Graduates),14.05 Bioengineering and biomedical engineering,67500,70,79900,40,n/a,n/a,n/a,n/a
+Overall (All Graduates),14.07 Chemical engineering,82770,1670,93777,1470,118183,810,157000,110
+Overall (All Graduates),14.08 Civil engineering,72690,2360,78644,2210,95783,1200,118800,170
+Overall (All Graduates),14.09 Computer engineering,61940,610,67922,560,83200,340,108400,70
+Overall (All Graduates),"14.10 Electrical, electronics and communications engineering",69550,1940,76866,1840,91666,1030,113500,160
+Overall (All Graduates),14.14 Environmental/environmental health engineering,70228,180,73480,120,84200,40,n/a,n/a
+Overall (All Graduates),14.18 Materials engineering,75270,470,85055,460,110416,220,n/a,n/a
+Overall (All Graduates),14.19 Mechanical engineering,76150,2700,85177,2410,103650,1300,136200,170
+Overall (All Graduates),14.21 Mining and mineral engineering,88700,140,106225,110,123800,30,n/a,n/a
+Overall (All Graduates),14.25 Petroleum engineering,90610,460,103544,410,138750,230,194500,30
+Overall (All Graduates),14.36 Manufacturing engineering,71500,110,79540,130,97280,120,115200,20
+Overall (All Graduates),14.38 Surveying engineering,64300,320,70022,300,88083,180,100000,30
+Overall (All Graduates),15.02 Civil engineering technology/technician,59340,830,65144,690,78800,390,107900,40
+Overall (All Graduates),15.03 Electrical and electronic engineering technologies/technicians,56890,1230,63544,1020,77650,560,80000,70
+Overall (All Graduates),15.04 Electromechanical and instrumentation and maintenance technologies/technicians,62750,940,71466,750,86450,430,108000,60
+Overall (All Graduates),15.05 Environmental control technologies/technicians,55980,630,62577,500,70933,150,n/a,n/a
+Overall (All Graduates),15.06 Industrial production technologies/technicians,62350,90,71200,50,77600,60,80600,50
+Overall (All Graduates),15.07 Quality control and safety technologies/technicians,57314,350,64860,270,75000,80,n/a,n/a
+Overall (All Graduates),15.08 Mechanical engineering related technologies/technicians,56177,690,61577,570,78780,280,n/a,n/a
+Overall (All Graduates),15.09 Mining and petroleum technologies/technicians,73720,1230,80900,1040,104350,620,121400,90
+Overall (All Graduates),15.10 Construction engineering technology/technician,64440,370,70411,340,84450,190,107000,20
+Overall (All Graduates),15.11 Engineering-related technologies,60280,490,64266,410,74050,230,75800,40
+Overall (All Graduates),15.12 Computer engineering technologies/technicians,48220,1480,54000,1390,66033,910,79700,180
+Overall (All Graduates),15.13 Drafting/design engineering technologies/technicians,52000,1270,57066,1120,67683,670,79700,70
+Overall (All Graduates),15.15 Engineering-related fields,72825,120,77433,90,n/a,n/a,n/a,n/a
+Overall (All Graduates),"15.99 Engineering technologies and engineering-related fields, other",58640,630,71722,510,96250,290,145800,30
+Overall (All Graduates),"16.01 Linguistic, comparative and related language studies and services",32910,350,38788,260,52500,20,n/a,n/a
+Overall (All Graduates),"19.05 Foods, nutrition and related services",37510,310,36925,250,41100,100,n/a,n/a
+Overall (All Graduates),19.06 Housing and human environments,34800,20,40200,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),"19.07 Human development, family studies and related services",32370,2770,32677,2300,31466,1100,27200,140
+Overall (All Graduates),19.09 Apparel and textiles,38600,20,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),"22.01 Law (LLB, JD, BCL)",59170,1970,83588,1690,110266,980,122400,130
+Overall (All Graduates),22.03 Legal support services,39800,1380,42422,1160,47383,640,53100,90
+Overall (All Graduates),"22.99 Legal professions and studies, other",37066,70,53700,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),"23.01 English language and literature, general",31680,1610,37866,1220,46850,550,62900,60
+Overall (All Graduates),23.13 English rhetoric and composition/writing studies,42377,310,46637,250,50033,80,n/a,n/a
+Overall (All Graduates),"24.01 Liberal arts and sciences, general studies and humanities",38390,2110,42400,1780,48850,1040,57500,130
+Overall (All Graduates),25.01 Library science and administration,53877,280,58462,230,67060,110,n/a,n/a
+Overall (All Graduates),25.03 Library and archives assisting,32966,80,32066,80,37200,20,n/a,n/a
+Overall (All Graduates),"25.99 Library science, other",33560,240,34983,150,44125,80,28800,20
+Overall (All Graduates),"26.01 Biology, general",35170,2390,43855,1720,59766,740,74700,90
+Overall (All Graduates),26.02 Biochemistry/biophysics and molecular biology,29457,180,41566,60,n/a,n/a,n/a,n/a
+Overall (All Graduates),26.04 Cell/cellular biology and anatomical sciences,20800,40,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),26.05 Microbiological sciences and immunology,33100,30,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),26.07 Zoology/animal biology,30640,120,39266,60,n/a,n/a,n/a,n/a
+Overall (All Graduates),"26.13 Ecology, evolution, systematics and population biology",44660,480,52922,370,65466,200,78000,30
+Overall (All Graduates),26.15 Neurobiology and neurosciences,25700,70,29300,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),27.01 Mathematics,38966,250,47937,210,57333,70,n/a,n/a
+Overall (All Graduates),27.05 Statistics,58500,110,62185,150,n/a,n/a,n/a,n/a
+Overall (All Graduates),30.17 Behavioural sciences,33400,20,40000,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),30.18 Natural sciences,33700,40,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),30.19 Nutrition sciences,66355,320,72850,270,77440,140,n/a,n/a
+Overall (All Graduates),"30.99 Multidisciplinary/interdisciplinary studies, other",50250,200,55733,70,n/a,n/a,n/a,n/a
+Overall (All Graduates),"31.01 Parks, recreation and leisure studies",36590,430,41466,370,48900,180,41700,20
+Overall (All Graduates),31.05 Health and physical education/fitness,36780,2610,42988,2050,52900,1020,64500,170
+Overall (All Graduates),"38.01 Philosophy, logic and ethics",33555,250,36642,170,n/a,n/a,n/a,n/a
+Overall (All Graduates),38.02 Religion/religious studies,27825,90,33200,70,n/a,n/a,n/a,n/a
+Overall (All Graduates),"40.01 Physical sciences, general",49800,30,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),40.05 Chemistry,43840,720,52466,620,64433,310,85500,40
+Overall (All Graduates),40.06 Geological and Earth sciences/geosciences,68000,1600,80444,1330,102483,700,152200,100
+Overall (All Graduates),40.08 Physics,46128,190,62133,160,83400,40,n/a,n/a
+Overall (All Graduates),41.03 Physical science technologies/technicians,46950,450,51488,390,60883,240,62600,40
+Overall (All Graduates),"42.01 Psychology, general",37970,3920,42755,2980,50283,1370,53000,160
+Overall (All Graduates),"42.28 Clinical, counselling and applied psychology",66120,970,68700,820,71966,410,67000,40
+Overall (All Graduates),43.01 Criminal justice and corrections,46600,2910,54511,2500,69900,1530,82700,180
+Overall (All Graduates),43.02 Fire protection,46320,1190,55777,1050,77000,650,102200,70
+Overall (All Graduates),"43.99 Security and protective services, other",64600,300,69537,250,80850,120,n/a,n/a
+Overall (All Graduates),"44.00 Human services, general",46655,370,49644,350,42750,210,46100,40
+Overall (All Graduates),44.05 Public policy analysis,58700,60,68300,30,n/a,n/a,n/a,n/a
+Overall (All Graduates),44.07 Social work,45780,3920,47411,3140,49500,1560,53400,200
+Overall (All Graduates),45.02 Anthropology,34360,740,40500,550,51433,240,60000,20
+Overall (All Graduates),45.03 Archaeology,37240,130,41475,90,61600,20,n/a,n/a
+Overall (All Graduates),45.04 Criminology,44033,300,54300,220,70800,50,n/a,n/a
+Overall (All Graduates),45.06 Economics,46360,1610,52788,1470,67300,840,96900,120
+Overall (All Graduates),45.07 Geography and cartography,52770,760,57022,640,68216,370,79700,50
+Overall (All Graduates),45.09 International relations and national security studies,36580,330,44587,260,57750,90,n/a,n/a
+Overall (All Graduates),45.10 Political science and government,38510,1390,45522,1060,63616,540,75100,60
+Overall (All Graduates),45.11 Sociology,40250,1720,46455,1420,55716,770,67300,100
+Overall (All Graduates),45.12 Urban studies/affairs,42633,70,49500,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),46.02 Carpentry/carpenter,29500,50,33450,40,n/a,n/a,n/a,n/a
+Overall (All Graduates),46.03 Electrical and power transmission installers,37250,220,40600,170,49850,80,n/a,n/a
+Overall (All Graduates),"46.04 Building/construction finishing, management and inspection",21800,80,23800,80,28550,70,n/a,n/a
+Overall (All Graduates),46.05 Plumbing and related water supply services,34650,40,40700,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),47.01 Electrical/electronics maintenance and repair technology,38300,30,37100,20,49600,30,63400,30
+Overall (All Graduates),"47.02 Heating, air conditioning, ventilation and refrigeration maintenance technology/technician",45140,130,49733,70,66700,50,n/a,n/a
+Overall (All Graduates),47.03 Heavy/industrial equipment maintenance technologies,64655,530,72350,430,97750,140,n/a,n/a
+Overall (All Graduates),47.05 Stationary energy sources installer and operator,103870,2430,120544,2000,147916,1020,n/a,n/a
+Overall (All Graduates),47.06 Vehicle maintenance and repair technologies,39370,1590,44266,1350,55583,800,68100,80
+Overall (All Graduates),48.05 Precision metal working,39900,460,45200,370,53216,200,29000,20
+Overall (All Graduates),48.07 Woodworking,32633,160,39266,160,42633,80,49900,20
+Overall (All Graduates),48.08 Boilermaking/boilermaker,113457,450,134650,370,160866,230,183300,150
+Overall (All Graduates),49.02 Ground transportation,44477,440,48137,400,58260,220,88000,20
+Overall (All Graduates),"50.01 Visual, digital and performing arts, general",18600,20,22400,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),50.04 Design and applied arts,33030,2240,36233,1910,42616,1030,40000,100
+Overall (All Graduates),50.05 Drama/theatre arts and stagecraft,23290,820,28700,670,36433,320,50400,50
+Overall (All Graduates),50.06 Film/video and photographic arts,25970,340,32233,280,41420,120,n/a,n/a
+Overall (All Graduates),50.07 Fine arts and art studies,25900,1310,28700,1040,35200,490,33200,60
+Overall (All Graduates),50.09 Music,23870,540,29700,420,36883,170,n/a,n/a
+Overall (All Graduates),51.02 Communication disorders sciences and services,65850,620,65488,510,63750,280,58900,40
+Overall (All Graduates),51.06 Dental support services and allied professions,44260,1430,47155,1170,48516,620,41100,90
+Overall (All Graduates),51.07 Health and medical administrative services,35940,3290,38322,2700,41916,1380,43100,230
+Overall (All Graduates),51.08 Allied health and medical assisting services,38090,6850,41144,5440,44900,2500,40500,290
+Overall (All Graduates),"51.09 Allied health diagnostic, intervention and treatment professions",72090,2740,74955,2300,80583,1230,91700,190
+Overall (All Graduates),51.10 Clinical/medical laboratory science/research and allied professions,65660,1040,69955,810,74166,430,67600,60
+Overall (All Graduates),51.12 Medicine (MD),62350,460,67525,250,52833,170,84000,50
+Overall (All Graduates),"51.14 Medical scientist (MS, MSc, PhD)",50930,350,57922,300,75680,170,n/a,n/a
+Overall (All Graduates),51.15 Mental and social health services and allied professions,40790,810,39944,700,36716,440,24100,50
+Overall (All Graduates),51.18 Ophthalmic and optometric support services and allied professions,42177,760,44412,670,46120,380,46600,40
+Overall (All Graduates),"51.20 Pharmacy, pharmaceutical sciences and administration",104310,1050,105777,920,105233,570,86600,70
+Overall (All Graduates),51.22 Public health,70900,730,75477,600,85616,320,88200,30
+Overall (All Graduates),51.23 Rehabilitation and therapeutic professions,68680,1300,70655,1080,64966,610,54100,80
+Overall (All Graduates),51.24 Veterinary medicine (DVM),81000,70,88100,20,n/a,n/a,n/a,n/a
+Overall (All Graduates),51.26 Health aides/attendants/orderlies,33460,6930,35000,6020,35800,3020,32500,320
+Overall (All Graduates),51.33 Alternative and complementary medicine and medical systems,29000,20,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),51.35 Somatic bodywork and related therapeutic services,29180,110,30400,80,32200,20,n/a,n/a
+Overall (All Graduates),"51.38 Registered nursing, nursing administration, nursing research and clinical nursing",75660,15960,78233,13630,79416,7190,74000,770
+Overall (All Graduates),"51.39 Practical nursing, vocational nursing and nursing assistants",46250,5690,48200,4450,49916,2200,52600,310
+Overall (All Graduates),"52.01 Business/commerce, general",51640,3390,59355,2720,78966,1260,n/a,n/a
+Overall (All Graduates),"52.02 Business administration, management and operations",54940,9990,59300,8140,69916,4070,82600,560
+Overall (All Graduates),52.03 Accounting and related services,46480,8260,50655,6810,58383,3450,76700,620
+Overall (All Graduates),52.04 Business operations support and assistant services,35630,3630,37500,3030,39633,1580,38400,260
+Overall (All Graduates),52.06 Business/managerial economics,46490,300,51933,230,64900,90,n/a,n/a
+Overall (All Graduates),52.07 Entrepreneurial and small business operations,37316,180,45100,140,64866,100,n/a,n/a
+Overall (All Graduates),52.08 Finance and financial management services,45830,2630,50566,2380,61683,1380,76400,150
+Overall (All Graduates),52.09 Hospitality administration/management,32180,960,36722,840,43316,410,48200,60
+Overall (All Graduates),52.10 Human resources management and services,52370,2750,57988,2290,66800,1210,76300,120
+Overall (All Graduates),52.11 International business/trade/commerce,49330,740,56366,650,69300,370,84900,30
+Overall (All Graduates),52.12 Management information systems and services,66057,230,69616,180,85150,120,94700,30
+Overall (All Graduates),52.13 Management sciences and quantitative methods,45285,170,53057,190,63966,70,n/a,n/a
+Overall (All Graduates),52.14 Marketing,41880,2800,46977,2470,57200,1380,67300,190
+Overall (All Graduates),52.15 Real estate,57900,20,n/a,n/a,n/a,n/a,n/a,n/a
+Overall (All Graduates),52.17 Insurance,51120,140,52283,150,56350,60,n/a,n/a
+Overall (All Graduates),"52.19 Specialized sales, merchandising and marketing operations",30820,710,34033,600,39100,340,38300,50
+Overall (All Graduates),52.20 Construction management,63500,130,70600,80,91200,20,n/a,n/a
+Overall (All Graduates),"52.99 Business, management, marketing and related support services, other",55075,220,59771,170,70233,70,n/a,n/a
+Overall (All Graduates),54.01 History,35740,1340,41300,1080,51233,600,66000,100
+Overall (All Graduates),"55.01 French language and literature, general",37100,120,43100,40,57000,30,n/a,n/a
+Professional bachelor's degree,00. Total,65130,3510,87144,2930,105666,1780,101300,270
+Professional bachelor's degree,22. Legal professions and studies,59170,1970,83588,1680,110266,970,122400,140
+Professional bachelor's degree,51. Health professions and related programs,93250,1540,100000,1220,100116,810,84900,140
