@@ -308,13 +308,13 @@ def update_fos_certification_graph(field_of_study):
     # The map of colors for each type of credential
     # NOTE: The credential types will be pulled in the order specified within the list.
     color_map = {
-        'Certificate': 'red',
-        'Diploma': 'green',
-        'Bachelor\'s degree': 'blue',
-        'Professional bachelor\'s degree': 'yellow',
-        'Bachelor\'s degree + certificate/diploma': 'grey',
-        'Master\'s degree': 'orange',
-        'Doctoral Degree': 'teal',
+        'Certificate': '#E91F63',
+        'Diploma': '#9D27B0',
+        'Bachelor\'s degree': '#262AAF',
+        'Professional bachelor\'s degree': '#266BAF',
+        'Bachelor\'s degree + certificate/diploma': '#57ACDD',
+        'Master\'s degree': '#58DCBD',
+        'Doctoral Degree': '#61C688',
     }
 
     # Add each bar by certification type
