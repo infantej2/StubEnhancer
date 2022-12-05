@@ -157,13 +157,13 @@ def certification_salaries_barchart():
     # The map of colors for each type of credential
     # NOTE: The credential types will be pulled in the order specified within the list.
     color_map = {
-        'Certificate': '#E91F63',
-        'Diploma': '#9D27B0',
-        'Bachelor\'s degree': '#262AAF',
-        'Professional bachelor\'s degree': '#266BAF',
-        'Bachelor\'s degree + certificate/diploma': '#57ACDD',
-        'Master\'s degree': '#58DCBD',
-        'Doctoral Degree': '#61C688',
+        'Certificate': '#D6E353',
+        'Diploma': '#F7971D',
+        'Bachelor\'s degree': '#F45858',
+        'Professional bachelor\'s degree': '#E871D6',
+        'Bachelor\'s degree + certificate/diploma': '#733BEA',
+        'Master\'s degree': '#3BA5EA',
+        'Doctoral Degree': '#3BEA90',
     }
 
     # Add each bar by certification type
