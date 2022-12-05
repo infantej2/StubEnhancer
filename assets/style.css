@@ -111,6 +111,16 @@
     padding-right: 12px;
 }
 
+.nav-tabs .nav-link.active {
+    background-color: rgba(52, 54, 82, 0.849);
+    border-color:rgba(52, 54, 82, 0.849);
+    font-weight: 600;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid rgba(52, 54, 82, 0.849);
+}
+
 
 /* Salary Styling */
 .salary-wrapper {
