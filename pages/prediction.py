@@ -944,8 +944,6 @@ layout = html.Div(className="body", children=[
         ]),
         html.Div(className="prediction-wrapper", children=[
             html.Div(className="prediction-one", children=[
-                html.H3("Enter details here:", style={'color':'white', 'text-align':'center'}),
-                html.Br(),
                 html.Div(children=[
                     html.H4("Credential Type", className="prediction-prompt"),
                     dcc.Dropdown(creds_list, id="input_creds", value="Select Credentials", multi=False, clearable=False,

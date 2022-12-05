@@ -190,16 +190,18 @@
 /* Prediction Styling */
 .prediction-wrapper {
     display: grid;
-    grid-template-columns: 800px 1fr;
+    grid-template-columns: 800px 800px;
     grid-template-rows: 65vh;
-    grid-gap: 10px;
+    grid-gap: 150px;
+    margin-left: 150px;
+    margin-right: 100px;
     padding-bottom: 10px;
     grid-template-areas:
         'content1 content2';
 }
 
 .prediction-one {
-    margin-top: 20px;
+    margin-top: 90px;
     grid-area: content1;
     border-radius: 10px;
 }
