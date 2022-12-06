@@ -66,7 +66,8 @@ def dummy_one_hot_encoding(df, column_name, pref="dummy"):
 """
 Function: calc_smooth_mean()
 
-Purpose:
+Purpose: commonly used for target encoding, calculates the smoothed mean for a value we are encoding.
+         The value we encode will get replaced with the smoothed mean, in the units of the target.
 
 Parameters:
 
@@ -74,20 +75,20 @@ Return:
 
 Sources:
     https://maxhalford.github.io/blog/target-encoding/
-    https://github.com/jeffheaton/t81_558_deep_learning/blob/master/t81_558_class_02_2_pandas_cat.ipynb 
+    https://github.com/jeffheaton/t81_558_deep_learning
 """
 def calc_smooth_mean(df1, df2, global_mean, counts_agg, means_agg, category, target, weight):
     # Compute the "smoothed" means
     smooth = (counts_agg * means_agg + weight * global_mean) / (counts_agg + weight)
     #print(smooth)
     return smooth
-     # Replace each value by the according smoothed mean
+     # Replace each value with the associated smoothed mean
     #if df2 is None:
         #return df1[category].map(smooth)
     #else:
         #return df1[category].map(smooth),df2[category].map(smooth.to_dict())
 
-def plot_loss(history, axs, x_label="epoch", y_label="y"):
+def plot_loss(history, axs, x_label="epoch", y_label="y") -> None:
     
     format_chart(axs)
 
@@ -100,18 +101,13 @@ def plot_loss(history, axs, x_label="epoch", y_label="y"):
     axs.legend()
     axs.grid(True)
 
-def chart_regression(prediction, y, axs, sort=True):
+    return None
+def chart_regression(prediction, y, axs, sort=True) -> None:
 
-    #display(prediction)
-
-    print("check 1")
-    
     prediction_y_df = pd.DataFrame()  
     prediction_y_df["prediction"] = prediction
     prediction_y_df["y"] = y.flatten()
-    display(prediction_y_df)
     
-
     if sort:
         prediction_y_df.sort_values(by=["y"], inplace=True)
 
@@ -150,7 +146,7 @@ Return:
 Sources:
     # https://www.tensorflow.org/tutorials/keras/regression
     # https://keras.io/api/callbacks/early_stopping/
-    # https://github.com/jeffheaton/t81_558_deep_learning/blob/master/t81_558_class_02_2_pandas_cat.ipynb
+    # https://github.com/jeffheaton/t81_558_deep_learning
 """
 def DNN(df) -> None:
 
@@ -178,7 +174,7 @@ def DNN(df) -> None:
     callback = EarlyStopping(
         # monitor is the quantity being monitored.
         monitor='val_loss', 
-        # min_delta is the minimum change in the mointored quntity to qualify as an improvement.
+        # min_delta is the minimum change in the mointored qauntity to qualify as an improvement.
         min_delta=1e-2,
         # number of epochs to wait before stopping upon no improvement.
         patience=10, 
@@ -253,19 +249,17 @@ def prep_vector_space(df):
     smoothed_means = calc_smooth_mean(df1=df, df2=None, global_mean=mean, counts_agg=counts, means_agg=means, category="Field of Study (2-digit CIP code)", target="Median Income", weight=2)
     # convert to dictionary
     smoothed_means_dict = smoothed_means.to_dict()
-
-    print(smoothed_means_dict)
+    #print(smoothed_means_dict)
     
     tempa = list(smoothed_means_dict.values())
     tempb = list(smoothed_means_dict.keys())
-    print(tempb)
+    #print(tempb)
 
     std = statistics.stdev(tempa)
     mn = statistics.mean(tempa)
 
     print(f"std:{std} and mean:{mn}")
 
-    
     # replace with smoothed means
     df1  = df.replace({"Field of Study (2-digit CIP code)": smoothed_means_dict})
     
