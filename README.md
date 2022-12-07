@@ -1,14 +1,33 @@
 # StubEnhancer
 ### Table of Contents
-[Quick Start](#Quick-Start:-Running-StubEnhancer-Locally)
-[Hosting](#Hosting)
-    [Docker](#Docker)
-    [Podman](#Podman)
+[Introduction](#Introduction)  
+[Quick Start](#Quick-Start:-Running-StubEnhancer-Locally)  
+[Hosting](#Hosting)  
+    [Docker](#Docker)  
+    [Podman](#Podman)  
 [Contribute Code](#Contribute-Code)
 
 ------
 ## Introduction
 
+The objective of our application is to help our target audience make informed education and career decisions. We do this through interactive visualizations
+that abstracts the relevant data in meaningful ways. Further, we offer our users access to predictive models that compliment our data.
+
+#### Target Audience
+As of right now, our target audience is limited to those residing within Alberta. Primarily, high school students who are deciding what career or education
+paths to take. Additionaly, anyone within Alberta looking to inform their career and education decisions. We plan on expanding our application to all of 
+Canada in the near future.
+
+#### Implementation Details
+Data processing was done using the **Pandas** library and other related statistical libraries that are associated with Python. The interactive visualizations were
+built using **Plotly and Dash**. Machine learning for salary prediction was done using **Keras**, which is built ontop of the popular **TensorFlow** library. Other notable libraries used in this projects implementaiton were **Numpy, matplotlib, scipy, and sklearn**.
+
+#### Limitations
+Our project has several limitations associated with it in its current state:
+1. Our data is limited to Alberta salary data from the years 2005-2014.
+2. We assume that the *Years After Graduation* column in our data set maps 1:1 with years experience.
+3. We assume that the salaries are for individuals working in the fields they have degrees in, however, in reality not everyone who gets a degree works in their field.
+4. Our machine learning model has an RMSE of approximately $11,000. An ideal RMSE would be magnitudes lower. However, it currently predicts along the trend line that we would expect. So, although not entirely accurate, it is useful to users.
 
 ------
 ## Quick Start: Running StubEnhancer Locally
