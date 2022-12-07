@@ -1,7 +1,7 @@
 # StubEnhancer
 ### Table of Contents
 [Introduction](#Introduction)  
-[Quick Start](#Quick-Start:-Running-StubEnhancer-Locally)  
+[Quick Start](#Running-StubEnhancer-Locally)  
 [Hosting](#Hosting)  
     [Docker](#Docker)  
     [Podman](#Podman)  
@@ -30,7 +30,7 @@ Our project has several limitations associated with it in its current state:
 4. Our machine learning model has an RMSE of approximately $11,000. An ideal RMSE would be magnitudes lower. However, it currently predicts along the trend line that we would expect. So, although not entirely accurate, it is useful to users.
 
 ------
-## Quick Start: Running StubEnhancer Locally
+## Running StubEnhancer Locally
 
 Run the following command in your terminal: ```pip install -r requirements.txt```
 **Note that not all Python versions (such as 3.8.0) seem to support tensorflow. If tensorflow will not install via pip, consider upgrading python...**
