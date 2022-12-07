@@ -102,6 +102,8 @@ def plot_loss(history, axs, x_label="epoch", y_label="y") -> None:
     axs.grid(True)
 
     return None
+
+
 def chart_regression(prediction, y, axs, sort=True) -> None:
 
     prediction_y_df = pd.DataFrame()  
