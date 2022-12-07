@@ -4,7 +4,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Target Audience](#Target-Audience)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Implementation Details](#Implementation-Details)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Limitations](#Limitations)  
-[Quick Start](#Running-StubEnhancer-Locally)  
+[Quick Start: Running StubEnhancer Locally](#Running-StubEnhancer-Locally)  
 [Hosting](#Hosting)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Docker](#Docker)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Podman](#Podman)  
