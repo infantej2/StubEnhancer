@@ -28,6 +28,7 @@ Our project has several limitations associated with it in its current state:
 2. We assume that the *Years After Graduation* column in our data set maps 1:1 with years experience.
 3. We assume that the salaries are for individuals working in the fields they have degrees in, however, in reality not everyone who gets a degree works in their field.
 4. Our machine learning model has an RMSE of approximately $11,000. An ideal RMSE would be magnitudes lower. However, it currently predicts along the trend line that we would expect. So, although not entirely accurate, it is useful to users.
+5. Our application layout is not suited for mobile devices, and some screen resolutions will cause un-intended visual issues.
 
 ------
 ## Running StubEnhancer Locally
