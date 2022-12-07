@@ -13,13 +13,10 @@
 ------
 ## Introduction
 
-The objective of our application is to help our target audience make informed education and career decisions. We do this through interactive visualizations
-that abstracts the relevant data in meaningful ways. Further, we offer our users access to predictive models that compliment our data.
+The objective of our application is to help our target audience make informed education and career decisions. We do this through interactive visualizations that abstracts the relevant data in meaningful ways. Further, we offer our users access to predictive models that compliment our data.
 
 #### Target Audience
-As of right now, our target audience is limited to those residing within Alberta. Primarily, high school students who are deciding what career or education
-paths to take. Additionaly, anyone within Alberta looking to inform their career and education decisions. We plan on expanding our application to all of 
-Canada in the near future.
+As of right now, our target audience is limited to those residing within Alberta. Primarily, high school students who are deciding what career or education paths to take. Additionaly, anyone within Alberta looking to inform their career and education decisions. We plan on expanding our application to all of Canada in the near future.
 
 #### Implementation Details
 Data processing was done using the **Pandas** library and other related statistical libraries that are associated with Python. The interactive visualizations were
