@@ -1,5 +1,5 @@
 # StubEnhancer
-### Table of Contents
+### Quick Links
 [Introduction](#Introduction)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Target Audience](#Target-Audience)  
 &nbsp;&nbsp;&nbsp;&nbsp;[Implementation Details](#Implementation-Details)  
@@ -43,7 +43,7 @@ Run the following command in your terminal: ```pip install -r requirements.txt``
 ## Hosting
 
 If you would like to host an instance of StubEnhancer, you can do so directly by running app.py with Python, after installing all requirements with the command ```pip install -r requirements.txt```
-StubEnhancer utilizes port 8050 (by default). You may forward this port directly, or use a reverse-proxy to redirect requests to StubEnhancer.
+StubEnhancer utilizes port 8050 (by default). You may forward this port directly, or use a reverse-proxy to redirect requests to and from StubEnhancer.
 
 Alternatively, a [Dockerfile](/Dockerfile) is provided within the solution folder. With this file, you can use either Docker or Podman in the following ways:
 
