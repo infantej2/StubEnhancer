@@ -17,7 +17,7 @@ credential_map = {
         'Diploma': '#F7971D',
         'Bachelor\'s degree': '#F692E7',
         'Professional bachelor\'s degree': '#FF7B7B',
-        'Bachelor\'s degree + certificate/diploma': '#3BA5EA',
+#        'Bachelor\'s degree + certificate/diploma': '#3BA5EA',
         'Master\'s degree': '#733BEA',
         'Doctoral Degree': '#3BEA90',
 }
@@ -51,7 +51,7 @@ layout = html.Div(className="body", children=[
                 html.Div(id='Salary-Range-Max',
                          style={"color": "white", "textAlign": "right"}),
             ], style={"display": "flex", "justify-content": "space-between"}),
-            dcc.RangeSlider(min_salary, max_salary, step=1000, value=[60000, 80000],
+            dcc.RangeSlider(min_salary, max_salary, step=1000, value=[80000, 120000],
             marks=None, id='Salary-Range-Slider', tooltip={"placement": "bottom", "always_visible": True}),
         ], style={"width": "100%"}),
     ], style={"display": "flex", "width": "70%", "margin": "auto", "paddingTop": "40px"}),
